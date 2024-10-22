@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="40" height="40" viewBox="0 0 40 40">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="Rectangle_5969" data-name="Rectangle 5969" width="40" height="40" transform="translate(616 1024)" fill="#fff" stroke="#707070" stroke-width="1"/>
+    </clipPath>
+  </defs>
+  <g id="Mask_Group_854" data-name="Mask Group 854" transform="translate(-616 -1024)" clip-path="url(#clip-path)">
+    <g id="head-set-phones-" transform="translate(619.693 1025.504)">
+      <path id="Path_14529" data-name="Path 14529" d="M8.175,25.958V21.447a16.542,16.542,0,0,1,33.084,0v4.511" transform="translate(-8.175 -4.905)" fill="none" stroke="#3c3c3c" stroke-linejoin="round" stroke-width="2.2"/>
+      <path id="Path_14530" data-name="Path 14530" d="M42.7,27.795A16.527,16.527,0,0,1,28.716,44.186,2.294,2.294,0,0,1,26.16,41.93h0a2.056,2.056,0,0,1,2.105-2.105h0a2.375,2.375,0,0,1,2.406,2.406v.6" transform="translate(-9.618 -6.741)" fill="none" stroke="#3c3c3c" stroke-linejoin="round" stroke-width="2.2"/>
+      <path id="Path_14531" data-name="Path 14531" d="M14.19,21.255a6.015,6.015,0,1,0,0,12.03Z" transform="translate(-8.175 -6.217)" fill="none" stroke="#eb6c6f" stroke-linejoin="round" stroke-width="2.2"/>
+      <path id="Path_14532" data-name="Path 14532" d="M37.6,33.285a6.015,6.015,0,0,0,0-12.03Z" transform="translate(-10.536 -6.217)" fill="none" stroke="#eb6c6f" stroke-linejoin="round" stroke-width="2.2"/>
+    </g>
+  </g>
+</svg>

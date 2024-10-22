@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20" height="20" viewBox="0 0 20 20">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="Rectangle_5959" data-name="Rectangle 5959" width="20" height="20" transform="translate(966.895 27.97)" fill="#fff" stroke="#707070" stroke-width="1"/>
+    </clipPath>
+  </defs>
+  <g id="Mask_Group_849" data-name="Mask Group 849" transform="translate(-966.895 -27.97)" clip-path="url(#clip-path)">
+    <g id="call-svgrepo-com" transform="translate(968.019 28.987)">
+      <path id="secondary" d="M14.347,8.369A4.949,4.949,0,0,1,19.3,13.319" transform="translate(-5.409 -4.41)" fill="none" stroke="#ff7d81" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"/>
+      <path id="secondary-2" data-name="secondary" d="M13.152,3.646a8.177,8.177,0,0,1,.99-.059A8.909,8.909,0,0,1,23.05,12.5a8.177,8.177,0,0,1-.059.99" transform="translate(-5.204 -3.587)" fill="none" stroke="#ff7d81" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"/>
+      <path id="primary" d="M15.459,22.171a13.076,13.076,0,0,1-4.3-1.891l1.8-2.584a1.98,1.98,0,0,1,2.653-.5c.327.208.663.4.99.584a1.98,1.98,0,0,1,.831,2.791l-.614.94a1.158,1.158,0,0,1-1.366.663ZM4.244,8.976l.99-.614a1.98,1.98,0,0,1,2.821.723,9.325,9.325,0,0,0,.584.99,1.98,1.98,0,0,1-.5,2.653L5.5,14.559a13.076,13.076,0,0,1-1.92-4.266,1.158,1.158,0,0,1,.663-1.317Z" transform="translate(-3.552 -4.354)" fill="none" stroke="#3c3c3c" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6"/>
+      <path id="primary-2" data-name="primary" d="M5.906,15.913A17.541,17.541,0,0,0,8.46,19.051,17.541,17.541,0,0,0,11.6,21.605" transform="translate(-3.957 -5.708)" fill="none" stroke="#3c3c3c" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6"/>
+    </g>
+  </g>
+</svg>

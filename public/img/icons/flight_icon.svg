@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20" height="20" viewBox="0 0 20 20">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="Rectangle_15" data-name="Rectangle 15" width="20" height="20" transform="translate(630 752)" fill="#fff" stroke="#707070" stroke-width="1"/>
+    </clipPath>
+  </defs>
+  <g id="Mask_Group_20" data-name="Mask Group 20" transform="translate(-630 -752)" clip-path="url(#clip-path)">
+    <path id="ticket-airline" d="M14.167,10v.833H12.083l-1.592,2.017a.926.926,0,0,1-.813.483H8.751l.972-2.5H8.042L6.754,9.306a.65.65,0,0,1,1.023-.783l.925.643H9.737l-.987-2.5h.913a.924.924,0,0,1,.812.483l1.608,2.017h1.042C13.793,9.167,14.167,9.54,14.167,10ZM17.5,10a1.668,1.668,0,0,0,1.667,1.667H20V15a2.5,2.5,0,0,1-2.5,2.5H2.5A2.5,2.5,0,0,1,0,15V5A2.5,2.5,0,0,1,2.5,2.5h15A2.5,2.5,0,0,1,20,5V8.333h-.833A1.668,1.668,0,0,0,17.5,10Zm-1.667,0a3.338,3.338,0,0,1,2.5-3.228V5a.834.834,0,0,0-.833-.833H6V5.833H4.333V4.167H2.5A.834.834,0,0,0,1.667,5V15a.834.834,0,0,0,.833.833H4.333V14.167H6v1.667H17.5A.834.834,0,0,0,18.333,15V13.227A3.338,3.338,0,0,1,15.833,10Zm-11.5-.833H6V7.5H4.333Zm0,3.333H6V10.833H4.333Z" transform="translate(630 752)" fill="#1a1a1a" stroke="#f8f8f8" stroke-width="0.4"/>
+  </g>
+</svg>
