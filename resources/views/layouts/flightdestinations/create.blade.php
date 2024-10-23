@@ -30,11 +30,12 @@
 
             <div class="row">
                 <div class="col-md-3">
-                    <input class="form-check-input" type="checkbox" name="homepage_display" id="homepage_display"
-                        value="1">
                     <label class="form-check-label" for="homepage_display">
                         Homepage Display
                     </label>
+                    <input class="form-check-input" type="checkbox" name="homepage_display" id="homepage_display"
+                        value="1">
+
                 </div>
                 <div class="col-md-3">
                     <div class="form-group">
