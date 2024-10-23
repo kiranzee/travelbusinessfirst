@@ -304,6 +304,7 @@ if ($request->hasFile('airline_image5')) {
     // Update other fields (excluding image)
     $destination->region = $request->region;
     $destination->title = $request->title;
+    $destination->homepage_display = $request->homepage_display;
     $destination->heading = $request->heading;
     $destination->link_name = $request->link_name;
     $destination->image_seo = $request->image_seo ?? $destination->image_seo;

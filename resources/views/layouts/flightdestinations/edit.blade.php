@@ -30,7 +30,15 @@
             @method('PUT')
 
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-3">
+                    <input class="form-check-input" type="checkbox" name="homepage_display" id="homepage_display"
+                        {{ $destination->homepage_display === '0' ? 'checked' : '' }}
+                        value="{{ $destination->homepage_display }}">
+                    <label class="form-check-label" for="homepage_display">
+                        Homepage Display
+                    </label>
+                </div>
+                <div class="col-md-3">
                     <div class="form-group">
                         <label for="region">Region</label>
                         <select class="form-control" name="region" id="region" required>
@@ -383,21 +391,61 @@
 
             <script>
                 document.addEventListener('DOMContentLoaded', function() {
+                    const toolbarOptions = [
+                        ['bold', 'italic', 'underline', 'strike'], // toggled buttons
+                        ['blockquote', 'code-block'],
+                        ['link', 'image', 'video', 'formula'],
+
+                        [{
+                            'header': 1
+                        }, {
+                            'header': 2
+                        }], // custom button values
+                        [{
+                            'list': 'ordered'
+                        }, {
+                            'list': 'bullet'
+                        }, {
+                            'list': 'check'
+                        }],
+                        [{
+                            'script': 'sub'
+                        }, {
+                            'script': 'super'
+                        }], // superscript/subscript
+                        [{
+                            'indent': '-1'
+                        }, {
+                            'indent': '+1'
+                        }], // outdent/indent
+                        [{
+                            'direction': 'rtl'
+                        }], // text direction
+
+                        [{
+                            'size': ['small', false, 'large', 'huge']
+                        }], // custom dropdown
+                        [{
+                            'header': [1, 2, 3, 4, 5, 6, false]
+                        }],
+
+                        [{
+                            'color': []
+                        }, {
+                            'background': []
+                        }], // dropdown with defaults from theme
+                        [{
+                            'font': []
+                        }],
+                        [{
+                            'align': []
+                        }],
+
+                        ['clean'] // remove formatting button
+                    ];
                     const quill = new Quill('#editor', {
                         modules: {
-                            toolbar: [
-                                [{
-                                    header: [1, 2, false]
-                                }],
-                                ['bold', 'italic', 'underline'],
-                                ['image', 'code-block'],
-                                [{
-                                    'list': 'ordered'
-                                }, {
-                                    'list': 'bullet'
-                                }], // Add bullet point and ordered list
-                                //['table'] // Add table option
-                            ],
+                            toolbar: toolbarOptions
                         },
                         placeholder: 'Compose an epic...',
                         theme: 'snow'

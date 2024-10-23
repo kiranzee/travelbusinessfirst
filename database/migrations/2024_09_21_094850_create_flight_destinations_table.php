@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('flight_destinations', function (Blueprint $table) {
             $table->id();
             $table->string('region');
-            $table->string('title');
+            $table->string('title');           
             $table->string('image');
             $table->string('image_seo')->nullable();
             $table->string('banner_image');
@@ -47,6 +47,7 @@ return new class extends Migration
             $table->decimal('airline5_price', 8, 2)->nullable();
             $table->string('long_description');
             $table->enum('status', ['active', 'inactive']);
+            $table->boolean('homepage_display')->default(false);
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });

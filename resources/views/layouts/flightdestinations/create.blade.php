@@ -29,7 +29,14 @@
             @csrf
 
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-3">
+                    <input class="form-check-input" type="checkbox" name="homepage_display" id="homepage_display"
+                        value="1">
+                    <label class="form-check-label" for="homepage_display">
+                        Homepage Display
+                    </label>
+                </div>
+                <div class="col-md-3">
                     <div class="form-group">
                         <label for="region">Region</label>
                         <select class="form-control" name="region" id="region" required>
@@ -355,7 +362,7 @@
                         modules: {
                             toolbar: [
                                 [{
-                                    header: [1, 2, false]
+                                    header: [1, 2, 3, 4, false]
                                 }],
                                 ['bold', 'italic', 'underline'],
                                 ['image', 'code-block'],

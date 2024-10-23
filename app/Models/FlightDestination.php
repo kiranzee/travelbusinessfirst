@@ -42,6 +42,7 @@ class FlightDestination extends Model
         'airline4_price',
         'airline5_price',
         'long_description',
+        'homepage_display',
         'status',
         'user_id'
     ];

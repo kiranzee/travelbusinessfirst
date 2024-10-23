@@ -2463,7 +2463,7 @@ body {
 .city-description > .info-text {
   height: 37.5rem;
   overflow: auto;
-  text-align: justify;
+  /* text-align: justify; */
   padding-right: 1.875rem;
 }
 
