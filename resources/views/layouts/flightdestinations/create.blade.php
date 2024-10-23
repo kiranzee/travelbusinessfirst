@@ -33,7 +33,7 @@
                     <label class="form-check-label" for="homepage_display">
                         Homepage Display
                     </label>
-                    <input class="form-check-input" type="checkbox" name="homepage_display" id="homepage_display"
+                    <input class="form-control" type="checkbox" name="homepage_display" id="homepage_display"
                         value="1">
 
                 </div>
