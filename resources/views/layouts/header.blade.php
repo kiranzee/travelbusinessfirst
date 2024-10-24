@@ -38,8 +38,9 @@
 
                 <div class="offcanvas-body p-0 pt-4 pt-md-0">
                     <ul class="navbar-nav mb-2 mb-lg-0 w-100 align-items-center">
+
                         <li class="nav-item border-md-end">
-                            <a class="nav-link px-4  {{ request()->is('hotel') ? '' : 'active' }}" aria-current="page"
+                            <a class="nav-link px-4  {{ request()->is('/') ? 'active' : '' }}" aria-current="page"
                                 href="{{ url('/') }}">Flights</a>
                         </li>
                         <li class="nav-item border-md-end">
@@ -47,7 +48,7 @@
                                 href="{{ url('/hotel') }}">Hotels</a>
                         </li>
                         <li class="nav-item dropdown border-md-end">
-                            <a class="nav-link px-4 {{ request()->is('flight-city-search') ? 'active' : '' }}"
+                            <a class="nav-link px-4 {{ request()->is('flight-city-search*') ? 'active' : '' }}"
                                 href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 Destinations
                                 <svg class="ms-2" xmlns="http://www.w3.org/2000/svg" width="14" height="14"
