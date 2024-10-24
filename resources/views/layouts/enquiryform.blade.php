@@ -36,8 +36,8 @@
                                                 src="{{ asset('img/icons/depart-flight.svg') }}" alt="">
                                             <div>
                                                 <small class="clr-7e">From</small>
-                                                <input class="text-truncate w-100 fromdest" type="text"
-                                                    value="" id="fromdestow" name="from[]" placeholder="LON">
+                                                <input class="text-truncate w-100 fromdest" type="text" required
+                                                    value="" id="fromdestow" name="from[]" placeholder="Source">
                                             </div>
                                         </div>
                                     </div>
@@ -54,7 +54,7 @@
                                             <div>
                                                 <small class="clr-7e">To</small>
                                                 <input class="text-truncate w-100 todest" type="text" value=""
-                                                    name="to[]" placeholder="SYD">
+                                                    required name="to[]" placeholder="Destination">
                                             </div>
                                         </div>
                                     </div>
@@ -220,8 +220,8 @@
                                 <img src="{{ asset('img/icons/user_icon.svg') }}" alt="">
                                 <div>
                                     <small class="clr-7e">Full Name</small>
-                                    <input class="text-truncate w-100" name="customer_name" type="text"
-                                        value="Sunil Singh" placeholder="Full Name">
+                                    <input class="text-truncate w-100" name="customer_name" type="text" required
+                                        value="" placeholder="Customer Name">
                                 </div>
                             </div>
                         </div>
@@ -230,8 +230,8 @@
                                 <img src="{{ asset('img/icons/email-dark.svg') }}" alt="">
                                 <div>
                                     <small class="clr-7e">Email ID</small>
-                                    <input class="text-truncate w-100" name="customer_email" type="email"
-                                        value="kiran@kirang.com" placeholder="your@email.com">
+                                    <input class="text-truncate w-100" name="customer_email" type="email" required
+                                        value="" placeholder="customer@email.com">
                                 </div>
                             </div>
                         </div>
@@ -241,7 +241,7 @@
                                 <div>
                                     <small class="clr-7e">Phone Number</small>
                                     <input class="text-truncate w-100" name="customer_phone" maxlength="10"
-                                        type="text" value="9711205173" placeholder="9711205173">
+                                        type="text" value="" placeholder="+44">
                                 </div>
                             </div>
                         </div>
@@ -282,8 +282,9 @@
                                                 src="{{ asset('img/icons/depart-flight.svg') }}" alt="">
                                             <div>
                                                 <small class="clr-7e">From</small>
-                                                <input class="text-truncate w-100 fromdest" type="text"
-                                                    value="" id="fromdestrt" name="from[]" placeholder="LHR">
+                                                <input class="text-truncate w-100 fromdest" type="text" required
+                                                    value="" id="fromdestrt" name="from[]"
+                                                    placeholder="Source">
                                             </div>
                                         </div>
                                     </div>
@@ -299,8 +300,8 @@
                                                 src="{{ asset('img/icons/depart-flight.svg') }}" alt="">
                                             <div>
                                                 <small class="clr-7e">To</small>
-                                                <input class="text-truncate w-100 todest" type="text"
-                                                    value="" name="to[]" placeholder="DXB">
+                                                <input class="text-truncate w-100 todest" type="text" required
+                                                    value="" name="to[]" placeholder="Destination">
                                             </div>
                                         </div>
                                     </div>
@@ -313,12 +314,12 @@
                                 <div class="row g-0 w-100 align-items-center justify-content-between">
                                     <div class="col mrgn-left-32 departure_dt">
                                         <small class="clr-7e">Departure Date</small>
-                                        <input class="text-truncate w-100 departdtrt" type="text"
+                                        <input class="text-truncate w-100 departdtrt" type="text" required
                                             name="departure_date[]" id="departdatert" value="" placeholder="">
                                     </div>
                                     <div class="col bdr-left-date departure_dt">
                                         <small class="clr-7e">Return Date</small>
-                                        <input class="text-truncate w-100 departdtrt" type="text"
+                                        <input class="text-truncate w-100 departdtrt" type="text" required
                                             name="return_date[]" id="returndatert" value="" placeholder="">
                                     </div>
                                 </div>
@@ -471,7 +472,7 @@
                                 <div>
                                     <small class="clr-7e">Full Name</small>
                                     <input class="text-truncate w-100" name="customer_name" type="text"
-                                        value="Sunil Singh" placeholder="Sunil Singh">
+                                        value="" placeholder="Customer Name">
                                 </div>
                             </div>
                         </div>
@@ -481,7 +482,7 @@
                                 <div>
                                     <small class="clr-7e">Email ID</small>
                                     <input class="text-truncate w-100" name="customer_email" type="email"
-                                        value="kiran@kirang.com" placeholder="your@email.com">
+                                        value="" placeholder="customer@email.com">
                                 </div>
                             </div>
                         </div>
@@ -491,7 +492,7 @@
                                 <div>
                                     <small class="clr-7e">Phone Number</small>
                                     <input class="text-truncate w-100" maxlength="10" name="customer_phone"
-                                        type="text" value="9711205173" placeholder="9711205173">
+                                        type="text" value="" placeholder="+44">
                                 </div>
                             </div>
                         </div>
@@ -533,8 +534,8 @@
                                                     <div>
                                                         <small class="clr-7e">From</small>
                                                         <input class="text-truncate w-100 fromdest" type="text"
-                                                            value="" name="from[]" placeholder="Dubai"
-                                                            required>
+                                                            required value="" name="from[]"
+                                                            placeholder="Source" required>
                                                     </div>
                                                 </div>
                                             </div>
@@ -555,8 +556,8 @@
                                                     <div>
                                                         <small class="clr-7e">To</small>
                                                         <input class="text-truncate w-100 todest" type="text"
-                                                            value="" name="to[]" placeholder="London"
-                                                            required>
+                                                            required value="" name="to[]"
+                                                            placeholder="Destination" required>
                                                     </div>
                                                 </div>
                                             </div>
@@ -734,8 +735,8 @@
                                         <img src="{{ asset('img/icons/user_icon.svg') }}" alt="">
                                         <div>
                                             <small class="clr-7e">Full Name</small>
-                                            <input class="text-truncate w-100 cust_name" type="text"
-                                                value="Kiran" name="customer_name" placeholder="Traveller name">
+                                            <input class="text-truncate w-100 cust_name" type="text" required
+                                                value="" name="customer_name" placeholder="Customer name">
                                         </div>
                                     </div>
                                 </div>
@@ -745,7 +746,7 @@
                                         <div>
                                             <small class="clr-7e">Email ID</small>
                                             <input class="text-truncate w-100 cust_email" type="email"
-                                                name="customer_email" value="kiran@kirang.com" placeholder="Your@"
+                                                name="customer_email" value="" placeholder="customer@email.com"
                                                 required>
                                         </div>
                                     </div>
@@ -756,7 +757,7 @@
                                         <div>
                                             <small class="clr-7e">Phone Number</small>
                                             <input class="text-truncate w-100 cust_phone" maxlength="10"
-                                                type="text" name="customer_phone" value="7442249488"
+                                                type="text" name="customer_phone" value=""
                                                 placeholder="+44" required>
                                         </div>
                                     </div>

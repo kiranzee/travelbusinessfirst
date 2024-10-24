@@ -47,8 +47,8 @@
                                 href="{{ url('/hotel') }}">Hotels</a>
                         </li>
                         <li class="nav-item dropdown border-md-end">
-                            <a class="nav-link px-4 " href="#" role="button" data-bs-toggle="dropdown"
-                                aria-expanded="false">
+                            <a class="nav-link px-4 {{ request()->is('flight-city-search') ? 'active' : '' }}"
+                                href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 Destinations
                                 <svg class="ms-2" xmlns="http://www.w3.org/2000/svg" width="14" height="14"
                                     viewBox="0 0 24 24">
@@ -74,11 +74,7 @@
                                         <p>No popular destinations available at the moment.</p>
                                     @endif
                                 </div>
-                                <!-- <li><a class="dropdown-item" href="#">Dubai</a></li>
-                                <li><a class="dropdown-item" href="#">Mauritius</a></li>
-                                <li><a class="dropdown-item" href="#">India</a></li>
-                                <li><a class="dropdown-item" href="#">Malaysia</a></li>
-                                <li><a class="dropdown-item" href="#">Singapore</a></li> -->
+
                             </ul>
                         </li>
                         <li class="ms-4 no-nav-link">
