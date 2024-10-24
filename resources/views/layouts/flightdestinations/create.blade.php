@@ -41,9 +41,12 @@
                     <div class="form-group">
                         <label for="region">Region</label>
                         <select class="form-control" name="region" id="region" required>
-                            <option value="Asia">Asia</option>
-                            <option value="Europe">Europe</option>
-                            <option value="Western">Western</option>
+                            <option value="ASIA & Middle East">ASIA & Middle East</option>
+                            <option value="America & Canad">America & Canada</option>
+                            <option value="South America">South America</option>
+                            <option value="Africa">Africa</option>
+                            <option value="Carribean">Carribean</option>
+                            <option value="Australia and New Zealand">Australia and New Zealand</option>
                         </select>
                     </div>
                 </div>
