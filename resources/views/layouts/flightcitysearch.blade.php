@@ -43,9 +43,9 @@
                                             <img class="d-none d-md-block"
                                                 src="{{ asset('img/icons/depart-flight.svg') }}" alt="">
                                             <div>
-                                                <small class="clr-7e" id="fromLabel">From</small>
+                                                <small class="clr-7e" id="fromLabel">Departure</small>
                                                 <input class="text-truncate w-100 fromdest" type="text"
-                                                    value="" placeholder="LHR" id="fromdest" name="fromdest">
+                                                    value="" placeholder="Airport" id="fromdest" name="fromdest">
                                             </div>
                                         </div>
                                     </div>
@@ -60,9 +60,9 @@
                                             <img class="d-none d-md-block"
                                                 src="{{ asset('img/icons/depart-flight.svg') }}" alt="">
                                             <div>
-                                                <small class="clr-7e" id="toLabel">To </small>
+                                                <small class="clr-7e" id="toLabel">Destination </small>
                                                 <input class="text-truncate w-100 todest" type="text" name="todest"
-                                                    id="todest" value="" placeholder="NYC">
+                                                    id="todest" value="" placeholder="Airport">
                                             </div>
                                         </div>
                                     </div>

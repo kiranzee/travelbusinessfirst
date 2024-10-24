@@ -52,9 +52,9 @@
                                             <img class="d-none d-md-block"
                                                 src="{{ asset('img/icons/depart-flight.svg') }}" alt="">
                                             <div>
-                                                <small class="clr-7e" id="fromLabel">From</small>
+                                                <small class="clr-7e" id="fromLabel">Departure</small>
                                                 <input class="text-truncate w-100" type="text" id="fromdest"
-                                                    name="fromdest" value="{{ $request->from }}" placeholder="Dubai">
+                                                    name="fromdest" value="{{ $request->from }}" placeholder="Airport">
                                             </div>
                                         </div>
                                     </div>
@@ -69,9 +69,9 @@
                                             <img class="d-none d-md-block"
                                                 src="{{ asset('img/icons/depart-flight.svg') }}" alt="">
                                             <div>
-                                                <small class="clr-7e" id="toLabel">To </small>
+                                                <small class="clr-7e" id="toLabel">Destination </small>
                                                 <input class="text-truncate w-100" type="text" name="todest"
-                                                    id="todest" value="{{ $request->to }}" placeholder="London">
+                                                    id="todest" value="{{ $request->to }}" placeholder="Airport">
                                             </div>
                                         </div>
                                     </div>
