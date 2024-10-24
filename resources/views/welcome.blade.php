@@ -119,7 +119,7 @@
     <section class="container">
         <form id="flightSearch">
             <div class="search-block">
-                <h2 class="fw-bold mb-4">Flights to London, United Kingdom</h2>
+                <h2 class="fw-bold mb-4">Flights from London, United Kingdom</h2>
                 <div class="row g-3 mb-3">
                     <div class="col-md-10">
                         <div class="row g-3">
