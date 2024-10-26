@@ -46,16 +46,16 @@
                     <div class="form-group">
                         <label for="region">Region</label>
                         <select class="form-control" name="region" id="region" required>
-                            <option value="Asia" {{ $destination->region == 'ASIA & Middle East' ? 'selected' : '' }}>ASIA
+                            <option value="ASIA & Middle East" {{ $destination->region == 'ASIA & Middle East' ? 'selected' : '' }}>ASIA
                                 & Middle East</option>
-                            <option value="Europe" {{ $destination->region == 'America & Canada' ? 'selected' : '' }}>
+                            <option value="America & Canada" {{ $destination->region == 'America & Canada' ? 'selected' : '' }}>
                                 America & Canada</option>
-                            <option value="Western" {{ $destination->region == 'Europe' ? 'selected' : '' }}>Europe
-                            <option value="Western" {{ $destination->region == 'South America' ? 'selected' : '' }}>South
+                            <option value="Europe" {{ $destination->region == 'Europe' ? 'selected' : '' }}>Europe
+                            <option value="South America" {{ $destination->region == 'South America' ? 'selected' : '' }}>South
                                 America
-                            <option value="Western" {{ $destination->region == 'Africa' ? 'selected' : '' }}>Africa
-                            <option value="Western" {{ $destination->region == 'Carribean' ? 'selected' : '' }}>Carribean
-                            <option value="Western"
+                            <option value="Africa" {{ $destination->region == 'Africa' ? 'selected' : '' }}>Africa
+                            <option value="Carribean" {{ $destination->region == 'Carribean' ? 'selected' : '' }}>Carribean
+                            <option value="Australia and New Zealand"
                                 {{ $destination->region == 'Australia and New Zealand' ? 'selected' : '' }}>Australia and
                                 New Zealand
                             </option>
