@@ -44,7 +44,7 @@
                 </div>
                 <div class="col-md-3">
                     <div class="form-group">
-                        <label for="region">Region</label>
+                        <label for="region">Region-</label>
                         <select class="form-control" name="region" id="region" required>
                             <option value="ASIA & Middle East" {{ $destination->region == 'ASIA & Middle East' ? 'selected' : '' }}>ASIA
                                 & Middle East</option>
