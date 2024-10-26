@@ -48,7 +48,7 @@
                         <select class="form-control" name="region" id="region" required>
                             <option value="ASIA & Middle East" {{ $destination->region == 'ASIA & Middle East' ? 'selected' : '' }}>ASIA
                                 & Middle East</option>
-                            <option  value="America & Canada" {{ $destination->region == 'America & Canada' ? 'selected' : '' }}>
+                            <option value="America & Canada" {{ $destination->region == 'America & Canada' ? 'selected' : '' }}>
                                 America & Canada</option>
                             <option value="Europe" {{ $destination->region == 'Europe' ? 'selected' : '' }}>Europe
                             <option value="South America" {{ $destination->region == 'South America' ? 'selected' : '' }}>South
