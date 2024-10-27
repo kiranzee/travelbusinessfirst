@@ -55,6 +55,8 @@ Route::post('/flight-destination', [App\Http\Controllers\FlightDestinationContro
 
 Route::get('/topthingstodo', [App\Http\Controllers\TopThingsToDoController::class, 'create'])->name('topthingstodo.create');
 Route::get('/topthings/list', [App\Http\Controllers\TopThingsToDoController::class, 'index'])->name('topthingstodo.index');
+// Route to handle form submission
+Route::post('/topthingstodo', [App\Http\Controllers\TopThingsToDoController::class, 'store'])->name('topthingstodo.store');
 Route::resource('topthingstodo', TopThingsToDoController::class);
 
 Route::get('/hero', [App\Http\Controllers\HeroSectionController::class, 'create'])->name('hero.create');
@@ -84,8 +86,7 @@ Route::get('/flightpartner/list', [App\Http\Controllers\FlightPartnerController:
 Route::resource('flightpartner', FlightPartnerController::class);
 
 
-// Route to handle form submission
-Route::post('/topthingstodo', [App\Http\Controllers\TopThingsToDoController::class, 'store'])->name('topthingstodo.store');
+
 
 Route::get('/ticketenquiry',[App\Http\Controllers\CustomerEnquiryController::class, 'ticket'])->name('ticketenquiry');
 Route::get('/cityflightenquiry',[App\Http\Controllers\CustomerEnquiryController::class, 'cityflight'])->name('cityflightenquiry');
