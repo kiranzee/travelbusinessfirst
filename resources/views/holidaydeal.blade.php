@@ -29,8 +29,8 @@
     @include('layouts.header', ['menu' => $menu])
     @if (!empty($bestofactivity))
         <section class="search-top-section">
-            <img src="{{ asset('img/city-search-top-image.jpg') }}" class="img-fluid"
-                alt="{{ $bestofactivity->banner_image_seo }}" height="175px">
+            <img src="{{ asset('uploads/' . $bestofactivity->banner_image) }}" class="img-fluid"
+                alt="{{ $bestofactivity->image_seo }}" height="175px">
 
             <div class="modify-search-top">
                 <div class="container">
@@ -43,9 +43,9 @@
                                             <img class="d-none d-md-block"
                                                 src="{{ asset('img/icons/depart-flight.svg') }}" alt="">
                                             <div>
-                                                <small class="clr-7e" id="fromLabel">From</small>
+                                                <small class="clr-7e" id="fromLabel">Departure</small>
                                                 <input class="text-truncate w-100" type="text" value=""
-                                                    placeholder="LHR" id="fromdest" name="fromdest">
+                                                    placeholder="Airport" id="fromdest" name="fromdest">
                                             </div>
                                         </div>
                                     </div>
@@ -60,9 +60,9 @@
                                             <img class="d-none d-md-block"
                                                 src="{{ asset('img/icons/depart-flight.svg') }}" alt="">
                                             <div>
-                                                <small class="clr-7e" id="toLabel">To </small>
+                                                <small class="clr-7e" id="toLabel">Destination </small>
                                                 <input class="text-truncate w-100" type="text" name="todest"
-                                                    id="todest" value="" placeholder="NYC">
+                                                    id="todest" value="" placeholder="Airport">
                                             </div>
                                         </div>
                                     </div>
@@ -571,7 +571,7 @@
                                     <div class="col-5">
                                         <div class="price">
                                             <small>Starting at</small>
-                                            <span>£{{ number_format($bestofactivity->price, 0) }}</span> PP
+                                            <span>£{{ number_format($bestofactivity->price, 0) }}</span><small>PP</small>
                                         </div>
                                     </div>
 
@@ -617,227 +617,11 @@
                     <button class="nav-link active" id="cityFlight-tab" data-bs-toggle="tab"
                         data-bs-target="#cityFlight" type="button" role="tab" aria-controls="cityFlight"
                         aria-selected="true">Flight To Cities</button>
-                    <button class="nav-link" id="countryFlight-tab" data-bs-toggle="tab"
-                        data-bs-target="#countryFlight" type="button" role="tab" aria-controls="countryFlight"
-                        aria-selected="false">Flight To Top
-                        Countries</button>
-                    <button class="nav-link" id="flightRoute-tab" data-bs-toggle="tab" data-bs-target="#flightRoute"
-                        type="button" role="tab" aria-controls="flightRoute" aria-selected="false">Top Flight
-                        Routes</button>
-                    <button class="nav-link" id="explore-tab" data-bs-toggle="tab" data-bs-target="#explore"
-                        type="button" role="tab" aria-controls="explore" aria-selected="false">Explore</button>
+
                 </div>
                 <div class="tab-content explore-contents" id="exploreTabContent">
-                    <div class="tab-pane fade show active" id="cityFlight" role="tabpanel"
-                        aria-labelledby="cityFlight-tab">
-                        <div class="row">
-                            <div class="col-6 col-md-3">
-                                <a href="javascript:void(0)">Flights to New York</a>
-                                <a href="javascript:void(0)">Flights to Los Angeles</a>
-                                <a href="javascript:void(0)">Flights to London</a>
-                                <a href="javascript:void(0)">Flights to Manila</a>
-                                <a href="javascript:void(0)">Flights to Paris</a>
-                                <a href="javascript:void(0)">Flights to Bangkok</a>
-                                <a href="javascript:void(0)">Flights to Barcelona</a>
-                                <a href="javascript:void(0)">Flights to Toronto</a>
-                                <a href="javascript:void(0)">Flights to Tokyo</a>
-                                <a href="javascript:void(0)">Flights to Istanbul</a>
-                            </div>
-                            <div class="col-6 col-md-3">
-                                <a href="javascript:void(0)">Flights to Rome</a>
-                                <a href="javascript:void(0)">Flights to Tel Aviv</a>
-                                <a href="javascript:void(0)">Flights to Madrid</a>
-                                <a href="javascript:void(0)">Flights to Dubai</a>
-                                <a href="javascript:void(0)">Flights to Amsterdam</a>
-                                <a href="javascript:void(0)">Flights to Lisbon</a>
-                                <a href="javascript:void(0)">Flights to Cairo</a>
-                                <a href="javascript:void(0)">Flights to Athens</a>
-                                <a href="javascript:void(0)">Flights to Milan</a>
-                                <a href="javascript:void(0)">Flights to Vancouver</a>
-                            </div>
-                            <div class="col-6 col-md-3">
-                                <a href="javascript:void(0)">Flights to Rome</a>
-                                <a href="javascript:void(0)">Flights to Tel Aviv</a>
-                                <a href="javascript:void(0)">Flights to Madrid</a>
-                                <a href="javascript:void(0)">Flights to Dubai</a>
-                                <a href="javascript:void(0)">Flights to Amsterdam</a>
-                                <a href="javascript:void(0)">Flights to Lisbon</a>
-                                <a href="javascript:void(0)">Flights to Cairo</a>
-                                <a href="javascript:void(0)">Flights to Athens</a>
-                                <a href="javascript:void(0)">Flights to Milan</a>
-                                <a href="javascript:void(0)">Flights to Vancouver</a>
-                            </div>
-                            <div class="col-6 col-md-3">
-                                <a href="javascript:void(0)">Flights to Rome</a>
-                                <a href="javascript:void(0)">Flights to Tel Aviv</a>
-                                <a href="javascript:void(0)">Flights to Madrid</a>
-                                <a href="javascript:void(0)">Flights to Dubai</a>
-                                <a href="javascript:void(0)">Flights to Amsterdam</a>
-                                <a href="javascript:void(0)">Flights to Lisbon</a>
-                                <a href="javascript:void(0)">Flights to Cairo</a>
-                                <a href="javascript:void(0)">Flights to Athens</a>
-                                <a href="javascript:void(0)">Flights to Milan</a>
-                                <a href="javascript:void(0)">Flights to Vancouver</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="tab-pane fade" id="countryFlight" role="tabpanel"
-                        aria-labelledby="countryFlight-tab">
-                        <div class="row">
-                            <div class="col-6 col-md-3">
-                                <a href="javascript:void(0)">Flights to United States</a>
-                                <a href="javascript:void(0)">Flights to Mexico</a>
-                                <a href="javascript:void(0)">Flights to Philippines</a>
-                                <a href="javascript:void(0)">Flights to Canada</a>
-                                <a href="javascript:void(0)">Flights to Spain</a>
-                                <a href="javascript:void(0)">Flights to Colombia</a>
-                                <a href="javascript:void(0)">Flights to United Kingdom</a>
-                                <a href="javascript:void(0)">Flights to India</a>
-                                <a href="javascript:void(0)">Flights to Italy</a>
-                                <a href="javascript:void(0)">Flights to Thailand</a>
-                            </div>
-                            <div class="col-6 col-md-3">
-                                <a href="javascript:void(0)">Flights to Rome</a>
-                                <a href="javascript:void(0)">Flights to Tel Aviv</a>
-                                <a href="javascript:void(0)">Flights to Madrid</a>
-                                <a href="javascript:void(0)">Flights to Dubai</a>
-                                <a href="javascript:void(0)">Flights to Amsterdam</a>
-                                <a href="javascript:void(0)">Flights to Lisbon</a>
-                                <a href="javascript:void(0)">Flights to Cairo</a>
-                                <a href="javascript:void(0)">Flights to Athens</a>
-                                <a href="javascript:void(0)">Flights to Milan</a>
-                                <a href="javascript:void(0)">Flights to Vancouver</a>
-                            </div>
-                            <div class="col-6 col-md-3">
-                                <a href="javascript:void(0)">Flights to Rome</a>
-                                <a href="javascript:void(0)">Flights to Tel Aviv</a>
-                                <a href="javascript:void(0)">Flights to Madrid</a>
-                                <a href="javascript:void(0)">Flights to Dubai</a>
-                                <a href="javascript:void(0)">Flights to Amsterdam</a>
-                                <a href="javascript:void(0)">Flights to Lisbon</a>
-                                <a href="javascript:void(0)">Flights to Cairo</a>
-                                <a href="javascript:void(0)">Flights to Athens</a>
-                                <a href="javascript:void(0)">Flights to Milan</a>
-                                <a href="javascript:void(0)">Flights to Vancouver</a>
-                            </div>
-                            <div class="col-6 col-md-3">
-                                <a href="javascript:void(0)">Flights to Rome</a>
-                                <a href="javascript:void(0)">Flights to Tel Aviv</a>
-                                <a href="javascript:void(0)">Flights to Madrid</a>
-                                <a href="javascript:void(0)">Flights to Dubai</a>
-                                <a href="javascript:void(0)">Flights to Amsterdam</a>
-                                <a href="javascript:void(0)">Flights to Lisbon</a>
-                                <a href="javascript:void(0)">Flights to Cairo</a>
-                                <a href="javascript:void(0)">Flights to Athens</a>
-                                <a href="javascript:void(0)">Flights to Milan</a>
-                                <a href="javascript:void(0)">Flights to Vancouver</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="tab-pane fade" id="flightRoute" role="tabpanel" aria-labelledby="flightRoute-tab">
-                        <div class="row">
-                            <div class="col-6 col-md-3">
-                                <a href="javascript:void(0)">Flights from Los Angeles</a>
-                                <a href="javascript:void(0)">Flights from New York</a>
-                                <a href="javascript:void(0)">Flights from Orlando</a>
-                                <a href="javascript:void(0)">Flights from Mexico City</a>
-                                <a href="javascript:void(0)">Flights from Miami</a>
-                                <a href="javascript:void(0)">Flights from Chicago</a>
-                                <a href="javascript:void(0)">Flights from Atlanta</a>
-                                <a href="javascript:void(0)">Flights from Guadalajara</a>
-                                <a href="javascript:void(0)">Flights from Las Vegas</a>
-                                <a href="javascript:void(0)">Flights from London</a>
-                            </div>
-                            <div class="col-6 col-md-3">
-                                <a href="javascript:void(0)">Flights from Dallas</a>
-                                <a href="javascript:void(0)">Flights from Tijuana</a>
-                                <a href="javascript:void(0)">Flights from Washington, D.C.</a>
-                                <a href="javascript:void(0)">Flights from Manila</a>
-                                <a href="javascript:void(0)">Flights from San Francisco</a>
-                                <a href="javascript:void(0)">Flights from Paris</a>
-                                <a href="javascript:void(0)">Flights from Cancún</a>
-                                <a href="javascript:void(0)">Flights from Houston</a>
-                                <a href="javascript:void(0)">Flights from Barcelona</a>
-                                <a href="javascript:void(0)">Flights from Bangkok</a>
-                            </div>
-                            <div class="col-6 col-md-3">
-                                <a href="javascript:void(0)">Flights from Dallas</a>
-                                <a href="javascript:void(0)">Flights from Tijuana</a>
-                                <a href="javascript:void(0)">Flights from Washington, D.C.</a>
-                                <a href="javascript:void(0)">Flights from Manila</a>
-                                <a href="javascript:void(0)">Flights from San Francisco</a>
-                                <a href="javascript:void(0)">Flights from Paris</a>
-                                <a href="javascript:void(0)">Flights from Cancún</a>
-                                <a href="javascript:void(0)">Flights from Houston</a>
-                                <a href="javascript:void(0)">Flights from Barcelona</a>
-                                <a href="javascript:void(0)">Flights from Bangkok</a>
-                            </div>
-                            <div class="col-6 col-md-3">
-                                <a href="javascript:void(0)">Flights from Dallas</a>
-                                <a href="javascript:void(0)">Flights from Tijuana</a>
-                                <a href="javascript:void(0)">Flights from Washington, D.C.</a>
-                                <a href="javascript:void(0)">Flights from Manila</a>
-                                <a href="javascript:void(0)">Flights from San Francisco</a>
-                                <a href="javascript:void(0)">Flights from Paris</a>
-                                <a href="javascript:void(0)">Flights from Cancún</a>
-                                <a href="javascript:void(0)">Flights from Houston</a>
-                                <a href="javascript:void(0)">Flights from Barcelona</a>
-                                <a href="javascript:void(0)">Flights from Bangkok</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="tab-pane fade" id="explore" role="tabpanel" aria-labelledby="explore-tab">
-                        <div class="row">
-                            <div class="col-6 col-md-3">
-                                <a href="javascript:void(0)">Things to do in Rome</a>
-                                <a href="javascript:void(0)">Things to do in Venice</a>
-                                <a href="javascript:void(0)">Things to do in Vienna</a>
-                                <a href="javascript:void(0)">Things to do in Berlin</a>
-                                <a href="javascript:void(0)">Things to do in Cairo</a>
-                                <a href="javascript:void(0)">Things to do in Dubai</a>
-                                <a href="javascript:void(0)">Things to do in Milan</a>
-                                <a href="javascript:void(0)">Things to do in Abu Dhabi</a>
-                                <a href="javascript:void(0)">Things to do in London</a>
-                                <a href="javascript:void(0)">Things to do in Paris</a>
-                            </div>
-                            <div class="col-6 col-md-3">
-                                <a href="javascript:void(0)">Things to do in Dallas</a>
-                                <a href="javascript:void(0)">Things to do in Tijuana</a>
-                                <a href="javascript:void(0)">Things to do in Washington, D.C.</a>
-                                <a href="javascript:void(0)">Things to do in Manila</a>
-                                <a href="javascript:void(0)">Things to do in San Francisco</a>
-                                <a href="javascript:void(0)">Things to do in Paris</a>
-                                <a href="javascript:void(0)">Things to do in Cancún</a>
-                                <a href="javascript:void(0)">Things to do in Houston</a>
-                                <a href="javascript:void(0)">Things to do in Barcelona</a>
-                                <a href="javascript:void(0)">Things to do in Bangkok</a>
-                            </div>
-                            <div class="col-6 col-md-3">
-                                <a href="javascript:void(0)">Things to do in Dallas</a>
-                                <a href="javascript:void(0)">Things to do in Tijuana</a>
-                                <a href="javascript:void(0)">Things to do in Washington, D.C.</a>
-                                <a href="javascript:void(0)">Things to do in Manila</a>
-                                <a href="javascript:void(0)">Things to do in San Francisco</a>
-                                <a href="javascript:void(0)">Things to do in Paris</a>
-                                <a href="javascript:void(0)">Things to do in Cancún</a>
-                                <a href="javascript:void(0)">Things to do in Houston</a>
-                                <a href="javascript:void(0)">Things to do in Barcelona</a>
-                                <a href="javascript:void(0)">Things to do in Bangkok</a>
-                            </div>
-                            <div class="col-6 col-md-3">
-                                <a href="javascript:void(0)">Things to do in Dallas</a>
-                                <a href="javascript:void(0)">Things to do in Tijuana</a>
-                                <a href="javascript:void(0)">Things to do in Washington, D.C.</a>
-                                <a href="javascript:void(0)">Things to do in Manila</a>
-                                <a href="javascript:void(0)">Things to do in San Francisco</a>
-                                <a href="javascript:void(0)">Things to do in Paris</a>
-                                <a href="javascript:void(0)">Things to do in Cancún</a>
-                                <a href="javascript:void(0)">Things to do in Houston</a>
-                                <a href="javascript:void(0)">Things to do in Barcelona</a>
-                                <a href="javascript:void(0)">Things to do in Bangkok</a>
-                            </div>
-                        </div>
-                    </div>
+                    @include('footernav', ['popularDestinations' => $popularDestinations])
+
                 </div>
             </div>
         </section>

@@ -2,7 +2,7 @@
 @section('title', 'Best Of Activity')
 @section('content')
     <div class="container">
-        <h2>Best Of Activities</h2>
+        <h2>Holiday Deals</h2>
 
         <!-- Display success message -->
         @if (session('success'))
@@ -13,7 +13,7 @@
 
         <!-- Add new destination button -->
         <div class="mb-3">
-            <a href="{{ route('bestofactivity.create') }}" class="btn btn-primary">Add Best Of Activities</a>
+            <a href="{{ route('bestofactivity.create') }}" class="btn btn-primary">Add Holiday Deal</a>
         </div>
 
         <!-- Destination table -->
@@ -39,8 +39,9 @@
                     <tr>
                         <td>{{ $bestofactivity->id }}</td>
                         <td>{{ $bestofactivity->title }}</td>
-                        <td><img src="{{ asset('uploads/' . $bestofactivity->image) }}" alt="{{ $bestofactivity->title }}"
-                                class="img-fluid" style="max-width: 100%; height: auto;" /></td>
+                        <td>{{ $bestofactivity->image }}--<img src="{{ asset('uploads/' . $bestofactivity->image) }}"
+                                alt="{{ $bestofactivity->title }}" class="img-fluid" style="max-width: 100%; height: auto;" />
+                        </td>
                         <td>{{ $bestofactivity->image_seo }}</td>
                         <td>{{ $bestofactivity->price }}</td>
                         <td>{{ $bestofactivity->rating }}</td>

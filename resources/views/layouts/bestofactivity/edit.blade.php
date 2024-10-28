@@ -1,9 +1,9 @@
 @extends('layouts.admin')
-@section('title', 'Best Of Activity')
+@section('title', 'Holiday Deal')
 @section('content')
 
     <div class="container mt-5">
-        <h2>Update Best Of Activity</h2>
+        <h2>Update Holiday Deal</h2>
 
         <!-- Display success message if available -->
         @if (session('success'))
@@ -56,7 +56,20 @@
                 <input type="text" class="form-control" id="image_seo" name="image_seo"
                     value="{{ old('image_seo', $bestofactivity->image_seo) }}" required>
             </div>
+            <!-- Banner Image Upload Field -->
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-6"><label for="banner_image">Upload Banner Image</label>
+                        <input type="file" class="form-control" id="banner_image" name="banner_image">
+                    </div>
+                    <div class="col-md-6"><img src="{{ asset('uploads/' . $bestofactivity->banner_image) }}"
+                            alt="{{ $bestofactivity->title }}" class="img-fluid" style="max-width: 100%; height: auto;" />
+                    </div>
 
+                </div>
+
+
+            </div>
             <!-- Price Field -->
             <div class="form-group">
                 <label for="title">Price</label>

@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('best_of_activities', function (Blueprint $table) {
             $table->id();
             $table->string('image');
+            $table->string('banner_image');
             $table->string('image_seo');
             $table->string('title');
             $table->decimal('price', 8, 2)->nullable();

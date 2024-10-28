@@ -40,6 +40,7 @@ class BestOfActivityController extends Controller
          $request->validate([
             'title' => 'required|string|max:255',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
+            'banner_image' => 'required|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
             'image_seo' => 'nullable|string|max:255',
             'price' => 'required|numeric',
             'rating'=> 'required|numeric',
@@ -52,16 +53,25 @@ class BestOfActivityController extends Controller
         // Handle image upload
         if ($request->hasFile('image')) {
             $image = $request->file('image');
-            $imageName = 'BA_'. time() . '.' . $image->getClientOriginalExtension();
+            $imageName = pathinfo($image->getClientOriginalName(), PATHINFO_FILENAME) . '.' . $image->getClientOriginalExtension();
+            //$imageName = 'BA_'. time() . '.' . $image->getClientOriginalExtension();
             $image->move(public_path('uploads'), $imageName);
         }
+        if ($request->hasFile('banner_image')) {
+            $bannerImage = $request->file('banner_image');
+            $bannerimageName = pathinfo($bannerImage->getClientOriginalName(), PATHINFO_FILENAME) . '.' . $bannerImage->getClientOriginalExtension();
+            //$bannerimageName = 'BA_'. time() . '.' . $bannerImage->getClientOriginalExtension();
+            $bannerImage->move(public_path('uploads'), $bannerimageName);
+        }
 
-        BestOfActivity::create([
+        
+       $bestofactivity =  BestOfActivity::create([
             
             'title' => $request->input('title'),
             'image' => $imageName,
+            'banner_image' => $bannerimageName,
             'image_seo' => $request->input('image_seo'),
-            'long_description' => $request->input('long_description'),
+            'Long_description' => $request->input('long_description'),
             'cancellation'=> $request->input('cancellation'),
             'price' => $request->input('price'),
             'rating' => $request->input('rating'),
@@ -70,6 +80,7 @@ class BestOfActivityController extends Controller
             'status' => $request->input('status'),
             'user_id' => Auth::id(),
         ]);
+        
         return redirect()->back()->with('success', 'Best Of Activities created successfully!');
     }
 
@@ -104,6 +115,7 @@ class BestOfActivityController extends Controller
         'image_seo' => 'required|string|max:255',
         'price' => 'required|numeric',
         'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048', // Image validation
+        'banner_image' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048', // Image validation
         'rating' => 'required|numeric',
         'rating_count' => 'required|numeric',
         'package_heading' => 'required|string',
@@ -122,13 +134,27 @@ class BestOfActivityController extends Controller
 
         // Store the new image
         $image = $request->file('image');
-        $imageName = 'BA_'. time() . '.' . $image->getClientOriginalExtension();
+        $imageName = pathinfo($image->getClientOriginalName(), PATHINFO_FILENAME) . '.' . $image->getClientOriginalExtension();       
         $image->move(public_path('uploads'), $imageName);
 
         // Update the image field in the database
         $bestofactivity->image = $imageName;
     }
+    if ($request->hasFile('banner_image')) {
+        // Delete the old image if a new one is uploaded
+        if ($bestofactivity->banner_image && file_exists(public_path('uploads/' . $bestofactivity->banner_image))) {
+            unlink(public_path('uploads/' . $bestofactivity->banner_image));
+        }
 
+        // Store the new image
+        $bannerImage = $request->file('banner_image');
+        $bannerimageName = pathinfo($bannerImage->getClientOriginalName(), PATHINFO_FILENAME) . '.' . $bannerImage->getClientOriginalExtension();        
+        $bannerImage->move(public_path('uploads'), $bannerimageName);
+
+        // Update the image field in the database
+        $bestofactivity->banner_image = $bannerimageName;
+    }
+   
     // Update other fields (excluding image)
     $bestofactivity->image_seo = $request->image_seo;
     $bestofactivity->title = $request->title;
@@ -137,10 +163,10 @@ class BestOfActivityController extends Controller
     $bestofactivity->rating_count = $request->rating_count;
     $bestofactivity->package_heading = $request->package_heading;
     $bestofactivity->cancellation = $request->cancellation;
-    $bestofactivity->long_description = $request->long_description;
+    $bestofactivity->Long_description = $request->long_description;
     $bestofactivity->status = $request->status;
     $bestofactivity->user_id = Auth::id();
-
+   // dd($bestofactivity->banner_image,$bestofactivity->image);
     // Save changes
     $bestofactivity->save();
 
@@ -177,6 +203,10 @@ class BestOfActivityController extends Controller
                                     ->orderBy('title', 'desc')
                                     ->get()
                                     ->groupBy('region');  // Group by the 'region' field
-        return view('holidaydeal', compact('menu', 'footermenu','bestofactivity','flightpartner'));
+        $popularDestinations = FlightDestination::where('status', 'active')                                   
+                                    ->orderBy('title', 'desc')
+                                     //->limit(21) // Adjust the limit as necessary
+                                    ->get();
+        return view('holidaydeal', compact('menu', 'footermenu','bestofactivity','flightpartner','popularDestinations'));
     }
 }

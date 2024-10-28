@@ -1,9 +1,9 @@
 @extends('layouts.admin')
-@section('title', 'Best Of Activities')
+@section('title', 'Holiday Deal')
 @section('content')
 
     <div class="container mt-5">
-        <h2>Create Best Of Activities </h2>
+        <h2>Create Holiday Deals </h2>
 
         <!-- Display success message if available -->
         @if (session('success'))
@@ -24,13 +24,14 @@
         @endif
 
         <!-- Flight Form -->
-        <form action="{{ route('bestofactivity.store') }}" method="POST" enctype="multipart/form-data">
+        <form id="holidaydeals" action="{{ route('bestofactivity.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
 
             <!-- Title Field -->
             <div class="form-group">
                 <label for="title">Title</label>
-                <input type="text" class="form-control" id="title" name="title" value="{{ old('title') }}" required>
+                <input type="text" class="form-control" id="title" name="title" value="{{ old('title') }}"
+                    required>
             </div>
 
 
@@ -45,7 +46,11 @@
                 <input type="text" class="form-control" id="image_seo" name="image_seo" value="{{ old('image_seo') }}"
                     required>
             </div>
-
+            <!-- Banner Image Upload Field -->
+            <div class="form-group">
+                <label for="banner_image">Upload Banner Image</label>
+                <input type="file" class="form-control" id="banner_image" name="banner_image">
+            </div>
             <!-- Price Field -->
             <div class="form-group">
                 <label for="price">Price</label>
@@ -127,7 +132,7 @@
             });
 
             // Attach event listener to the form submission
-            const form = document.getElementById('flightDestination');
+            const form = document.getElementById('holidaydeals');
             form.addEventListener('submit', function(event) {
                 event.preventDefault(); // Prevent the form from submitting right away
 

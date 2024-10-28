@@ -48,7 +48,7 @@
                                 <img src="{{ asset('img/icons/user_icon.svg') }}" alt="">
                                 <div>
                                     <small class="clr-7e">Full Name</small>
-                                    <input class="text-truncate w-100" type="text" value="Kiran" name="cust_name"
+                                    <input class="text-truncate w-100" type="text" value="" name="cust_name"
                                         id="cust_name" placeholder="Traveller Name">
                                 </div>
                             </div>
@@ -58,8 +58,8 @@
                                 <img src="{{ asset('img/icons/email-dark.svg') }}" alt="">
                                 <div>
                                     <small class="clr-7e">Email ID</small>
-                                    <input class="text-truncate w-100" type="email" value="kiran@kirang.com"
-                                        name="cust_email" id="cust_email" placeholder="...@gmail.com">
+                                    <input class="text-truncate w-100" type="email" value="" name="cust_email"
+                                        id="cust_email" placeholder="...@gmail.com">
                                 </div>
                             </div>
                         </div>
@@ -68,7 +68,7 @@
                                 <img src="{{ asset('img/icons/call-now.svg') }}" alt="">
                                 <div>
                                     <small class="clr-7e">Phone Number</small>
-                                    <input class="text-truncate w-100" maxlength="10" type="text" value="07442249488"
+                                    <input class="text-truncate w-100" maxlength="10" type="text" value=""
                                         name="cust_phone" id="cust_phone" placeholder="+440">
                                 </div>
                             </div>

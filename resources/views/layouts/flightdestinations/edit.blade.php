@@ -37,8 +37,7 @@
                             Homepage Display
                         </label>
                         <input class="form-control" type="checkbox" name="homepage_display" id="homepage_display"
-                            {{ $destination->homepage_display === '0' ? 'checked' : '' }}
-                            value="{{ $destination->homepage_display }}">
+                            {{ $destination->homepage_display ? 'checked' : '' }}>
                     </div>
 
                 </div>
@@ -46,12 +45,15 @@
                     <div class="form-group">
                         <label for="region">Region-</label>
                         <select class="form-control" name="region" id="region" required>
-                            <option value="ASIA & Middle East" {{ $destination->region == 'ASIA & Middle East' ? 'selected' : '' }}>ASIA
+                            <option value="ASIA & Middle East"
+                                {{ $destination->region == 'ASIA & Middle East' ? 'selected' : '' }}>ASIA
                                 & Middle East</option>
-                            <option value="America & Canada" {{ $destination->region == 'America & Canada' ? 'selected' : '' }}>
+                            <option value="America & Canada"
+                                {{ $destination->region == 'America & Canada' ? 'selected' : '' }}>
                                 America & Canada</option>
                             <option value="Europe" {{ $destination->region == 'Europe' ? 'selected' : '' }}>Europe
-                            <option value="South America" {{ $destination->region == 'South America' ? 'selected' : '' }}>South
+                            <option value="South America" {{ $destination->region == 'South America' ? 'selected' : '' }}>
+                                South
                                 America
                             <option value="Africa" {{ $destination->region == 'Africa' ? 'selected' : '' }}>Africa
                             <option value="Carribean" {{ $destination->region == 'Carribean' ? 'selected' : '' }}>Carribean

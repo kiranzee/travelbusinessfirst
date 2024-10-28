@@ -107,17 +107,20 @@ class TopThingsToDoController extends Controller
         $topthingstodo = TopThingsToDo::findOrFail($id);
         //dd($topthingstodo->image);
         if ($request->hasFile('image')) {
-        // Delete the old image if a new one is uploaded
-        if ($topthingstodo->image && file_exists(public_path('uploads/' . $topthingstodo->image))) {
-            unlink(public_path('uploads/' . $topthingstodo->image));
-
+            // Delete the old image if a new one is uploaded
+            if ($topthingstodo->image && file_exists(public_path('uploads/' . $topthingstodo->image))) {
+                unlink(public_path('uploads/' . $topthingstodo->image));
+            }
+            
+            // Upload the new image
             $image = $request->file('image');
-            $imageName = time() . '.' . $image->getClientOriginalExtension();
+            $imageName = pathinfo($image->getClientOriginalName(), PATHINFO_FILENAME) . '.' . $image->getClientOriginalExtension();
             $image->move(public_path('uploads'), $imageName);
-
+            
+            // Save the new image name
             $topthingstodo->image = $imageName;
         }
-    }
+        
         $topthingstodo->title = $request->title;
         $topthingstodo->image_seo = $request->image_seo;
         $topthingstodo->short_description = $request->short_description;

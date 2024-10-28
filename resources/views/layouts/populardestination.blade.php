@@ -50,8 +50,8 @@
     @endif
 </div> --}}
 <div id="popularCarousel" class="owl-carousel owl-theme">
-    @if ($popularDestinations->isNotEmpty())
-        @foreach ($popularDestinations->slice(0, 21)->chunk(3) as $chunkedDestinations)
+    @if ($popularFlight->isNotEmpty())
+        @foreach ($popularFlight->slice(0, 21)->chunk(3) as $chunkedDestinations)
             <div class="item">
                 @foreach ($chunkedDestinations as $destination)
                     <div class="card popular-desti-card">

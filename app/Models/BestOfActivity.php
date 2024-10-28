@@ -11,11 +11,12 @@ class BestOfActivity extends Model
     protected $fillable = [
         'title',
         'image',
+        'banner_image',
         'image_seo',
         'price',
         'rating',
         'rating_count',
-        'long_description',
+        'Long_description',
         'cancellation',
         'package_heading',
         'status',

@@ -373,7 +373,7 @@
                                     <div class="col-3 d-flex justify-content-center">
                                         <div class="price-city p-1 p-md-2">
                                             <small>Fare From</small>
-                                            <p class="m-0">£{{ $destination->airline1_price }}</p>
+                                            <p class="m-0">£{{ number_format($destination->airline1_price, 0) }}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -420,7 +420,7 @@
                                     <div class="col-3 d-flex justify-content-center">
                                         <div class="price-city p-1 p-md-2">
                                             <small>Fare From</small>
-                                            <p class="m-0">£{{ $destination->airline2_price }}</p>
+                                            <p class="m-0">£{{ number_format($destination->airline2_price, 0) }}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -467,7 +467,7 @@
                                     <div class="col-3 d-flex justify-content-center">
                                         <div class="price-city p-1 p-md-2">
                                             <small>Fare From</small>
-                                            <p class="m-0">£{{ $destination->airline3_price }}</p>
+                                            <p class="m-0">£{{ number_format($destination->airline3_price, 0) }}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -514,7 +514,7 @@
                                     <div class="col-3 d-flex justify-content-center">
                                         <div class="price-city p-1 p-md-2">
                                             <small>Fare From</small>
-                                            <p class="m-0">£{{ $destination->airline4_price }}</p>
+                                            <p class="m-0">£{{ number_format($destination->airline4_price, 0) }}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -561,7 +561,7 @@
                                     <div class="col-3 d-flex justify-content-center">
                                         <div class="price-city p-1 p-md-2">
                                             <small>Fare From</small>
-                                            <p class="m-0">£{{ $destination->airline5_price }}</p>
+                                            <p class="m-0">£{{ number_format($destination->airline5_price, 0) }}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -569,7 +569,7 @@
                         </div>
 
                         <div class="city-description">
-                            <h4>Book Business Class Flights to Dubai at discounted rates</h4>
+                            <h4>Book Business Class Flights to {{ $destination->title }} at discounted rates</h4>
 
                             <div class="info-text">
                                 {!! $destination->long_description !!}

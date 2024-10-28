@@ -36,7 +36,7 @@ class ExploreDestinationController extends Controller
         // Validate the form data
         $request->validate([
             'title' => 'required|string|max:255',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
             'image_seo' => 'nullable|string|max:255',
             'price' => 'required|numeric',
             'status' => 'required|in:active,inactive',
@@ -91,7 +91,7 @@ class ExploreDestinationController extends Controller
         'title' => 'required|string|max:255',
         'image_seo' => 'required|string|max:255',
         'price' => 'required|numeric',
-        'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048' // Image validation
+        'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048' // Image validation
     ]);
 
     $exploredestinations = ExploreDestination::findOrFail($id);

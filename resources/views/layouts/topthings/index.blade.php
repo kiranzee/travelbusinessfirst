@@ -1,8 +1,8 @@
 @extends('layouts.admin')
-@section('title', 'Most Popular Flight Destinations')
+@section('title', 'Top Selling Business Class')
 @section('content')
     <div class="container">
-        <h2>Popular Flight Destinations</h2>
+        <h2>Top Selling Business Class</h2>
 
         <!-- Display success message -->
         @if (session('success'))
@@ -13,7 +13,7 @@
 
         <!-- Add new destination button -->
         <div class="mb-3">
-            <a href="{{ route('topthingstodo.create') }}" class="btn btn-primary">Add New To Things to Do</a>
+            <a href="{{ route('topthingstodo.create') }}" class="btn btn-primary">Add Top Selling Business Class</a>
         </div>
 
         <!-- Destination table -->

@@ -18,10 +18,11 @@ class HomepageController extends Controller
     public function index(){
     
 
-        $popularDestinations = FlightDestination::where('status', 'active')
-                                     ->orderBy('title', 'desc')
-                                     //->limit(21) // Adjust the limit as necessary
-                                     ->get();
+        $popularFlight = FlightDestination::where('status', 'active')
+                                    ->where('homepage_display', true)
+                                    ->orderBy('title', 'desc')
+                                    ->limit(21) // Adjust the limit as necessary
+                                    ->get();
                                     
         $topthingstodo = TopthingsToDo::where('status', 'active')
                                      ->orderBy('title', 'desc')
@@ -46,9 +47,13 @@ class HomepageController extends Controller
                                     ->orderBy('title', 'desc')
                                     ->get()
                                     ->groupBy('region');  // Group by the 'region' field
+        $popularDestinations = FlightDestination::where('status', 'active')                                   
+                                    ->orderBy('title', 'desc')
+                                     //->limit(21) // Adjust the limit as necessary
+                                    ->get();
        
         // Pass the popularDestinations variable to the welcome view
-        return view('welcome', compact('popularDestinations','topthingstodo','herosection','exploredestination','bestofactivity','clientsay','flightpartner','menu'));
+        return view('welcome', compact('popularDestinations','topthingstodo','herosection','exploredestination','bestofactivity','clientsay','flightpartner','menu','popularFlight'));
     }
 
     public function typeahead_destination(Request $request){

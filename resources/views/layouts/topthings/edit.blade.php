@@ -1,9 +1,9 @@
 @extends('layouts.admin')
-@section('title', 'Top Things to do in Destinations')
+@section('title', 'Top Selling Business Class')
 @section('content')
 
     <div class="container mt-5">
-        <h2>Create Top Things to do in Destinations </h2>
+        <h2>Create Top Selling Business Class </h2>
 
         <!-- Display success message if available -->
         @if (session('success'))
