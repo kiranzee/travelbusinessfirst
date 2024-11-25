@@ -10,9 +10,11 @@ use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 use App\Models\HotelEnquiry;
 
-class HotelEmail extends Mailable
+class HotelEmail extends Mailable implements ShouldQueue
 {
     use Queueable, SerializesModels;
+
+    protected $hotelEnquiry;
 
     /**
      * Create a new message instance.

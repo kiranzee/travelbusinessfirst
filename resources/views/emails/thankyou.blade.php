@@ -29,7 +29,14 @@
                         <td>{{ $detail->from }}</td>
                         <td>{{ $detail->to }}</td>
                         <td>{{ Carbon::parse($detail->departure_date)->format('D, d M y') }}</td>
-                        <td>{{ Carbon::parse($detail->return_date)->format('D, d M y') }}</td>
+                        <td>
+                            @if ($detail->return_date)
+                                {{ Carbon::parse($detail->return_date)->format('D, d M y') }}
+                            @else
+                                {{-- Display nothing or an alternative text --}}
+                                NA
+                            @endif
+                        </td>
                     </tr>
                 @endforeach
             </tbody>

@@ -35,7 +35,12 @@
                 <input type="text" class="form-control" id="title" name="title"
                     value="{{ old('title', $bestofactivity->title) }}" required>
             </div>
-
+            <!-- Title Field -->
+            <div class="form-group">
+                <label for="link_name">Link Name</label>
+                <input type="text" class="form-control" id="link_name" name="link_name"
+                    value="{{ old('link_name', $bestofactivity->link_name) }}" required>
+            </div>
             <!-- Image Upload Field -->
             <div class="form-group">
                 <div class="row">

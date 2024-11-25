@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('customer_phone');
             $table->text('customer_comments')->nullable();
             $table->boolean('latest_offers')->default(0);
+            $table->string('status');
             $table->timestamps();
 
             // Adding the foreign key constraint

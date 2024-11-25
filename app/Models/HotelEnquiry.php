@@ -22,6 +22,7 @@ class HotelEnquiry extends Model
         'customer_name',
         'customer_phone',
         'customer_email',
-        'customer_comments'
+        'customer_comments',
+        'status'
     ];
 }

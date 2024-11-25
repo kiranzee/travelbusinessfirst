@@ -45,13 +45,15 @@ namespace App\Models{
  * @property int $id
  * @property string $image
  * @property string $image_seo
+ * @property string $banner_image
  * @property string $title
+ * @property string $link_name
  * @property string|null $price
- * @property int|null $rating
+ * @property string|null $rating
  * @property int $rating_count
  * @property string|null $Long_description
  * @property int $cancellation
- * @property int $hours
+ * @property string $package_heading
  * @property string $status
  * @property int $user_id
  * @property \Illuminate\Support\Carbon|null $created_at
@@ -60,13 +62,15 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|BestOfActivity newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|BestOfActivity newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|BestOfActivity query()
+ * @method static \Illuminate\Database\Eloquent\Builder|BestOfActivity whereBannerImage($value)
  * @method static \Illuminate\Database\Eloquent\Builder|BestOfActivity whereCancellation($value)
  * @method static \Illuminate\Database\Eloquent\Builder|BestOfActivity whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|BestOfActivity whereHours($value)
  * @method static \Illuminate\Database\Eloquent\Builder|BestOfActivity whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|BestOfActivity whereImage($value)
  * @method static \Illuminate\Database\Eloquent\Builder|BestOfActivity whereImageSeo($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|BestOfActivity whereLinkName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|BestOfActivity whereLongDescription($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|BestOfActivity wherePackageHeading($value)
  * @method static \Illuminate\Database\Eloquent\Builder|BestOfActivity wherePrice($value)
  * @method static \Illuminate\Database\Eloquent\Builder|BestOfActivity whereRating($value)
  * @method static \Illuminate\Database\Eloquent\Builder|BestOfActivity whereRatingCount($value)
@@ -164,6 +168,7 @@ namespace App\Models{
  * @property int $refundable
  * @property int $meal
  * @property int $weight
+ * @property int $oneway
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @method static \Illuminate\Database\Eloquent\Builder|Flight newModelQuery()
@@ -181,6 +186,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Flight whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Flight whereLogo($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Flight whereMeal($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Flight whereOneway($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Flight whereRefundable($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Flight whereRoute($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Flight whereRoute2($value)
@@ -204,10 +210,13 @@ namespace App\Models{
  * @property int $id
  * @property string $region
  * @property string $title
+ * @property string $meta_title
+ * @property string $meta_description
+ * @property string $meta_keywords
  * @property string $image
  * @property string|null $image_seo
  * @property string $banner_image
- * @property string $banner_image_seo
+ * @property string|null $banner_image_seo
  * @property string|null $first_class_price
  * @property string|null $business_class_price
  * @property string|null $premier_economy_price
@@ -239,6 +248,7 @@ namespace App\Models{
  * @property int $user_id
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property int|null $homepage_display
  * @property-read \App\Models\User $user
  * @method static \Illuminate\Database\Eloquent\Builder|FlightDestination newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|FlightDestination newQuery()
@@ -270,11 +280,15 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|FlightDestination whereEconomyPrice($value)
  * @method static \Illuminate\Database\Eloquent\Builder|FlightDestination whereFirstClassPrice($value)
  * @method static \Illuminate\Database\Eloquent\Builder|FlightDestination whereHeading($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|FlightDestination whereHomepageDisplay($value)
  * @method static \Illuminate\Database\Eloquent\Builder|FlightDestination whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|FlightDestination whereImage($value)
  * @method static \Illuminate\Database\Eloquent\Builder|FlightDestination whereImageSeo($value)
  * @method static \Illuminate\Database\Eloquent\Builder|FlightDestination whereLinkName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|FlightDestination whereLongDescription($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|FlightDestination whereMetaDescription($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|FlightDestination whereMetaKeywords($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|FlightDestination whereMetaTitle($value)
  * @method static \Illuminate\Database\Eloquent\Builder|FlightDestination wherePremierEconomyPrice($value)
  * @method static \Illuminate\Database\Eloquent\Builder|FlightDestination whereRegion($value)
  * @method static \Illuminate\Database\Eloquent\Builder|FlightDestination whereStatus($value)
@@ -325,6 +339,7 @@ namespace App\Models{
  * @property string $customer_phone
  * @property string|null $customer_comments
  * @property int $latest_offers
+ * @property string $status
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\FlightDetailsEnquiry> $flightDetailsEnquiry
@@ -341,6 +356,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|FlightEnquiry whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|FlightEnquiry whereLatestOffers($value)
  * @method static \Illuminate\Database\Eloquent\Builder|FlightEnquiry wherePassengers($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|FlightEnquiry whereStatus($value)
  * @method static \Illuminate\Database\Eloquent\Builder|FlightEnquiry whereUpdatedAt($value)
  */
 	class FlightEnquiry extends \Eloquent {}
@@ -404,16 +420,99 @@ namespace App\Models{
  * 
  *
  * @property int $id
+ * @property int $best_of_activity_id
+ * @property string $holiday_date
+ * @property string $customer_name
+ * @property string $customer_email
+ * @property string $customer_phone
+ * @property string|null $customer_comments
+ * @property int $latest_offers
+ * @property string $status
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\BestOfActivity $bestofactivity
+ * @method static \Illuminate\Database\Eloquent\Builder|HolidayEnquiry newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|HolidayEnquiry newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|HolidayEnquiry query()
+ * @method static \Illuminate\Database\Eloquent\Builder|HolidayEnquiry whereBestOfActivityId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|HolidayEnquiry whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|HolidayEnquiry whereCustomerComments($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|HolidayEnquiry whereCustomerEmail($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|HolidayEnquiry whereCustomerName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|HolidayEnquiry whereCustomerPhone($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|HolidayEnquiry whereHolidayDate($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|HolidayEnquiry whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|HolidayEnquiry whereLatestOffers($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|HolidayEnquiry whereStatus($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|HolidayEnquiry whereUpdatedAt($value)
+ */
+	class HolidayEnquiry extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * 
+ *
+ * @property int $id
+ * @property string $destination
+ * @property string $checkin
+ * @property string $checkout
+ * @property int $noofnightstay
+ * @property string $starhotel
+ * @property string $Roomtype
+ * @property int $adultcount
+ * @property int $childcount
+ * @property int $infantcount
+ * @property string $noofrooms
+ * @property string $customer_name
+ * @property int $customer_phone
+ * @property string $customer_email
+ * @property string $customer_comments
+ * @property string $status
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Illuminate\Database\Eloquent\Builder|HotelEnquiry newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|HotelEnquiry newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|HotelEnquiry query()
+ * @method static \Illuminate\Database\Eloquent\Builder|HotelEnquiry whereAdultcount($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|HotelEnquiry whereCheckin($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|HotelEnquiry whereCheckout($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|HotelEnquiry whereChildcount($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|HotelEnquiry whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|HotelEnquiry whereCustomerComments($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|HotelEnquiry whereCustomerEmail($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|HotelEnquiry whereCustomerName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|HotelEnquiry whereCustomerPhone($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|HotelEnquiry whereDestination($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|HotelEnquiry whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|HotelEnquiry whereInfantcount($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|HotelEnquiry whereNoofnightstay($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|HotelEnquiry whereNoofrooms($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|HotelEnquiry whereRoomtype($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|HotelEnquiry whereStarhotel($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|HotelEnquiry whereStatus($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|HotelEnquiry whereUpdatedAt($value)
+ */
+	class HotelEnquiry extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * 
+ *
+ * @property string $region
+ * @property int $id
  * @property string $title
  * @property string|null $image
+ * @property string|null $image_seo
  * @property string $first_class_price
  * @property string $business_class_price
  * @property string $premier_economy_price
  * @property string $economy_price
  * @property string $status
+ * @property int $user_id
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property int $user_id
  * @property-read \App\Models\User $user
  * @method static \Illuminate\Database\Eloquent\Builder|Popularflightdestination newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Popularflightdestination newQuery()
@@ -424,7 +523,9 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Popularflightdestination whereFirstClassPrice($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Popularflightdestination whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Popularflightdestination whereImage($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Popularflightdestination whereImageSeo($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Popularflightdestination wherePremierEconomyPrice($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Popularflightdestination whereRegion($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Popularflightdestination whereStatus($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Popularflightdestination whereTitle($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Popularflightdestination whereUpdatedAt($value)
@@ -445,12 +546,15 @@ namespace App\Models{
  * @property string $source
  * @property string $destination
  * @property string $departure_date
- * @property string $return_date
+ * @property string|null $return_date
  * @property int $passengers
  * @property string $class_type
+ * @property string $status
+ * @property string $sales_amount
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \App\Models\Flight $flight
+ * @property-read \App\Models\User|null $user
  * @method static \Illuminate\Database\Eloquent\Builder|TicketEnquiry newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|TicketEnquiry newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|TicketEnquiry query()
@@ -465,7 +569,9 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|TicketEnquiry whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|TicketEnquiry wherePassengers($value)
  * @method static \Illuminate\Database\Eloquent\Builder|TicketEnquiry whereReturnDate($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|TicketEnquiry whereSalesAmount($value)
  * @method static \Illuminate\Database\Eloquent\Builder|TicketEnquiry whereSource($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|TicketEnquiry whereStatus($value)
  * @method static \Illuminate\Database\Eloquent\Builder|TicketEnquiry whereUpdatedAt($value)
  */
 	class TicketEnquiry extends \Eloquent {}

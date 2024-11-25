@@ -18,21 +18,22 @@ class FlightEnquiryController extends Controller
 
     public function submitQuery(Request $request)
     {
-
+        
         // Validate the input data
-       $request->validate([
-        'from' => 'required|array',
-        'to' => 'required|array',
-        'departure_date' => 'required|array',
-        //'return_date' => 'required|array',
-        'passengers' => 'required|string',
-        //'class_type' => 'required|string',
-        'customer_name' => 'required|string|max:255',
-        'customer_email' => 'required|email',
-        'customer_phone' => 'required|string|max:10',
-        'customer_comments' => 'nullable|string',
-        'latest_offers' => 'nullable|boolean',
-    ]);
+    //    $request->validate([
+    //     'from' => 'required|array',
+    //     'to' => 'required|array',
+    //     'departure_date' => 'required|array',
+    //     //'return_date' => 'required|array',
+    //     'passengers' => 'required|string',
+    //     //'class_type' => 'required|string',
+    //     'customer_name' => 'required|string|max:255',
+    //     'customer_email' => 'required|email',
+    //     'customer_phone' => 'required|string|max:10',
+    //     'customer_comments' => 'nullable|string',
+    //     'latest_offers' => 'nullable|boolean',
+    // ]);
+   
     $classtype ='';
   
     if($request->input('cabin_class_1')){
@@ -55,21 +56,21 @@ class FlightEnquiryController extends Controller
         'customer_comments' => $request->customer_comments,
         'passengers' => $request->passengers,
         'class_type' => $classtype,
-        'latest_offers' => $request->latest_offers ? true : false,  // Set boolean value
+        'latest_offers' =>  $request->input('latest_offers') === 'on' ? true : false,  // Set boolean value
     ];
- 
+    //dd($enquiryData);
     $flightDetailsEnquiry = [];
     foreach ($request->from as $index => $from) {
-        Log::info("from", ['from' => $from]);
-        Log::info("to", ['to' => $request->to[$index]]);
         
         $to = $request->to[$index];
         $departdate = Carbon::createFromFormat('D, d M y', $request->departure_date[$index])->format('Y-m-d');
+        
         if($request->return_date){
             $returndate = Carbon::createFromFormat('D, d M y', $request->return_date[$index])->format('Y-m-d');
         }else{
             $returndate = null;
-        }       
+        }
+               
         $flightDetailsEnquiry[] = [
             'from' => $from,
             'to' => $to,
@@ -88,9 +89,26 @@ try {
     // // Return a success response
    // return response()->json([        'success' => true,        'message' => 'Enquiry submitted successfully! A confirmation email has been sent.',    ]);
    $menu = FlightDestination::where('status', 'active')
-                ->orderBy('title', 'desc')
-                ->get()
-                ->groupBy('region');
+                                   ->orderBy('title', 'asc') // Order destinations alphabetically within each region
+                                   ->get()
+                                   ->groupBy('region');
+                               
+                               // Define the fixed region order
+    $fixedOrder = [
+                                   'Asia',
+                                   'America',
+                                   'Australia and New Zealand',
+                                   'Middle East',
+                                   'Africa',
+                                   'Carribean',
+                                   'Canada',                                    
+                                   'South America',
+                               ];
+                               
+                               // Reorder the grouped data based on the fixed order
+    $sortedMenu = collect($fixedOrder)->flatMap(function ($region) use ($menu) {
+                                   return $menu->has($region) ? [$region => $menu->get($region)] : [];
+                               });
         $flightpartner = FlightPartner::where('status','active')
                 ->orderBy('updated_at', 'desc')
                 ->get();
@@ -99,7 +117,8 @@ try {
                 //->limit(21) // Adjust the limit as necessary
                 ->get();
         // Return a success response
-        return view('thankyou',compact('menu','flightpartner','popularDestinations'));
+        //dd($request->customer_email);
+        return view('thankyou',compact('sortedMenu','flightpartner','popularDestinations'));
 } catch (\Throwable $th) {
     //throw $th;
     Log::info("Error", ['message' => $th]);  

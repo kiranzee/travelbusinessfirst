@@ -34,12 +34,13 @@ class FlightPartnerController extends Controller
     {
         //
         $request->validate([
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048'
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,webp|max:2048'
         ]);
 
         if ($request->hasFile('image')) {
             $image = $request->file('image');
-            $imageName = 'FP_'. time() . '.' . $image->getClientOriginalExtension();
+            $imageName = pathinfo($image->getClientOriginalName(), PATHINFO_FILENAME) . '.' . $image->getClientOriginalExtension();
+            //$imageName = 'FP_'. time() . '.' . $image->getClientOriginalExtension();
             $image->move(public_path('uploads/partners'), $imageName);
         }
 
@@ -77,7 +78,7 @@ class FlightPartnerController extends Controller
     {
         // Validate required fields
     $request->validate([
-        'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // Image validation
+        'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048', // Image validation
         'status' => 'required|in:active,inactive',
     ]);
 
@@ -85,13 +86,17 @@ class FlightPartnerController extends Controller
      // Handle image upload
      if ($request->hasFile('image')) {
         // Delete the old image if a new one is uploaded
-        if ($flightpartner->image && file_exists(public_path('uploads/partners' . $flightpartner->image))) {
-            unlink(public_path('uploads/partners' . $flightpartner->image));
+        // if ($flightpartner->image && file_exists(public_path('uploads/partners' . $flightpartner->image))) {
+        //     unlink(public_path('uploads/partners' . $flightpartner->image));
+        // }
+        if (file_exists(public_path('uploads/partners/' . $flightpartner->image))) {
+            unlink(public_path('uploads/partners/' . $flightpartner->image));
         }
 
         // Store the new image
         $image = $request->file('image');
-        $imageName = 'FP_'. time() . '.' . $image->getClientOriginalExtension();
+        $imageName = pathinfo($image->getClientOriginalName(), PATHINFO_FILENAME) . '.' . $image->getClientOriginalExtension();
+        //$imageName = 'FP_'. time() . '.' . $image->getClientOriginalExtension();
         $image->move(public_path('uploads/partners'), $imageName);
 
         // Update the image field in the database

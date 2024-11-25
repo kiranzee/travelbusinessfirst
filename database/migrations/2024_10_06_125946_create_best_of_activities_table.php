@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('banner_image');
             $table->string('image_seo');
             $table->string('title');
+            $table->string('link_name');
             $table->decimal('price', 8, 2)->nullable();
             $table->decimal('rating', 3, 1)->nullable();
             $table->integer('rating_count')->default(0);;

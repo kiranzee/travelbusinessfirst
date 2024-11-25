@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class TicketEnquiry extends Model
 {
     use HasFactory;
+    protected $table = 'ticket_enquiries';
     protected $fillable = [
         'flight_id',
         'customer_name',
@@ -18,7 +19,10 @@ class TicketEnquiry extends Model
         'departure_date',
         'return_date',
         'passengers',
-        'class_type'
+        'class_type',
+        'status',
+        'sales_amount',
+        'user_id'
     ];
 
     // Relationship to the Flight model
@@ -26,4 +30,8 @@ class TicketEnquiry extends Model
     {
         return $this->belongsTo(Flight::class, 'flight_id');
     }
+    public function user()
+{
+    return $this->belongsTo(User::class);
+}
 }

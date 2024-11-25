@@ -26,6 +26,7 @@
                     <th>Holiday Date</th>
                     <th>Package Name</th>
                     <th>Package Price</th>
+                    <th>Status</th>
                     <th>Create Date</th>
 
                 </tr>
@@ -41,6 +42,31 @@
                             <td>{{ Carbon::parse($enquiry->holiday_date)->format('D, d M y') }}</td>
                             <td>{{ $enquiry->bestofactivity->title }}</td>
                             <td>£{{ $enquiry->bestofactivity->price }}</td>
+                            <td>
+                                <select class="form-control status-dropdown" data-ticket-id="{{ $enquiry->id }}"
+                                    name="status" id="status" data-model="HolidayEnquiry">
+                                    <option value="Pending" {{ $enquiry->status == 'Pending' ? 'selected' : '' }}>Pending
+                                    </option>
+                                    <option value="On Hold" {{ $enquiry->status == 'On Hold' ? 'selected' : '' }}>On Hold
+                                    </option>
+                                    <option value="Call Back" {{ $enquiry->status == 'Call Back' ? 'selected' : '' }}>Call
+                                        Back</option>
+                                    <option value="Payment Pending"
+                                        {{ $enquiry->status == 'Payment Pending' ? 'selected' : '' }}>Payment Pending
+                                    </option>
+                                    <option value="Payment Received"
+                                        {{ $enquiry->status == 'Payment Received' ? 'selected' : '' }}>Payment Received
+                                    </option>
+                                    <option value="Not Interested"
+                                        {{ $enquiry->status == 'Not Interested' ? 'selected' : '' }}>Not Interested
+                                    </option>
+                                    <option value="Completed" {{ $enquiry->status == 'Completed' ? 'selected' : '' }}>
+                                        Completed</option>
+                                    <option value="Fake Enquiry"
+                                        {{ $enquiry->status == 'Fake Enquiry' ? 'selected' : '' }}>
+                                        Fake Enquiry</option>
+                                </select>
+                            </td>
                             <td>{{ Carbon::parse($enquiry->created_at)->format('D, d M y') }}</td>
 
                         </tr>

@@ -36,7 +36,7 @@ class ClientSayController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'comments' => 'required|string|max:1000',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
             'rating'=> 'required|numeric'
         ]);
         if ($request->hasFile('image')) {
@@ -83,7 +83,7 @@ class ClientSayController extends Controller
     $request->validate([
         'name' => 'required|string|max:255',
         'comments' => 'required|string|max:1000',
-        'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // Image validation
+        'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048', // Image validation
         'rating' => 'required|numeric',
         'status' => 'required|in:active,inactive',
     ]);

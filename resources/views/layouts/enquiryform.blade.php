@@ -1,6 +1,6 @@
 <div class="enquiry-section city-search-list">
     <div class="offers">
-        <div class="off-discount">Get Up To <span class="clr-">50</span>% OFF!</div>
+        <h4 class="off-discount">Get Up To <span class="clr-">50</span>% OFF!</h4>
         <p>Book Now With Confidence!</p>
     </div>
     <div class="booking-tabs">
@@ -81,7 +81,7 @@
                                     <img class="icons-left" src="{{ asset('img/icons/user_icon.svg') }}"
                                         alt="">
                                     <span class="me-1 me-md-3 passengers">2 Adults</span>
-                                    <input type="hidden" name="passengers" value="" class="passengers">
+                                    <input type="hidden" name="passengers" value="2 Adults" class="passengers">
                                     <span class="px-1 px-md-3">●</span>
                                     <span class="classtype">Business Class</span>
                                     <svg class="arrow-down" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
@@ -240,7 +240,7 @@
                                 <img src="{{ asset('img/icons/call-now.svg') }}" alt="">
                                 <div>
                                     <small class="clr-7e">Phone Number</small>
-                                    <input class="text-truncate w-100" name="customer_phone" maxlength="10"
+                                    <input class="text-truncate w-100" name="customer_phone" maxlength="15"
                                         type="text" value="" placeholder="+44">
                                 </div>
                             </div>
@@ -255,7 +255,7 @@
                         <div class="col-md-12">
                             <div class="d-flex align-items-center">
                                 <input class="form-check-input me-3" id="latestOffer" name="latest_offers"
-                                    type="checkbox" value="">
+                                    type="checkbox">
                                 <label for="latestOffer">Yes! Send me the latest
                                     offers.</label>
                             </div>
@@ -505,8 +505,8 @@
                         </div>
                         <div class="col-md-12">
                             <div class="d-flex align-items-center">
-                                <input class="form-check-input me-3 latestOffer" name="latest_offers"
-                                    id="latestOffer" type="checkbox" value="" aria-label="Latest Offers">
+                                <input class="form-check-input me-3 latestOffer" id="latestOffer"
+                                    name="latest_offers" type="checkbox" aria-label="Latest Offers">
                                 <label for="latestOffer">Yes! Send me the latest
                                     offers.</label>
                             </div>
@@ -581,8 +581,7 @@
                         </div>
                     </div>
                     <div class="my-2 d-flex justify-content-end">
-                        <button id="addBtn" class="btn btn-outline-danger">Add
-                            City</button>
+                        <button id="addBtn" type="button" class="btn btn-outline-danger">Add City</button>
                     </div>
 
                     <div class="row g-3">
@@ -592,9 +591,9 @@
                                     aria-expanded="false">
                                     <img class="icons-left" src="{{ asset('img/icons/user_icon.svg') }}"
                                         alt="">
-                                    <span class="me-1 me-md-3 passengers">2 Adults</span><input type="hidden"
-                                        value="2 Adults" name="passengers" class="passengers"> <span
-                                        class="px-1 px-md-3">●</span>
+                                    <span class="me-1 me-md-3 passengers">2 Adults</span>
+                                    <input type="hidden" value="2 Adults" name="passengers" class="passengers">
+                                    <span class="px-1 px-md-3">●</span>
                                     <span class="classtype">Business Class</span>
 
                                     <svg class="arrow-down" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
@@ -775,9 +774,8 @@
                             <div class="row g-3 align-items-center">
                                 <div class="col-md-6">
                                     <div class="d-flex align-items-center">
-                                        <input class="form-check-input me-3 latestOffer" name="latest_offers"
-                                            id="latestOffer" type="checkbox" value=""
-                                            aria-label="Latest Offers">
+                                        <input class="form-check-input me-3 latestOffer" id="latestOffer"
+                                            name="latest_offers" type="checkbox" aria-label="Latest Offers">
                                         <label for="latestOffer">Yes! Send me the latest
                                             offers.</label>
                                     </div>

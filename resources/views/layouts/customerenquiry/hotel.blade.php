@@ -26,6 +26,7 @@
                     <th>Destination</th>
                     <th>Check In Date</th>
                     <th>Check Out Date</th>
+                    <th>Status</th>
                     <th>Details</th>
                 </tr>
             </thead>
@@ -41,8 +42,32 @@
                             <td>{{ Carbon::parse($hotel->checkin)->format('D, d M y') }}</td>
                             <td>{{ Carbon::parse($hotel->checkout)->format('D, d M y') }}</td>
                             <td>
+                                <select class="form-control status-dropdown" data-ticket-id="{{ $hotel->id }}"
+                                    name="status" id="status" data-model="HotelEnquiry">
+                                    <option value="Pending" {{ $hotel->status == 'Pending' ? 'selected' : '' }}>Pending
+                                    </option>
+                                    <option value="On Hold" {{ $hotel->status == 'On Hold' ? 'selected' : '' }}>On Hold
+                                    </option>
+                                    <option value="Call Back" {{ $hotel->status == 'Call Back' ? 'selected' : '' }}>Call
+                                        Back</option>
+                                    <option value="Payment Pending"
+                                        {{ $hotel->status == 'Payment Pending' ? 'selected' : '' }}>Payment Pending
+                                    </option>
+                                    <option value="Payment Received"
+                                        {{ $hotel->status == 'Payment Received' ? 'selected' : '' }}>Payment Received
+                                    </option>
+                                    <option value="Not Interested"
+                                        {{ $hotel->status == 'Not Interested' ? 'selected' : '' }}>Not Interested
+                                    </option>
+                                    <option value="Completed" {{ $hotel->status == 'Completed' ? 'selected' : '' }}>
+                                        Completed</option>
+                                    <option value="Fake hotel" {{ $hotel->status == 'Fake Enquiry' ? 'selected' : '' }}>
+                                        Fake Enquiry</option>
+                                </select>
+                            </td>
+                            <td>
                                 <button class="btn btn-sm btn-primary toggle-details" data-ticket-id="{{ $hotel->id }}">
-                                    Show Details
+                                    <i class="fas fa-angle-down"></i>
                                 </button>
                             </td>
                         </tr>

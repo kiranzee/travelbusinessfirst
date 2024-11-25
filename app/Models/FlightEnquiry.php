@@ -9,7 +9,7 @@ class FlightEnquiry extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'passengers', 'class_type', 'customer_name', 'customer_email', 'customer_phone', 'customer_comments', 'latest_offers'
+        'passengers', 'class_type', 'customer_name', 'customer_email', 'customer_phone', 'customer_comments', 'latest_offers','status'
     ];
 
     public function flightDetailsEnquiry()

@@ -10,7 +10,7 @@ use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 use App\Models\FlightEnquiry;  
 
-class EnquiryThankYouMail extends Mailable
+class EnquiryThankYouMail extends Mailable implements ShouldQueue
 {
     use Queueable, SerializesModels;
     public $flightEnquiry;
@@ -24,8 +24,7 @@ class EnquiryThankYouMail extends Mailable
     }
     public function build()
     {
-        return $this->subject('Thank You for Your Flight Enquiry')
-                    ->view('emails.thankyou');
+        return $this->view('emails.thankyou');
     }
     /**
      * Get the message envelope.

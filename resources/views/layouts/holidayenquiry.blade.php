@@ -13,14 +13,14 @@
                         <div class="col-md-12">
                             <div class="desti-form-control">
                                 <div class="row w-100 align-items-center">
-                                    <div id="onwardTrigger" class="col-5 col-md-5">
+                                    <div id="onwardTrigger" class="col-12 col-md-12">
                                         <div class="departure">
                                             <img class="d-none d-md-block"
                                                 src="{{ asset('img/icons/depart-flight.svg') }}" alt="">
                                             <div>
                                                 <small class="clr-7e">Holiday Deal</small>
-                                                <input type="text" value="{{ $bestofactivity->title }}"
-                                                    placeholder="Dubai">
+                                                <input type="text" class="w-100" disabled
+                                                    value="{{ $bestofactivity->title }}" placeholder="Dubai">
                                                 <input type="hidden" name="bestofactivityId"
                                                     value="{{ $bestofactivity->id }}">
                                             </div>
@@ -68,7 +68,7 @@
                                 <img src="{{ asset('img/icons/call-now.svg') }}" alt="">
                                 <div>
                                     <small class="clr-7e">Phone Number</small>
-                                    <input class="text-truncate w-100" maxlength="10" type="text" value=""
+                                    <input class="text-truncate w-100" maxlength="15" type="text" value=""
                                         name="cust_phone" id="cust_phone" placeholder="+440">
                                 </div>
                             </div>
@@ -77,7 +77,7 @@
                             <div class="user-control form-control h-60">
                                 <img src="{{ asset('img/icons/write-message.svg') }}" alt="">
                                 <textarea rows="3" style="min-width: 300px" class="w-100" type="text" name="cust_comments"
-                                    placeholder="Enter Your Comment">testing</textarea>
+                                    placeholder="Enter Your Comment"></textarea>
                             </div>
                         </div>
                         <div class="col-md-12">

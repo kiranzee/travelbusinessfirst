@@ -26,6 +26,7 @@
                     <th>Passenger(s)</th>
                     <th>Class Type</th>
                     <th>Create Date</th>
+                    <th>Status</th>
                     <th>Details</th>
                 </tr>
             </thead>
@@ -41,8 +42,31 @@
                             <td>{{ $ticket->class_type }}</td>
                             <td>{{ Carbon::parse($ticket->created_at)->format('D, d M y') }}</td>
                             <td>
+                                <select class="form-control status-dropdown" data-ticket-id="{{ $ticket->id }}"
+                                    name="status" id="status" data-model="FlightEnquiry">
+                                    <option value="Pending" {{ $ticket->status == 'Pending' ? 'selected' : '' }}>Pending
+                                    </option>
+                                    <option value="On Hold" {{ $ticket->status == 'On Hold' ? 'selected' : '' }}>On Hold
+                                    </option>
+                                    <option value="Call Back" {{ $ticket->status == 'Call Back' ? 'selected' : '' }}>Call
+                                        Back</option>
+                                    <option value="Payment Pending"
+                                        {{ $ticket->status == 'Payment Pending' ? 'selected' : '' }}>Payment Pending
+                                    </option>
+                                    <option value="Payment Received"
+                                        {{ $ticket->status == 'Payment Received' ? 'selected' : '' }}>Payment Received
+                                    </option>
+                                    <option value="Not Interested"
+                                        {{ $ticket->status == 'Not Interested' ? 'selected' : '' }}>Not Interested</option>
+                                    <option value="Completed" {{ $ticket->status == 'Completed' ? 'selected' : '' }}>
+                                        Completed</option>
+                                    <option value="Fake Enquiry" {{ $ticket->status == 'Fake Enquiry' ? 'selected' : '' }}>
+                                        Fake Enquiry</option>
+                                </select>
+                            </td>
+                            <td>
                                 <button class="btn btn-sm btn-primary toggle-details" data-ticket-id="{{ $ticket->id }}">
-                                    Show Details
+                                    <i class="fas fa-angle-down"></i>
                                 </button>
                             </td>
                         </tr>

@@ -24,12 +24,13 @@ class FlightController extends Controller
     $from = $request->query('from');
     $to = $request->query('to');
     $departureDate = $request->query('departure');
-    $returnDate = $request->query('returndt');
+    $returnDate = $request->query('return');
     $passengers = $request->query('passengers');
     $cabinClass = $request->query('cabin_class');
     $directFlight = $request->query('direct_flight');
+    $tripType= $request->query('trip_type');
     
-
+//dd($tripType);
     // Fetching related airport data
     $airports = Airport::whereIn('airport_code', [$from, $to])->get();
 
@@ -40,13 +41,32 @@ class FlightController extends Controller
         ->where('flights.source', $from)
         ->where('flights.destination', $to)
         ->whereDate('flights.start_date', '<=', $departureDate)
-        ->whereDate('flights.end_date', '>=', $departureDate)
+        ->when($returnDate, function ($query) use ($departureDate) {
+            return $query->whereDate('flights.end_date', '>=', $departureDate);
+        })
         ->where('flights.class', $cabinClass)
         ->when($directFlight == 'true', function($query) {
                                   return $query->where('route', 'Direct');
                               })
+        ->when($tripType === 'oneway', function ($query) {
+                                return $query->where('flights.oneway', true); // Assuming 'oneway' is a boolean column in 'flights' table
+                            })
+        ->when($tripType == 'roundtrip', function ($query) {
+                                return $query->where('flights.oneway', false); // For round-trip flights
+                            })
         ->select('flights.*', 'airlines.airline_name as airline_name', 'source_airport.airport_name as source_airport_name', 'destination_airport.airport_name as destination_airport_name');
 
+
+// Log the query with bindings
+$sqlQuery = $baseQuery->toSql(); // Get the raw SQL query
+$bindings = $baseQuery->getBindings(); // Get the query bindings
+
+// Replace bindings in the raw query with actual values
+$finalQuery = vsprintf(str_replace(['%', '?'], ['%%', "'%s'"], $sqlQuery), $bindings);
+//dd($finalQuery);
+Log::info('Generated SQL Query', ['query' => $finalQuery]);
+       // dd($baseQuery);
+                        
     // Retrieve all results (to display general flight search results)
     $results = (clone $baseQuery)->orderBy('flights.adult_fare', 'ASC')->get();
 
@@ -57,16 +77,33 @@ class FlightController extends Controller
     $fastest = (clone $baseQuery)->orderBy('flights.adult_fare', 'DESC')->first();
 
     $menu = FlightDestination::where('status', 'active')
-                                   ->orderBy('title', 'desc')
+                                   ->orderBy('title', 'asc') // Order destinations alphabetically within each region
                                    ->get()
-                                   ->groupBy('region');  // Group by the 'region' field
+                                   ->groupBy('region');
+                               
+                               // Define the fixed region order
+    $fixedOrder = [
+                                   'Asia',
+                                   'America',
+                                   'Australia and New Zealand',
+                                   'Middle East',
+                                   'Africa',
+                                   'Carribean',
+                                   'Canada',                                    
+                                   'South America',
+                               ];
+                               
+                               // Reorder the grouped data based on the fixed order
+    $sortedMenu = collect($fixedOrder)->flatMap(function ($region) use ($menu) {
+                                   return $menu->has($region) ? [$region => $menu->get($region)] : [];
+                               });
     $popularDestinations = FlightDestination::where('status', 'active')
                                    ->orderBy('title', 'desc')
                                    //->limit(5) // Adjust the limit as necessary
                                    ->get();
 
     // Pass all data to the view, including the bestPrice and fastest
-    return view('flightsearchresult', compact('results', 'bestPrice', 'fastest', 'request', 'airports','passengers','menu','popularDestinations'));
+    return view('flightsearchresult', compact('results', 'bestPrice', 'fastest', 'request', 'airports','passengers','sortedMenu','popularDestinations'));
     }
     /**
      * Show the form for creating a new resource.
@@ -91,16 +128,68 @@ class FlightController extends Controller
                                    ->orderBy('updated_at', 'desc')
                                    ->get();
         $menu = FlightDestination::where('status', 'active')
-                                   ->orderBy('title', 'desc')
+                                   ->orderBy('title', 'asc') // Order destinations alphabetically within each region
                                    ->get()
-                                   ->groupBy('region');  // Group by the 'region' field
+                                   ->groupBy('region');
+                               
+                               // Define the fixed region order
+        $fixedOrder = [
+                                   'Asia',
+                                   'America',
+                                   'Australia and New Zealand',
+                                   'Middle East',
+                                   'Africa',
+                                   'Carribean',
+                                   'Canada',                                    
+                                   'South America',
+                               ];
+                               
+                               // Reorder the grouped data based on the fixed order
+        $sortedMenu = collect($fixedOrder)->flatMap(function ($region) use ($menu) {
+                                   return $menu->has($region) ? [$region => $menu->get($region)] : [];
+                               });  // Group by the 'region' field
         $popularDestinations = FlightDestination::where('status', 'active')
                                    ->orderBy('title', 'desc')
                                    //->limit(5) // Adjust the limit as necessary
                                    ->get();
         
          // Pass the flight and passengers data to the view
-         return view('flight-detail', compact('flight', 'passengers','flightpartner', 'request','menu','popularDestinations'));
+         return view('flight-detail', compact('flight', 'passengers','flightpartner', 'request','sortedMenu','popularDestinations'));
+     }
+
+     public function flightpage(){
+
+        
+        
+        $flightpartner = FlightPartner::where('status', 'active')
+                                   ->orderBy('updated_at', 'desc')
+                                   ->get();
+        $menu = FlightDestination::where('status', 'active')
+                                   ->orderBy('title', 'asc') // Order destinations alphabetically within each region
+                                   ->get()
+                                   ->groupBy('region');
+                               
+                               // Define the fixed region order
+        $fixedOrder = [
+                                   'Asia',
+                                   'America',
+                                   'Australia and New Zealand',
+                                   'Middle East',
+                                   'Africa',
+                                   'Carribean',
+                                   'Canada',                                    
+                                   'South America',
+                               ];
+                               
+                               // Reorder the grouped data based on the fixed order
+        $sortedMenu = collect($fixedOrder)->flatMap(function ($region) use ($menu) {
+                                   return $menu->has($region) ? [$region => $menu->get($region)] : [];
+                               });
+        $popularDestinations = FlightDestination::where('status', 'active')
+                                   ->orderBy('title', 'asc')
+                                   //->limit(5) // Adjust the limit as necessary
+                                   ->get();
+        return view('layouts.flight', compact('flightpartner','sortedMenu','popularDestinations'));
      }
 
     /**

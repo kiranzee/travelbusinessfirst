@@ -11,10 +11,11 @@ use Illuminate\Queue\SerializesModels;
 use App\Models\HolidayEnquiry;
 
 
-class HolidayMail extends Mailable
+class HolidayMail extends Mailable implements ShouldQueue
 {
     use Queueable, SerializesModels;
-    public $holidayEnquiry;
+    protected $holidayEnquiry;
+    protected $packagename;
     /**
      * Create a new message instance.
      */

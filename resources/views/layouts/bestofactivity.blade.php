@@ -31,7 +31,7 @@
                             </div>
                             <small class="">({{ $bestofactivity->rating_count }})</small>
                         </div>
-                        <a href="{{ url('/holiday-deals/' . $bestofactivity->title . '/' . $bestofactivity->id) }}"
+                        <a href="{{ url('/holiday-deals/' . $bestofactivity->link_name . '/' . $bestofactivity->id) }}"
                             class="btn-on-hover view-details">View Details</a>
                     </div>
                     <div class="card-body">
@@ -73,7 +73,7 @@
                                 <div class="d-flex align-items-baseline mt-2 mt-md-3">
                                     <small class="clr-7e fs-14">From</small>
                                     <h4 class="fw-bold m-0 mx-2">£{{ number_format($bestofactivity->price, 0) }}</h4>
-                                    <small class="clr-7e fs-14">Per Group</small>
+                                    <small class="clr-7e fs-14">PP</small>
                                 </div>
                             </div>
                         </div>

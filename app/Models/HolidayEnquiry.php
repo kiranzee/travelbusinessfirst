@@ -9,7 +9,7 @@ class HolidayEnquiry extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'best_of_activity_id','holiday_date','customer_name', 'customer_email', 'customer_phone', 'customer_comments', 'latest_offers'
+        'best_of_activity_id','holiday_date','customer_name', 'customer_email', 'customer_phone', 'customer_comments', 'latest_offers','status'
     ];
 
     public function bestofactivity()

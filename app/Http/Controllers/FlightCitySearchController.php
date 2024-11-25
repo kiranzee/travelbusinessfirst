@@ -18,26 +18,43 @@ class FlightCitySearchController extends Controller
     }
 
 
-    public function citySearch($cityname, $id)
+    public function citySearch($cityname)
     {
         // Retrieve the flight destination by ID
-    $destination = FlightDestination::findOrFail($id);
+    $destination = FlightDestination::where('link_name', $cityname)->firstOrFail();
 
     // Retrieve active flight partners, sorted by the updated_at field
     $flightpartner = FlightPartner::where('status', 'active')
                                    ->orderBy('updated_at', 'desc')
                                    ->get();
     $menu = FlightDestination::where('status', 'active')
-                                   ->orderBy('title', 'desc')
+                                   ->orderBy('title', 'asc') // Order destinations alphabetically within each region
                                    ->get()
-                                   ->groupBy('region');  // Group by the 'region' field
+                                   ->groupBy('region');
+                               
+                               // Define the fixed region order
+    $fixedOrder = [
+                                   'Asia',
+                                   'America',
+                                   'Australia and New Zealand',
+                                   'Middle East',
+                                   'Africa',
+                                   'Carribean',
+                                   'Canada',                                    
+                                   'South America',
+                               ];
+                               
+                               // Reorder the grouped data based on the fixed order
+    $sortedMenu = collect($fixedOrder)->flatMap(function ($region) use ($menu) {
+                                   return $menu->has($region) ? [$region => $menu->get($region)] : [];
+                               });
     $popularDestinations = FlightDestination::where('status', 'active')
                                    ->orderBy('title', 'desc')
                                    //->limit(21) // Adjust the limit as necessary
                                    ->get();
-
+//dd($sortedMenu);
     // Return the view and pass the retrieved data
-    return view('layouts.flightcitysearch', compact('destination', 'cityname', 'flightpartner','menu','popularDestinations'));
+    return view('layouts.flightcitysearch', compact('destination', 'cityname', 'flightpartner','sortedMenu','popularDestinations'));
     }
 
 

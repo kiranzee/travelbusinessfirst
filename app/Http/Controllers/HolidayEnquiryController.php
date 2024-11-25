@@ -29,21 +29,38 @@ class HolidayEnquiryController extends Controller
         'customer_comments' => $request->cust_comments,
         'latest_offers' => $request->has('latest_offers') ? true : false,  // Set boolean value
        ];
-        
+      
         try {
-            
+          //  dd($holidayData);      
         // Create the holiday enquiry
         $holidayEnquiry = HolidayEnquiry::create($holidayData);
         $packagename = $holidayEnquiry->bestofactivity->title;
-        
+       // dd($holidayEnquiry, $packagename);
         $ccRecipient = env('CC_RECIPIENT_EMAIL');
             // Send thank-you email to the customer
             Mail::to($request->cust_email)->cc($ccRecipient)->send(new HolidayMail($holidayEnquiry,$packagename));
          // Return a success response
-        $menu = FlightDestination::where('status', 'active')
-                ->orderBy('title', 'desc')
-                ->get()
-                ->groupBy('region');
+         $menu = FlightDestination::where('status', 'active')
+         ->orderBy('title', 'asc') // Order destinations alphabetically within each region
+         ->get()
+         ->groupBy('region');
+     
+     // Define the fixed region order
+        $fixedOrder = [
+                'Asia',
+                'America',
+                'Australia and New Zealand',
+                'Middle East',
+                'Africa',
+                'Carribean',
+                'Canada',                                    
+                'South America',
+            ];
+     
+     // Reorder the grouped data based on the fixed order
+        $sortedMenu = collect($fixedOrder)->flatMap(function ($region) use ($menu) {
+             return $menu->has($region) ? [$region => $menu->get($region)] : [];
+            });
         $flightpartner = FlightPartner::where('status','active')
                 ->orderBy('updated_at', 'desc')
                 ->get();
@@ -52,9 +69,10 @@ class HolidayEnquiryController extends Controller
                 //->limit(21) // Adjust the limit as necessary
                 ->get();
         // Return a success response
-        return view('thankyou',compact('menu','flightpartner','popularDestinations'));
+        return view('thankyou',compact('sortedMenu','flightpartner','popularDestinations'));
         } catch (\Throwable $th) {
             //throw $th;
+            dd($th);
             Log::error("Error submitting Ticket Enquiry", ['Error' => $th]);
             return redirect()->back()->with('error', 'An error occurred while submitting the enquiry. Please try again.');
         }

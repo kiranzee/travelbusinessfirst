@@ -42,6 +42,7 @@ class BestOfActivityController extends Controller
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
             'banner_image' => 'required|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
             'image_seo' => 'nullable|string|max:255',
+            'link_name' => 'required|string|max:255',
             'price' => 'required|numeric',
             'rating'=> 'required|numeric',
             'rating_count'=> 'required|numeric',
@@ -68,6 +69,7 @@ class BestOfActivityController extends Controller
        $bestofactivity =  BestOfActivity::create([
             
             'title' => $request->input('title'),
+            'link_name' => $request->input('link_name'),
             'image' => $imageName,
             'banner_image' => $bannerimageName,
             'image_seo' => $request->input('image_seo'),
@@ -80,7 +82,7 @@ class BestOfActivityController extends Controller
             'status' => $request->input('status'),
             'user_id' => Auth::id(),
         ]);
-        
+        dd($bestofactivity);
         return redirect()->back()->with('success', 'Best Of Activities created successfully!');
     }
 
@@ -112,6 +114,7 @@ class BestOfActivityController extends Controller
         // Validate required fields
     $request->validate([
         'title' => 'required|string|max:255',
+        'link_name' => 'required|string|max:255',
         'image_seo' => 'required|string|max:255',
         'price' => 'required|numeric',
         'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048', // Image validation
@@ -158,6 +161,7 @@ class BestOfActivityController extends Controller
     // Update other fields (excluding image)
     $bestofactivity->image_seo = $request->image_seo;
     $bestofactivity->title = $request->title;
+    $bestofactivity->link_name = $request->link_name;
     $bestofactivity->price = $request->price;
     $bestofactivity->rating = $request->rating;
     $bestofactivity->rating_count = $request->rating_count;
@@ -170,7 +174,7 @@ class BestOfActivityController extends Controller
     // Save changes
     $bestofactivity->save();
 
-        return redirect()->route('bestofactivity.index')
+        return redirect()->route('bestofactivity.main')
                          ->with('success', 'Best Of Activity updated successfully');
     }
 
@@ -196,9 +200,26 @@ class BestOfActivityController extends Controller
                         ->get();
 
         $menu = FlightDestination::where('status', 'active')
-                                    ->orderBy('title', 'desc')
-                                    ->get()
-                                    ->groupBy('region');  // Group by the 'region' field
+                        ->orderBy('title', 'asc') // Order destinations alphabetically within each region
+                        ->get()
+                        ->groupBy('region');
+                    
+                    // Define the fixed region order
+$fixedOrder = [
+                        'Asia',
+                        'America',
+                        'Australia and New Zealand',
+                        'Middle East',
+                        'Africa',
+                        'Carribean',
+                        'Canada',                                    
+                        'South America',
+                    ];
+                    
+                    // Reorder the grouped data based on the fixed order
+$sortedMenu = collect($fixedOrder)->flatMap(function ($region) use ($menu) {
+                        return $menu->has($region) ? [$region => $menu->get($region)] : [];
+                    });
         $footermenu = FlightDestination::where('status', 'active')
                                     ->orderBy('title', 'desc')
                                     ->get()
@@ -207,6 +228,6 @@ class BestOfActivityController extends Controller
                                     ->orderBy('title', 'desc')
                                      //->limit(21) // Adjust the limit as necessary
                                     ->get();
-        return view('holidaydeal', compact('menu', 'footermenu','bestofactivity','flightpartner','popularDestinations'));
+        return view('holidaydeal', compact('sortedMenu', 'footermenu','bestofactivity','flightpartner','popularDestinations'));
     }
 }

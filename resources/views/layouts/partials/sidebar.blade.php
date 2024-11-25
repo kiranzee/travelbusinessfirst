@@ -14,7 +14,7 @@
 
      <!-- Nav Item - Dashboard -->
      <li class="nav-item active">
-         <a class="nav-link" href="index.html">
+         <a class="nav-link" href="{{ url('/dashboard/index') }}">
              <i class="fas fa-fw fa-tachometer-alt"></i>
              <span>Dashboard</span></a>
      </li>
@@ -24,7 +24,33 @@
 
      <!-- Heading -->
      <div class="sidebar-heading">
-         Interface
+         Transactions
+     </div>
+
+     <!-- Nav Item - Pages Collapse Menu -->
+     <li class="nav-item">
+         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
+             aria-expanded="true" aria-controls="collapsePages">
+             <i class="fas fa-fw fa-user"></i>
+             <span>Customers</span>
+         </a>
+         <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+             <div class="bg-white py-2 collapse-inner rounded">
+                 <h6 class="collapse-header">Enquiry:</h6>
+                 <a class="collapse-item" href="{{ route('ticketenquiry') }}">Flight Ticket</a>
+                 <a class="collapse-item" href="{{ route('cityflightenquiry') }}">Citywise Flight</a>
+                 <a class="collapse-item" href="{{ route('holidaydealenquiry') }}">Holiday Deals</a>
+                 <a class="collapse-item" href="{{ route('hotelenquiry') }}">Hotels</a>
+                 {{-- <div class="collapse-divider"></div> --}}
+
+             </div>
+         </div>
+     </li>
+     <!-- Divider -->
+     <hr class="sidebar-divider d-none d-md-block">
+     <!-- Heading -->
+     <div class="sidebar-heading">
+         Admin Panel
      </div>
 
      <!-- Nav Item - Pages Collapse Menu -->
@@ -67,7 +93,7 @@
          <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
              data-parent="#accordionSidebar">
              <div class="bg-white py-2 collapse-inner rounded">
-                 <h6 class="collapse-header">Top things to do:</h6>
+                 <h6 class="collapse-header">Business Class:</h6>
                  <a class="collapse-item" href="{{ route('topthingstodo.create') }}">Create</a>
                  <a class="collapse-item" href="{{ route('topthingstodo.index') }}">View</a>
 
@@ -96,9 +122,9 @@
          </a>
          <div id="bestofactivity" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
              <div class="bg-white py-2 collapse-inner rounded">
-                 <h6 class="collapse-header">Activities:</h6>
+                 <h6 class="collapse-header">Deals:</h6>
                  <a class="collapse-item" href="{{ route('bestofactivity.create') }}">Create</a>
-                 <a class="collapse-item" href="{{ route('bestofactivity.index') }}">View</a>
+                 <a class="collapse-item" href="{{ route('bestofactivity.main') }}">View</a>
              </div>
          </div>
      </li>
@@ -133,30 +159,7 @@
      <!-- Divider -->
      <hr class="sidebar-divider">
 
-     <!-- Heading -->
-     <div class="sidebar-heading">
-         Transactions
-     </div>
 
-     <!-- Nav Item - Pages Collapse Menu -->
-     <li class="nav-item">
-         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
-             aria-expanded="true" aria-controls="collapsePages">
-             <i class="fas fa-fw fa-folder"></i>
-             <span>Customers</span>
-         </a>
-         <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-             <div class="bg-white py-2 collapse-inner rounded">
-                 <h6 class="collapse-header">Enquiry:</h6>
-                 <a class="collapse-item" href="{{ route('ticketenquiry') }}">Flight Ticket</a>
-                 <a class="collapse-item" href="{{ route('cityflightenquiry') }}">Citywise Flight</a>
-                 <a class="collapse-item" href="{{ route('holidaydealenquiry') }}">Holiday Deals</a>
-                 <a class="collapse-item" href="{{ route('hotelenquiry') }}">Hotels</a>
-                 {{-- <div class="collapse-divider"></div> --}}
-
-             </div>
-         </div>
-     </li>
 
      {{-- <!-- Nav Item - Charts -->
      <li class="nav-item">
@@ -172,8 +175,7 @@
              <span>Tables</span></a>
      </li> --}}
 
-     <!-- Divider -->
-     <hr class="sidebar-divider d-none d-md-block">
+
 
      <!-- Sidebar Toggler (Sidebar) -->
      <div class="text-center d-none d-md-inline">

@@ -27,6 +27,7 @@ return new class extends Migration
             $table->integer('customer_phone');
             $table->string('customer_email');
             $table->string('customer_comments');
+            $table->string('status');
             $table->timestamps();
         });
     }

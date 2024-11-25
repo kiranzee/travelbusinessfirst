@@ -5,23 +5,25 @@
             <img src="img/icons/big-comas.svg" class="img-fluid" alt="">
         </div>
     </div>
-    <div class="col-md-12">
+    {{-- <div class="col-md-12">
         <p class="about-client">Exploring London was an unforgettable journey through history and culture.
             From
             iconic landmarks like Big Ben and Buckingham Palace to the vibrant streets of Camden and Notting
             Hill, every corner revealed a new story. The diversity of experiences from museums to markets
             made
             it a truly enriching adventure.</p>
-    </div>
+    </div> --}}
 </div>
 <div class="py-4">
     <div class="row justify-content-center">
         <div class="col-md-9 d-flex justify-content-center">
             <div id="clientCarousel" class="owl-carousel owl-theme">
+
                 @if ($clientsay->isNotEmpty())
                     @foreach ($clientsay as $client)
                         <div class="item">
                             <div class="card client-speak">
+                                <p class="about-client">{{ $client->comments }}</p>
                                 <div class="img-card">
                                     <img class="img-fluid rounded-circle" src="{{ asset('uploads/' . $client->image) }}"
                                         alt="{{ $client->name }}">
@@ -59,6 +61,7 @@
                     @endforeach
 
                 @endif
+
             </div>
         </div>
     </div>

@@ -14,7 +14,10 @@ return new class extends Migration
         Schema::create('flight_destinations', function (Blueprint $table) {
             $table->id();
             $table->string('region');
-            $table->string('title');           
+            $table->string('title');
+            $table->string('meta_title')->nullable();
+            $table->string('meta_description')->nullable();
+            $table->string('meta_keywords')->nullable();           
             $table->string('image');
             $table->string('image_seo')->nullable();
             $table->string('banner_image');

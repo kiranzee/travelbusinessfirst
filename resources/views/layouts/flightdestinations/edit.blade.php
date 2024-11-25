@@ -45,22 +45,22 @@
                     <div class="form-group">
                         <label for="region">Region-</label>
                         <select class="form-control" name="region" id="region" required>
-                            <option value="ASIA & Middle East"
-                                {{ $destination->region == 'ASIA & Middle East' ? 'selected' : '' }}>ASIA
-                                & Middle East</option>
-                            <option value="America & Canada"
-                                {{ $destination->region == 'America & Canada' ? 'selected' : '' }}>
-                                America & Canada</option>
-                            <option value="Europe" {{ $destination->region == 'Europe' ? 'selected' : '' }}>Europe
-                            <option value="South America" {{ $destination->region == 'South America' ? 'selected' : '' }}>
-                                South
-                                America
-                            <option value="Africa" {{ $destination->region == 'Africa' ? 'selected' : '' }}>Africa
-                            <option value="Carribean" {{ $destination->region == 'Carribean' ? 'selected' : '' }}>Carribean
-                            <option value="Australia and New Zealand"
-                                {{ $destination->region == 'Australia and New Zealand' ? 'selected' : '' }}>Australia and
-                                New Zealand
+                            <option value="Asia" {{ $destination->region == 'Asia' ? 'selected' : '' }}>Asia</option>
+                            <option value="Middle East" {{ $destination->region == 'Middle East' ? 'selected' : '' }}>Middle
+                                East</option>
+                            <option value="America" {{ $destination->region == 'America' ? 'selected' : '' }}> America
                             </option>
+                            <option value="Canada" {{ $destination->region == 'Canada' ? 'selected' : '' }}>Canada</option>
+                            <option value="Europe" {{ $destination->region == 'Europe' ? 'selected' : '' }}>Europe</option>
+                            <option value="South America" {{ $destination->region == 'South America' ? 'selected' : '' }}>
+                                South America </option>
+                            <option value="Africa" {{ $destination->region == 'Africa' ? 'selected' : '' }}>Africa
+                            </option>
+                            <option value="Carribean" {{ $destination->region == 'Carribean' ? 'selected' : '' }}>Carribean
+                            </option>
+                            <option
+                                value="Australia and New Zealand"{{ $destination->region == 'Australia and New Zealand' ? 'selected' : '' }}>
+                                Australia and New Zealand</option>
                         </select>
                     </div>
                 </div>
@@ -71,6 +71,32 @@
                             value="{{ old('title', $destination->title) }}" required>
                     </div>
                 </div>
+            </div>
+            <div class="row">
+
+                <div class="col-md-4"> <!-- Title Field -->
+                    <div class="form-group">
+                        <label for="metatitle">Meta Title</label>
+                        <input type="text" class="form-control" id="metatitle" name="metatitle"
+                            value="{{ old('metatitle', $destination->meta_title) }}" required>
+                    </div>
+                </div>
+
+                <div class="col-md-4"> <!-- Title Field -->
+                    <div class="form-group">
+                        <label for="metadescription">Meta Description</label>
+                        <textarea class="form-control" id="metadescription" name="metadescription" required>{{ old('metadescription', $destination->meta_description) }}</textarea>
+
+                    </div>
+                </div>
+                <div class="col-md-4"> <!-- Title Field -->
+                    <div class="form-group">
+                        <label for="metakeywords">Meta Keywords</label>
+                        <textarea class="form-control" id="metakeywords" name="metakeywords" required>{{ old('metakeywords', $destination->meta_keywords) }}</textarea>
+
+                    </div>
+                </div>
+
             </div>
             <div class="row">
 
@@ -395,8 +421,8 @@
             <div class="form-group w-25">
                 <label for="status">Status</label>
                 <select class="form-control" id="status" name="status" required>
-                    <option value="active" {{ old('status') == 'active' ? 'selected' : '' }}>Active</option>
-                    <option value="inactive" {{ old('status') == 'inactive' ? 'selected' : '' }}>Inactive</option>
+                    <option value="active" {{ $destination->status == 'active' ? 'selected' : '' }}>Active</option>
+                    <option value="inactive" {{ $destination->status == 'inactive' ? 'selected' : '' }}>Inactive</option>
                 </select>
             </div>
 

@@ -23,6 +23,7 @@ return new class extends Migration
             $table->date('return_date');
             $table->integer('passengers');
             $table->string('class_type');
+            $table->string('status');
             $table->timestamps();
         
             // Foreign key reference to the flights table

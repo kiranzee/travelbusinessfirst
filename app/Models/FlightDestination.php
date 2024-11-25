@@ -11,6 +11,9 @@ class FlightDestination extends Model
     protected $fillable = [
         'region',
         'title',
+        'meta_title',
+        'meta_description',
+        'meta_keywords',
         'image',
         'image_seo',
         'banner_image',

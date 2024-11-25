@@ -41,8 +41,10 @@
                     <div class="form-group">
                         <label for="region">Region</label>
                         <select class="form-control" name="region" id="region" required>
-                            <option value="ASIA & Middle East">ASIA & Middle East</option>
-                            <option value="America & Canad">America & Canada</option>
+                            <option value="Asia">Asia</option>
+                            <option value="Middle East">Middle East</option>
+                            <option value="America">America</option>
+                            <option value="Canada">Canada</option>
                             <option value="South America">South America</option>
                             <option value="Africa">Africa</option>
                             <option value="Carribean">Carribean</option>
@@ -58,6 +60,33 @@
                     </div>
                 </div>
             </div>
+            <div class="row">
+
+                <div class="col-md-4"> <!-- Title Field -->
+                    <div class="form-group">
+                        <label for="metatitle">Meta Title</label>
+                        <input type="text" class="form-control" id="metatitle" name="metatitle"
+                            value="{{ old('metatitle') }}" required>
+                    </div>
+                </div>
+
+                <div class="col-md-4"> <!-- Title Field -->
+                    <div class="form-group">
+                        <label for="metadescription">Meta Description</label>
+                        <textarea class="form-control" id="metadescription" name="metadescription" required>{{ old('metadescription') }}</textarea>
+
+                    </div>
+                </div>
+                <div class="col-md-4"> <!-- Title Field -->
+                    <div class="form-group">
+                        <label for="metakeywords">Meta Keywords</label>
+                        <textarea class="form-control" id="metakeywords" name="metakeywords" required>{{ old('metakeywords') }}</textarea>
+
+                    </div>
+                </div>
+
+            </div>
+
             <div class="row">
 
                 <div class="col-md-6"> <!-- Title Field -->

@@ -57,14 +57,16 @@
     <div class="container">
         <h1>Thank You for Your Inquiry!</h1>
         <p>Dear {{ $hotelEnquiry->customer_name }},</p>
-        <p>Thank you for reaching out to <strong>Travel Business First</strong> with your hotel inquiry for
-            {{ $hotelEnquiry->destination }}. We have received
+        <p>Thank you for reaching out to <strong>Travel Business First</strong> with your hotel enquiry for
+            <strong> {{ $hotelEnquiry->destination }}</strong>. We have received
             your request and one of our experienced travel consultants will be in touch with you shortly to discuss your
-            hotel options and tailor a perfect stay for your upcoming trip.</p>
+            hotel options and tailor a perfect stay for your upcoming trip.
+        </p>
         <p>We pride ourselves on offering luxury accommodations and excellent customer service, and we look forward to
             helping you create a truly memorable travel experience.</p>
-        <p>If you have any urgent questions, feel free to contact us directly at <a
-                href="mailto:info@travelbusinessfirst.co.uk">info@travelbusinessfirst.co.uk</a>.</p>
+        <p>If you have any urgent questions, feel free to contact us directly at <a href=""
+                class="text-decoration-none mx-2" title="Call +4402037276360" tcxhref="+4402037276360" target="_blank">0203
+                727 6360</a> / <a href="mailto:info@travelbusinessfirst.co.uk">info@travelbusinessfirst.co.uk</a>.</p>
         <a href="https://www.travelbusinessfirst.co.uk" class="btn">Visit Our Website</a>
         <p>Warm regards,</p>
         <p><strong>The Travel Business First Team</strong></p>

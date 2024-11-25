@@ -10,10 +10,10 @@ use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 use App\Models\TicketEnquiry;
 
-class TicketEnquiryThankYouMail extends Mailable
+class TicketEnquiryThankYouMail extends Mailable implements ShouldQueue
 {
     use Queueable, SerializesModels;
-    public $ticketEnquiry;
+    protected $ticketEnquiry;
     /**
      * Create a new message instance.
      */

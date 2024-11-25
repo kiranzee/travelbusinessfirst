@@ -41,10 +41,27 @@ class HotelEnquiryController extends Controller
                 // Send thank-you email to the customer
                 Mail::to($request->customer_email)->cc($ccRecipient)->send(new HotelEmail($hotelEnquiry));
 
-        $menu = FlightDestination::where('status', 'active')
-                ->orderBy('title', 'desc')
+                $menu = FlightDestination::where('status', 'active')
+                ->orderBy('title', 'asc') // Order destinations alphabetically within each region
                 ->get()
                 ->groupBy('region');
+            
+            // Define the fixed region order
+$fixedOrder = [
+                'Asia',
+                'America',
+                'Australia and New Zealand',
+                'Middle East',
+                'Africa',
+                'Carribean',
+                'Canada',                                    
+                'South America',
+            ];
+            
+            // Reorder the grouped data based on the fixed order
+$sortedMenu = collect($fixedOrder)->flatMap(function ($region) use ($menu) {
+                return $menu->has($region) ? [$region => $menu->get($region)] : [];
+            });
         $flightpartner = FlightPartner::where('status','active')
                 ->orderBy('updated_at', 'desc')
                 ->get();
@@ -53,7 +70,7 @@ class HotelEnquiryController extends Controller
                 //->limit(21) // Adjust the limit as necessary
                 ->get();
 // Return a success response
-return view('thankyou',compact('menu','flightpartner','popularDestinations'));
+return view('thankyou',compact('sortedMenu','flightpartner','popularDestinations'));
     }
 
     public function index()

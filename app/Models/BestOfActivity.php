@@ -10,6 +10,7 @@ class BestOfActivity extends Model
     use HasFactory;
     protected $fillable = [
         'title',
+        'link_name',
         'image',
         'banner_image',
         'image_seo',

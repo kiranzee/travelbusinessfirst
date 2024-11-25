@@ -1,324 +1,820 @@
-<!-- Page Heading -->
-<div class="d-sm-flex align-items-center justify-content-between mb-4">
-    <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
-    <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-            class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
-</div>
+@extends('layouts.admin')
+@section('title', 'Flight Partner')
 
-<!-- Content Row -->
-<div class="row">
 
-    <!-- Earnings (Monthly) Card Example -->
-    <div class="col-xl-3 col-md-6 mb-4">
-        <div class="card border-left-primary shadow h-100 py-2">
-            <div class="card-body">
-                <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                            Earnings (Monthly)</div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>
+@section('content')
+    <div class="row gy-6">
+        <!-- Congratulations card -->
+        <div class="col-md-12 col-lg-4 mb-2">
+            @if ($highestSales)
+                <div class="card">
+                    <div class="card-body text-wrap">
+                        @if ($highestSales->target_achievement >= '80')
+                            <h5 class="card-title mb-0 flex-wrap text-wrap">Congratulations {{ $highestSales->user_name }}!
+                                🎉
+                            </h5>
+                            <p class="mb-2">Best seller of the month</p>
+                        @else
+                            <h5 class="card-title mb-0 flex-wrap text-wrap">Well Done! {{ $highestSales->user_name }}! 🎉
+                            </h5>
+                        @endif
+
+                        <p class="mb-2">Total Sales of the Month</p>
+                        <h4 class="text-info mb-0" style="font-weight:bold">
+                            £{{ $highestSales->total_sales_in_k }}K</h4>
+                        <p class="mb-2">{{ $highestSales->target_achievement }}% of target 🚀</p>
+                        <a href="javascript:;" class="btn btn-sm btn-primary">View Sales</a>
                     </div>
-                    <div class="col-auto">
-                        <i class="fas fa-calendar fa-2x text-gray-300"></i>
-                    </div>
+                    {{-- <img src="{{ asset('img/trophy.png') }}" class="position-absolute"
+                        style="bottom: 0.625rem; right:0.2rem;" width="83" alt="view sales"> --}}
                 </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Earnings (Monthly) Card Example -->
-    <div class="col-xl-3 col-md-6 mb-4">
-        <div class="card border-left-success shadow h-100 py-2">
-            <div class="card-body">
-                <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                            Earnings (Annual)</div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800">$215,000</div>
+            @else
+                <div class="card">
+                    <div class="card-body text-wrap">😕
+                        <p>No sales records available for this month.</p>
                     </div>
-                    <div class="col-auto">
-                        <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
-                    </div>
+                    {{-- <img src="{{ asset('img/trophy.png') }}" class="position-absolute"
+                    style="bottom: 0.625rem; right:0.2rem;" width="83" alt="view sales"> --}}
                 </div>
-            </div>
+            @endif
         </div>
-    </div>
+        <!--/ Congratulations card -->
 
-    <!-- Earnings (Monthly) Card Example -->
-    <div class="col-xl-3 col-md-6 mb-4">
-        <div class="card border-left-info shadow h-100 py-2">
-            <div class="card-body">
-                <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                        <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Tasks
-                        </div>
-                        <div class="row no-gutters align-items-center">
-                            <div class="col-auto">
-                                <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">50%</div>
+        <!-- Transactions -->
+        <div class="col-lg-8">
+            <div class="card h-100">
+                <div class="card-header">
+                    <div class="d-flex align-items-center justify-content-between">
+                        <h5 class="card-title m-0 me-2">Transactions</h5>
+                        <div class="dropdown">
+                            <button class="btn text-muted p-0" type="button" id="transactionID" data-bs-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">
+                                <i class="ri-more-2-line ri-24px"></i>
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="transactionID">
+                                <a class="dropdown-item" href="javascript:void(0);">Refresh</a>
+                                <a class="dropdown-item" href="javascript:void(0);">Share</a>
+                                <a class="dropdown-item" href="javascript:void(0);">Update</a>
                             </div>
-                            <div class="col">
-                                <div class="progress progress-sm mr-2">
-                                    <div class="progress-bar bg-info" role="progressbar"
-                                        style="width: 50%" aria-valuenow="50" aria-valuemin="0"
-                                        aria-valuemax="100"></div>
+                        </div>
+                    </div>
+                    <p class="small mb-0"><span class="h6 mb-0">Total 48.5% Growth</span> 😎 this month</p>
+                </div>
+                <div class="card-body pt-lg-10">
+                    <div class="row g-6">
+                        <div class="col-md-3 col-6">
+                            <div class="d-flex align-items-center">
+                                <div class="avatar">
+                                    <div class="avatar-initial bg-primary rounded shadow-xs">
+                                        <i class="ri-pie-chart-2-line ri-24px"></i>
+                                    </div>
+                                </div>
+                                <div class="ms-3">
+                                    <p class="mb-0">Flight</p>
+                                    <h5 class="mb-0 text-warning">£245k</h5>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-6">
+                            <div class="d-flex align-items-center">
+                                <div class="avatar">
+                                    <div class="avatar-initial bg-success rounded shadow-xs">
+                                        <i class="ri-group-line ri-24px"></i>
+                                    </div>
+                                </div>
+                                <div class="ms-3">
+                                    <p class="mb-0">Hotel</p>
+                                    <h5 class="mb-0 text-primary">£12.5k</h5>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-6">
+                            <div class="d-flex align-items-center">
+                                <div class="avatar">
+                                    <div class="avatar-initial bg-warning rounded shadow-xs">
+                                        <i class="ri-macbook-line ri-24px"></i>
+                                    </div>
+                                </div>
+                                <div class="ms-3">
+                                    <p class="mb-0">Holidays</p>
+                                    <h5 class="mb-0 text-success">£1.54k</h5>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-6">
+                            <div class="d-flex align-items-center">
+                                <div class="avatar">
+                                    <div class="avatar-initial bg-info rounded shadow-xs">
+                                        <i class="ri-money-dollar-circle-line ri-24px"></i>
+                                    </div>
+                                </div>
+                                <div class="ms-3">
+                                    <p class="mb-0">Destinations</p>
+                                    <h5 class="mb-0 text-danger">£88k</h5>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-auto">
-                        <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
-                    </div>
                 </div>
             </div>
         </div>
+        <!--/ Transactions -->
+
+        <!-- Weekly Overview Chart -->
+        {{-- <div class="col-xl-4 col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <div class="d-flex justify-content-between">
+                        <h5 class="mb-1">Weekly Overview</h5>
+                        <div class="dropdown">
+                            <button class="btn text-muted p-0" type="button" id="weeklyOverviewDropdown"
+                                data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="ri-more-2-line ri-24px"></i>
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="weeklyOverviewDropdown">
+                                <a class="dropdown-item" href="javascript:void(0);">Refresh</a>
+                                <a class="dropdown-item" href="javascript:void(0);">Share</a>
+                                <a class="dropdown-item" href="javascript:void(0);">Update</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body pt-lg-2">
+                    <div id="weeklyOverviewChart"></div>
+                    <div class="mt-1 mt-md-3">
+                        <div class="d-flex align-items-center gap-4">
+                            <h4 class="mb-0">45%</h4>
+                            <p class="mb-0">Your sales performance is 45% 😎 better compared to last month</p>
+                        </div>
+                        <div class="d-grid mt-3 mt-md-4">
+                            <button class="btn btn-primary" type="button">Details</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> --}}
+        <!--/ Weekly Overview Chart -->
+
+        <!-- Total Earnings -->
+        {{-- <div class="col-xl-4 col-md-6">
+            <div class="card">
+                <div class="card-header d-flex align-items-center justify-content-between">
+                    <h5 class="card-title m-0 me-2">Total Earning</h5>
+                    <div class="dropdown">
+                        <button class="btn text-muted p-0" type="button" id="totalEarnings" data-bs-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">
+                            <i class="ri-more-2-line ri-24px"></i>
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="totalEarnings">
+                            <a class="dropdown-item" href="javascript:void(0);">Last 28 Days</a>
+                            <a class="dropdown-item" href="javascript:void(0);">Last Month</a>
+                            <a class="dropdown-item" href="javascript:void(0);">Last Year</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body pt-lg-8">
+                    <div class="mb-5 mb-lg-12">
+                        <div class="d-flex align-items-center">
+                            <h3 class="mb-0">$24,895</h3>
+                            <span class="text-success ms-2">
+                                <i class="ri-arrow-up-s-line"></i>
+                                <span>10%</span>
+                            </span>
+                        </div>
+                        <p class="mb-0">Compared to $84,325 last year</p>
+                    </div>
+                    <ul class="p-0 m-0">
+                        <li class="d-flex mb-6">
+                            <div class="avatar flex-shrink-0 bg-lightest rounded me-3">
+                                <img src="{{ asset('assets/img/icons/misc/zipcar.png') }}" alt="zipcar">
+                            </div>
+                            <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
+                                <div class="me-2">
+                                    <h6 class="mb-0">Zipcar</h6>
+                                    <p class="mb-0">Vuejs, React & HTML</p>
+                                </div>
+                                <div>
+                                    <h6 class="mb-2">$24,895.65</h6>
+                                    <div class="progress bg-label-primary" style="height: 4px;">
+                                        <div class="progress-bar bg-primary" style="width: 75%" role="progressbar"
+                                            aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="d-flex mb-6">
+                            <div class="avatar flex-shrink-0 bg-lightest rounded me-3">
+                                <img src="{{ asset('assets/img/icons/misc/bitbank.png') }}" alt="bitbank">
+                            </div>
+                            <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
+                                <div class="me-2">
+                                    <h6 class="mb-0">Bitbank</h6>
+                                    <p class="mb-0">Sketch, Figma & XD</p>
+                                </div>
+                                <div>
+                                    <h6 class="mb-2">$8,6500.20</h6>
+                                    <div class="progress bg-label-info" style="height: 4px;">
+                                        <div class="progress-bar bg-info" style="width: 75%" role="progressbar"
+                                            aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="d-flex">
+                            <div class="avatar flex-shrink-0 bg-lightest rounded me-3">
+                                <img src="{{ asset('assets/img/icons/misc/aviato.png') }}" alt="aviato">
+                            </div>
+                            <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
+                                <div class="me-2">
+                                    <h6 class="mb-0">Aviato</h6>
+                                    <p class="mb-0">HTML & Angular</p>
+                                </div>
+                                <div>
+                                    <h6 class="mb-2">$1,2450.80</h6>
+                                    <div class="progress bg-label-secondary" style="height: 4px;">
+                                        <div class="progress-bar bg-secondary" style="width: 75%" role="progressbar"
+                                            aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div> --}}
+        <!--/ Total Earnings -->
+
+        <!-- Four Cards -->
+        {{-- <div class="col-xl-4 col-md-6">
+            <div class="row gy-6">
+                <!-- Total Profit line chart -->
+                <div class="col-sm-6">
+                    <div class="card h-100">
+                        <div class="card-header pb-0">
+                            <h4 class="mb-0">$86.4k</h4>
+                        </div>
+                        <div class="card-body">
+                            <div id="totalProfitLineChart" class="mb-3"></div>
+                            <h6 class="text-center mb-0">Total Profit</h6>
+                        </div>
+                    </div>
+                </div>
+                <!--/ Total Profit line chart -->
+                <!-- Total Profit Weekly Project -->
+                <div class="col-sm-6">
+                    <div class="card h-100">
+                        <div class="card-header d-flex align-items-center justify-content-between">
+                            <div class="avatar">
+                                <div class="avatar-initial bg-secondary rounded-circle shadow-xs">
+                                    <i class="ri-pie-chart-2-line ri-24px"></i>
+                                </div>
+                            </div>
+                            <div class="dropdown">
+                                <button class="btn text-muted p-0" type="button" id="totalProfitID"
+                                    data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="ri-more-2-line ri-24px"></i>
+                                </button>
+                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="totalProfitID">
+                                    <a class="dropdown-item" href="javascript:void(0);">Refresh</a>
+                                    <a class="dropdown-item" href="javascript:void(0);">Share</a>
+                                    <a class="dropdown-item" href="javascript:void(0);">Update</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <h6 class="mb-1">Total Profit</h6>
+                            <div class="d-flex flex-wrap mb-1 align-items-center">
+                                <h4 class="mb-0 me-2">$25.6k</h4>
+                                <p class="text-success mb-0">+42%</p>
+                            </div>
+                            <small>Weekly Project</small>
+                        </div>
+                    </div>
+                </div>
+                <!--/ Total Profit Weekly Project -->
+                <!-- New Yearly Project -->
+                <div class="col-sm-6">
+                    <div class="card h-100">
+                        <div class="card-header d-flex align-items-center justify-content-between">
+                            <div class="avatar">
+                                <div class="avatar-initial bg-primary rounded-circle shadow-xs">
+                                    <i class="ri-file-word-2-line ri-24px"></i>
+                                </div>
+                            </div>
+                            <div class="dropdown">
+                                <button class="btn text-muted p-0" type="button" id="newProjectID"
+                                    data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="ri-more-2-line ri-24px"></i>
+                                </button>
+                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="newProjectID">
+                                    <a class="dropdown-item" href="javascript:void(0);">Refresh</a>
+                                    <a class="dropdown-item" href="javascript:void(0);">Share</a>
+                                    <a class="dropdown-item" href="javascript:void(0);">Update</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <h6 class="mb-1">New Project</h6>
+                            <div class="d-flex flex-wrap mb-1 align-items-center">
+                                <h4 class="mb-0 me-2">862</h4>
+                                <p class="text-danger mb-0">-18%</p>
+                            </div>
+                            <small>Yearly Project</small>
+                        </div>
+                    </div>
+                </div>
+                <!--/ New Yearly Project -->
+                <!-- Sessions chart -->
+                <div class="col-sm-6">
+                    <div class="card h-100">
+                        <div class="card-header pb-0">
+                            <h4 class="mb-0">2,856</h4>
+                        </div>
+                        <div class="card-body">
+                            <div id="sessionsColumnChart" class="mb-3"></div>
+                            <h6 class="text-center mb-0">Sessions</h6>
+                        </div>
+                    </div>
+                </div>
+                <!--/ Sessions chart -->
+            </div>
+        </div> --}}
+        <!--/ four cards -->
+
+        <!-- Sales by Countries -->
+        {{-- <div class="col-xl-4 col-md-6">
+            <div class="card h-100">
+                <div class="card-header d-flex align-items-center justify-content-between">
+                    <h5 class="card-title m-0 me-2">Sales by Countries</h5>
+                    <div class="dropdown">
+                        <button class="btn text-muted p-0" type="button" id="saleStatus" data-bs-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">
+                            <i class="ri-more-2-line ri-24px"></i>
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="saleStatus">
+                            <a class="dropdown-item" href="javascript:void(0);">Last 28 Days</a>
+                            <a class="dropdown-item" href="javascript:void(0);">Last Month</a>
+                            <a class="dropdown-item" href="javascript:void(0);">Last Year</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="d-flex justify-content-between">
+                        <div class="d-flex align-items-center mb-4">
+                            <div class="avatar me-4">
+                                <div class="avatar-initial bg-label-success rounded-circle">US</div>
+                            </div>
+                            <div>
+                                <div class="d-flex align-items-center gap-1 mb-1">
+                                    <h6 class="mb-0">$8,656k</h6>
+                                    <i class="ri-arrow-up-s-line ri-24px text-success"></i>
+                                    <span class="text-success">25.8%</span>
+                                </div>
+                                <p class="mb-0">United states of america</p>
+                            </div>
+                        </div>
+                        <div class="text-end">
+                            <h6 class="mb-1">894k</h6>
+                            <small class="text-muted">Sales</small>
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                        <div class="d-flex align-items-center mb-4">
+                            <div class="avatar me-4">
+                                <span class="avatar-initial bg-label-danger rounded-circle">UK</span>
+                            </div>
+                            <div>
+                                <div class="d-flex align-items-center gap-1 mb-1">
+                                    <h6 class="mb-0">$2,415k</h6>
+                                    <i class="ri-arrow-down-s-line ri-24px text-danger"></i>
+                                    <span class="text-danger">6.2%</span>
+                                </div>
+                                <p class="mb-0">United Kingdom</p>
+                            </div>
+                        </div>
+                        <div class="text-end">
+                            <h6 class="mb-1">645k</h6>
+                            <small class="text-muted">Sales</small>
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                        <div class="d-flex align-items-center mb-4">
+                            <div class="avatar me-4">
+                                <span class="avatar-initial bg-label-warning rounded-circle">IN</span>
+                            </div>
+                            <div>
+                                <div class="d-flex align-items-center gap-1 mb-1">
+                                    <h6 class="mb-0">865k</h6>
+                                    <i class="ri-arrow-up-s-line ri-24px text-success"></i>
+                                    <span class="text-success"> 12.4%</span>
+                                </div>
+                                <p class="mb-0">India</p>
+                            </div>
+                        </div>
+                        <div class="text-end">
+                            <h6 class="mb-1">148k</h6>
+                            <small class="text-muted">Sales</small>
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                        <div class="d-flex align-items-center mb-4">
+                            <div class="avatar me-4">
+                                <span class="avatar-initial bg-label-secondary rounded-circle">JA</span>
+                            </div>
+                            <div>
+                                <div class="d-flex align-items-center gap-1 mb-1">
+                                    <h6 class="mb-0">$745k</h6>
+                                    <i class="ri-arrow-down-s-line ri-24px text-danger"></i>
+                                    <span class="text-danger">11.9%</span>
+                                </div>
+                                <p class="mb-0">Japan</p>
+                            </div>
+                        </div>
+                        <div class="text-end">
+                            <h6 class="mb-1">86k</h6>
+                            <small class="text-muted">Sales</small>
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                        <div class="d-flex align-items-center">
+                            <div class="avatar me-4">
+                                <span class="avatar-initial bg-label-danger rounded-circle">KO</span>
+                            </div>
+                            <div>
+                                <div class="d-flex align-items-center gap-1 mb-1">
+                                    <h6 class="mb-0">$45k</h6>
+                                    <i class="ri-arrow-up-s-line ri-24px text-success"></i>
+                                    <span class="text-success">16.2%</span>
+                                </div>
+                                <p class="mb-0">Korea</p>
+                            </div>
+                        </div>
+                        <div class="text-end">
+                            <h6 class="mb-1">42k</h6>
+                            <small class="text-muted">Sales</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> --}}
+        <!--/ Sales by Countries -->
+
+        <!-- Deposit / Withdraw -->
+        {{-- <div class="col-xl-8">
+            <div class="card-group">
+                <div class="card mb-0">
+                    <div class="card-body card-separator">
+                        <div class="d-flex justify-content-between align-items-center flex-wrap mb-4">
+                            <h5 class="m-0 me-2">Deposit</h5>
+                            <a class="fw-medium" href="javascript:void(0);">View all</a>
+                        </div>
+                        <div class="deposit-content pt-2">
+                            <ul class="p-0 m-0">
+                                <li class="d-flex mb-4 align-items-center pb-2">
+                                    <div class="flex-shrink-0 me-4">
+                                        <img src="{{ asset('assets/img/icons/payments/gumroad.png') }}" class="img-fluid"
+                                            alt="gumroad" height="30" width="30">
+                                    </div>
+                                    <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
+                                        <div class="me-2">
+                                            <h6 class="mb-0">Gumroad Account</h6>
+                                            <p class="mb-0">Sell UI Kit</p>
+                                        </div>
+                                        <h6 class="text-success mb-0">+$4,650</h6>
+                                    </div>
+                                </li>
+                                <li class="d-flex mb-4 align-items-center pb-2">
+                                    <div class="flex-shrink-0 me-4">
+                                        <img src="{{ asset('assets/img/icons/payments/mastercard-2.png') }}"
+                                            class="img-fluid" alt="mastercard" height="30" width="30">
+                                    </div>
+                                    <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
+                                        <div class="me-2">
+                                            <h6 class="mb-0">Mastercard</h6>
+                                            <p class="mb-0">Wallet deposit</p>
+                                        </div>
+                                        <h6 class="text-success mb-0">+$92,705</h6>
+                                    </div>
+                                </li>
+                                <li class="d-flex mb-4 align-items-center pb-2">
+                                    <div class="flex-shrink-0 me-4">
+                                        <img src="{{ asset('assets/img/icons/payments/stripes.png') }}" class="img-fluid"
+                                            alt="stripes" height="30" width="30">
+                                    </div>
+                                    <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
+                                        <div class="me-2">
+                                            <h6 class="mb-0">Stripe Account</h6>
+                                            <p class="mb-0">iOS Application</p>
+                                        </div>
+                                        <h6 class="text-success mb-0">+$957</h6>
+                                    </div>
+                                </li>
+                                <li class="d-flex mb-4 align-items-center pb-2">
+                                    <div class="flex-shrink-0 me-4">
+                                        <img src="{{ asset('assets/img/icons/payments/american-bank.png') }}"
+                                            class="img-fluid" alt="american" height="30" width="30">
+                                    </div>
+                                    <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
+                                        <div class="me-2">
+                                            <h6 class="mb-0">American Bank</h6>
+                                            <p class="mb-0">Bank Transfer</p>
+                                        </div>
+                                        <h6 class="text-success mb-0">+$6,837</h6>
+                                    </div>
+                                </li>
+                                <li class="d-flex align-items-center">
+                                    <div class="flex-shrink-0 me-4">
+                                        <img src="{{ asset('assets/img/icons/payments/citi.png') }}" class="img-fluid"
+                                            alt="citi" height="30" width="30">
+                                    </div>
+                                    <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
+                                        <div class="me-2">
+                                            <h6 class="mb-0">Bank Account</h6>
+                                            <p class="mb-0">Wallet deposit</p>
+                                        </div>
+                                        <h6 class="text-success mb-0">+$446</h6>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="card mb-0">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center flex-wrap mb-4">
+                            <h5 class="m-0 me-2">Withdraw</h5>
+                            <a class="fw-medium" href="javascript:void(0);">View all</a>
+                        </div>
+                        <div class="withdraw-content pt-2">
+                            <ul class="p-0 m-0">
+                                <li class="d-flex mb-4 align-items-center pb-2">
+                                    <div class="flex-shrink-0 me-4">
+                                        <img src="{{ asset('assets/img/icons/brands/google.png') }}" class="img-fluid"
+                                            alt="google" height="30" width="30">
+                                    </div>
+                                    <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
+                                        <div class="me-2">
+                                            <h6 class="mb-0">Google Adsense</h6>
+                                            <p class="mb-0">Paypal deposit</p>
+                                        </div>
+                                        <h6 class="text-danger mb-0">-$145</h6>
+                                    </div>
+                                </li>
+                                <li class="d-flex mb-4 align-items-center pb-2">
+                                    <div class="flex-shrink-0 me-4">
+                                        <img src="{{ asset('assets/img/icons/brands/github.png') }}" class="img-fluid"
+                                            alt="github" height="30" width="30">
+                                    </div>
+                                    <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
+                                        <div class="me-2">
+                                            <h6 class="mb-0">Github Enterprise</h6>
+                                            <p class="mb-0">Security &amp; compliance</p>
+                                        </div>
+                                        <h6 class="text-danger mb-0">-$1870</h6>
+                                    </div>
+                                </li>
+                                <li class="d-flex mb-4 align-items-center pb-2">
+                                    <div class="flex-shrink-0 me-4">
+                                        <img src="{{ asset('assets/img/icons/brands/slack.png') }}" class="img-fluid"
+                                            alt="slack" height="30" width="30">
+                                    </div>
+                                    <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
+                                        <div class="me-2">
+                                            <h6 class="mb-0">Upgrade Slack Plan</h6>
+                                            <p class="mb-0">Debit card deposit</p>
+                                        </div>
+                                        <h6 class="text-danger mb-0">$450</h6>
+                                    </div>
+                                </li>
+                                <li class="d-flex mb-4 align-items-center pb-2">
+                                    <div class="flex-shrink-0 me-4">
+                                        <img src="{{ asset('assets/img/icons/payments/digital-ocean.png') }}"
+                                            class="img-fluid" alt="digital" height="30" width="30">
+                                    </div>
+                                    <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
+                                        <div class="me-2">
+                                            <h6 class="mb-0">Digital Ocean</h6>
+                                            <p class="mb-0">Cloud Hosting</p>
+                                        </div>
+                                        <h6 class="text-danger mb-0">-$540</h6>
+                                    </div>
+                                </li>
+                                <li class="d-flex align-items-center">
+                                    <div class="flex-shrink-0 me-4">
+                                        <img src="{{ asset('assets/img/icons/brands/aws.png') }}" class="img-fluid"
+                                            alt="aws" height="30" width="30">
+                                    </div>
+                                    <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
+                                        <div class="me-2">
+                                            <h6 class="mb-0">AWS Account</h6>
+                                            <p class="mb-0">Choosing a Cloud Platform</p>
+                                        </div>
+                                        <h6 class="text-danger mb-0">-$21</h6>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> --}}
+        <!-- Deposit / Withdraw -->
+
+        <!-- Data Tables -->
+        {{-- <div class="col-12">
+            <div class="card overflow-hidden">
+                <div class="table-responsive">
+                    <table class="table table-sm">
+                        <thead>
+                            <tr>
+                                <th class="text-truncate">User</th>
+                                <th class="text-truncate">Email</th>
+                                <th class="text-truncate">Role</th>
+                                <th class="text-truncate">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        <div class="avatar avatar-sm me-4">
+                                            <img src="{{ asset('assets/img/avatars/1.png') }}" alt="Avatar"
+                                                class="rounded-circle">
+                                        </div>
+                                        <div>
+                                            <h6 class="mb-0 text-truncate">Jordan Stevenson</h6>
+                                            <small class="text-truncate">@amiccoo</small>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="text-truncate">susanna.Lind57@gmail.com</td>
+                                <td class="text-truncate">
+                                    <div class="d-flex align-items-center">
+                                        <i class="ri-vip-crown-line ri-22px text-primary me-2"></i>
+                                        <span>Admin</span>
+                                    </div>
+                                </td>
+                                <td><span class="badge bg-label-warning rounded-pill">Pending</span></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        <div class="avatar avatar-sm me-4">
+                                            <img src="{{ asset('assets/img/avatars/3.png') }}" alt="Avatar"
+                                                class="rounded-circle">
+                                        </div>
+                                        <div>
+                                            <h6 class="mb-0 text-truncate">Benedetto Rossiter</h6>
+                                            <small class="text-truncate">@brossiter15</small>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="text-truncate">estelle.Bailey10@gmail.com</td>
+                                <td class="text-truncate">
+                                    <div class="d-flex align-items-center">
+                                        <i class="ri-edit-box-line text-warning ri-22px me-2"></i>
+                                        <span>Editor</span>
+                                    </div>
+                                </td>
+                                <td><span class="badge bg-label-success rounded-pill">Active</span></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        <div class="avatar avatar-sm me-4">
+                                            <img src="{{ asset('assets/img/avatars/2.png') }}" alt="Avatar"
+                                                class="rounded-circle">
+                                        </div>
+                                        <div>
+                                            <h6 class="mb-0 text-truncate">Bentlee Emblin</h6>
+                                            <small class="text-truncate">@bemblinf</small>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="text-truncate">milo86@hotmail.com</td>
+                                <td class="text-truncate">
+                                    <div class="d-flex align-items-center">
+                                        <i class="ri-computer-line text-danger ri-22px me-2"></i>
+                                        <span>Author</span>
+                                    </div>
+                                </td>
+                                <td><span class="badge bg-label-success rounded-pill">Active</span></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        <div class="avatar avatar-sm me-4">
+                                            <img src="{{ asset('assets/img/avatars/5.png') }}" alt="Avatar"
+                                                class="rounded-circle">
+                                        </div>
+                                        <div>
+                                            <h6 class="mb-0 text-truncate">Bertha Biner</h6>
+                                            <small class="text-truncate">@bbinerh</small>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="text-truncate">lonnie35@hotmail.com</td>
+                                <td class="text-truncate">
+                                    <div class="d-flex align-items-center">
+                                        <i class="ri-edit-box-line text-warning ri-22px me-2"></i>
+                                        <span>Editor</span>
+                                    </div>
+                                </td>
+                                <td><span class="badge bg-label-warning rounded-pill">Pending</span></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        <div class="avatar avatar-sm me-4">
+                                            <img src="{{ asset('assets/img/avatars/4.png') }}" alt="Avatar"
+                                                class="rounded-circle">
+                                        </div>
+                                        <div>
+                                            <h6 class="mb-0 text-truncate">Beverlie Krabbe</h6>
+                                            <small class="text-truncate">@bkrabbe1d</small>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="text-truncate">ahmad_Collins@yahoo.com</td>
+                                <td class="text-truncate">
+                                    <div class="d-flex align-items-center">
+                                        <i class="ri-pie-chart-2-line ri-22px text-info me-2"></i>
+                                        <span>Maintainer</span>
+                                    </div>
+                                </td>
+                                <td><span class="badge bg-label-success rounded-pill">Active</span></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        <div class="avatar avatar-sm me-4">
+                                            <img src="{{ asset('assets/img/avatars/7.png') }}" alt="Avatar"
+                                                class="rounded-circle">
+                                        </div>
+                                        <div>
+                                            <h6 class="mb-0 text-truncate">Bradan Rosebotham</h6>
+                                            <small class="text-truncate">@brosebothamz</small>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="text-truncate">tillman.Gleason68@hotmail.com</td>
+                                <td class="text-truncate">
+                                    <div class="d-flex align-items-center">
+                                        <i class="ri-edit-box-line text-warning ri-22px me-2"></i>
+                                        <span>Editor</span>
+                                    </div>
+                                </td>
+                                <td><span class="badge bg-label-warning rounded-pill">Pending</span></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        <div class="avatar avatar-sm me-4">
+                                            <img src="{{ asset('assets/img/avatars/6.png') }}" alt="Avatar"
+                                                class="rounded-circle">
+                                        </div>
+                                        <div>
+                                            <h6 class="mb-0 text-truncate">Bree Kilday</h6>
+                                            <small class="text-truncate">@bkildayr</small>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="text-truncate">otho21@gmail.com</td>
+                                <td class="text-truncate">
+                                    <div class="d-flex align-items-center">
+                                        <i class="ri-user-3-line ri-22px text-success me-2"></i>
+                                        <span>Subscriber</span>
+                                    </div>
+                                </td>
+                                <td><span class="badge bg-label-success rounded-pill">Active</span></td>
+                            </tr>
+                            <tr class="border-transparent">
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        <div class="avatar avatar-sm me-4">
+                                            <img src="{{ asset('assets/img/avatars/1.png') }}" alt="Avatar"
+                                                class="rounded-circle">
+                                        </div>
+                                        <div>
+                                            <h6 class="mb-0 text-truncate">Breena Gallemore</h6>
+                                            <small class="text-truncate">@bgallemore6</small>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="text-truncate">florencio.Little@hotmail.com</td>
+                                <td class="text-truncate">
+                                    <div class="d-flex align-items-center">
+                                        <i class="ri-user-3-line ri-22px text-success me-2"></i>
+                                        <span>Subscriber</span>
+                                    </div>
+                                </td>
+                                <td><span class="badge bg-label-secondary rounded-pill">Inactive</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div> --}}
+        <!--/ Data Tables -->
     </div>
-
-    <!-- Pending Requests Card Example -->
-    <div class="col-xl-3 col-md-6 mb-4">
-        <div class="card border-left-warning shadow h-100 py-2">
-            <div class="card-body">
-                <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                        <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                            Pending Requests</div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
-                    </div>
-                    <div class="col-auto">
-                        <i class="fas fa-comments fa-2x text-gray-300"></i>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Content Row -->
-
-<div class="row">
-
-    <!-- Area Chart -->
-    <div class="col-xl-8 col-lg-7">
-        <div class="card shadow mb-4">
-            <!-- Card Header - Dropdown -->
-            <div
-                class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                <h6 class="m-0 font-weight-bold text-primary">Earnings Overview</h6>
-                <div class="dropdown no-arrow">
-                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-                        aria-labelledby="dropdownMenuLink">
-                        <div class="dropdown-header">Dropdown Header:</div>
-                        <a class="dropdown-item" href="#">Action</a>
-                        <a class="dropdown-item" href="#">Another action</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Something else here</a>
-                    </div>
-                </div>
-            </div>
-            <!-- Card Body -->
-            <div class="card-body">
-                <div class="chart-area">
-                    <canvas id="myAreaChart"></canvas>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Pie Chart -->
-    <div class="col-xl-4 col-lg-5">
-        <div class="card shadow mb-4">
-            <!-- Card Header - Dropdown -->
-            <div
-                class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                <h6 class="m-0 font-weight-bold text-primary">Revenue Sources</h6>
-                <div class="dropdown no-arrow">
-                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-                        aria-labelledby="dropdownMenuLink">
-                        <div class="dropdown-header">Dropdown Header:</div>
-                        <a class="dropdown-item" href="#">Action</a>
-                        <a class="dropdown-item" href="#">Another action</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Something else here</a>
-                    </div>
-                </div>
-            </div>
-            <!-- Card Body -->
-            <div class="card-body">
-                <div class="chart-pie pt-4 pb-2">
-                    <canvas id="myPieChart"></canvas>
-                </div>
-                <div class="mt-4 text-center small">
-                    <span class="mr-2">
-                        <i class="fas fa-circle text-primary"></i> Direct
-                    </span>
-                    <span class="mr-2">
-                        <i class="fas fa-circle text-success"></i> Social
-                    </span>
-                    <span class="mr-2">
-                        <i class="fas fa-circle text-info"></i> Referral
-                    </span>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Content Row -->
-<div class="row">
-
-    <!-- Content Column -->
-    <div class="col-lg-6 mb-4">
-
-        <!-- Project Card Example -->
-        <div class="card shadow mb-4">
-            <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">Projects</h6>
-            </div>
-            <div class="card-body">
-                <h4 class="small font-weight-bold">Server Migration <span
-                        class="float-right">20%</span></h4>
-                <div class="progress mb-4">
-                    <div class="progress-bar bg-danger" role="progressbar" style="width: 20%"
-                        aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
-                </div>
-                <h4 class="small font-weight-bold">Sales Tracking <span
-                        class="float-right">40%</span></h4>
-                <div class="progress mb-4">
-                    <div class="progress-bar bg-warning" role="progressbar" style="width: 40%"
-                        aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
-                </div>
-                <h4 class="small font-weight-bold">Customer Database <span
-                        class="float-right">60%</span></h4>
-                <div class="progress mb-4">
-                    <div class="progress-bar" role="progressbar" style="width: 60%"
-                        aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
-                </div>
-                <h4 class="small font-weight-bold">Payout Details <span
-                        class="float-right">80%</span></h4>
-                <div class="progress mb-4">
-                    <div class="progress-bar bg-info" role="progressbar" style="width: 80%"
-                        aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
-                </div>
-                <h4 class="small font-weight-bold">Account Setup <span
-                        class="float-right">Complete!</span></h4>
-                <div class="progress">
-                    <div class="progress-bar bg-success" role="progressbar" style="width: 100%"
-                        aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Color System -->
-        <div class="row">
-            <div class="col-lg-6 mb-4">
-                <div class="card bg-primary text-white shadow">
-                    <div class="card-body">
-                        Primary
-                        <div class="text-white-50 small">#4e73df</div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-6 mb-4">
-                <div class="card bg-success text-white shadow">
-                    <div class="card-body">
-                        Success
-                        <div class="text-white-50 small">#1cc88a</div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-6 mb-4">
-                <div class="card bg-info text-white shadow">
-                    <div class="card-body">
-                        Info
-                        <div class="text-white-50 small">#36b9cc</div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-6 mb-4">
-                <div class="card bg-warning text-white shadow">
-                    <div class="card-body">
-                        Warning
-                        <div class="text-white-50 small">#f6c23e</div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-6 mb-4">
-                <div class="card bg-danger text-white shadow">
-                    <div class="card-body">
-                        Danger
-                        <div class="text-white-50 small">#e74a3b</div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-6 mb-4">
-                <div class="card bg-secondary text-white shadow">
-                    <div class="card-body">
-                        Secondary
-                        <div class="text-white-50 small">#858796</div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-6 mb-4">
-                <div class="card bg-light text-black shadow">
-                    <div class="card-body">
-                        Light
-                        <div class="text-black-50 small">#f8f9fc</div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-6 mb-4">
-                <div class="card bg-dark text-white shadow">
-                    <div class="card-body">
-                        Dark
-                        <div class="text-white-50 small">#5a5c69</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-    </div>
-
-    <div class="col-lg-6 mb-4">
-
-        <!-- Illustrations -->
-        <div class="card shadow mb-4">
-            <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">Illustrations</h6>
-            </div>
-            <div class="card-body">
-                <div class="text-center">
-                    <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem;"
-                        src="img/undraw_posting_photo.svg" alt="...">
-                </div>
-                <p>Add some quality, svg illustrations to your project courtesy of <a
-                        target="_blank" rel="nofollow" href="https://undraw.co/">unDraw</a>, a
-                    constantly updated collection of beautiful svg images that you can use
-                    completely free and without attribution!</p>
-                <a target="_blank" rel="nofollow" href="https://undraw.co/">Browse Illustrations on
-                    unDraw &rarr;</a>
-            </div>
-        </div>
-
-        <!-- Approach -->
-        <div class="card shadow mb-4">
-            <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">Development Approach</h6>
-            </div>
-            <div class="card-body">
-                <p>SB Admin 2 makes extensive use of Bootstrap 4 utility classes in order to reduce
-                    CSS bloat and poor page performance. Custom CSS classes are used to create
-                    custom components and custom utility classes.</p>
-                <p class="mb-0">Before working with this theme, you should become familiar with the
-                    Bootstrap framework, especially the utility classes.</p>
-            </div>
-        </div>
-
-    </div>
-</div>
+@endsection

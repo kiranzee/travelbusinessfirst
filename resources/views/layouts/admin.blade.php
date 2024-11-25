@@ -93,6 +93,7 @@
     <script src="{{ asset('admin/js/sb-admin-2.min.js') }}"></script>
     <script>
         $(document).ready(function() {
+
             // Add click event listener to toggle the details
             $('.toggle-details').on('click', function() {
                 var ticketId = $(this).data('ticket-id');
@@ -103,11 +104,71 @@
 
                 // Change the button text based on the visibility of the details row
                 if (detailsRow.is(':visible')) {
-                    $(this).text('Hide Details');
+                    $(this).html('<i class="fas fa-angle-up"></i>');
                 } else {
-                    $(this).text('Show Details');
+                    $(this).html(' <i class="fas fa-angle-down"></i>');
                 }
             });
+
+            $('.status-dropdown').on('change', function() {
+
+                var ticketId = $(this).data('ticket-id');
+                var modelname = $(this).data('model');
+                var newStatus = $(this).val();
+                // Show loading or disable dropdown (optional)
+                $(this).prop('disabled', true);
+
+                // AJAX Request to update the status
+                $.ajax({
+                    url: '/update-ticket-status', // Update with your route
+                    method: 'POST',
+                    data: {
+                        _token: $('meta[name="csrf-token"]').attr(
+                            'content'), // CSRF token for security
+                        ticket_id: ticketId,
+                        model: modelname,
+                        status: newStatus
+                    },
+                    success: function(response) {
+                        alert(response.message); // Show success message
+                        $(this).prop('disabled', false); // Re-enable dropdown
+                    },
+                    error: function(xhr, status, error) {
+                        alert('Failed to update status. Please try again.');
+                        $(this).prop('disabled', false); // Re-enable dropdown
+                    }
+                });
+            });
+
+
+            $('.salesAmtBtn').on('click', function() {
+                var ticketId = $(this).data('ticket-id');
+                var salesAmount = $('#sa-' + ticketId).val();
+                var modelname = $(this).data('model');
+                console.log(ticketId, salesAmount, modelname)
+                // AJAX Request to update the status
+                $.ajax({
+                    url: '/update-ticket-sales', // Update with your route
+                    method: 'POST',
+                    data: {
+                        _token: $('meta[name="csrf-token"]').attr(
+                            'content'), // CSRF token for security
+                        ticket_id: ticketId,
+                        model: modelname,
+                        sales_amount: salesAmount
+                    },
+                    success: function(response) {
+                        alert(response.message); // Show success message
+                        $(this).prop('disabled', false); // Re-enable dropdown
+                    },
+                    error: function(xhr, status, error) {
+                        alert('Failed to update status. Please try again.');
+                        $(this).prop('disabled', false); // Re-enable dropdown
+                    }
+                });
+
+            });
+
         });
     </script>
 </body>

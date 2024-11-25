@@ -15,7 +15,7 @@ class FlightDestinationController extends Controller
     {
         //
         //$destinations = FlightDestination::all();
-        $destinations = FlightDestination::with('user')->get();
+        $destinations = FlightDestination::with('user')->orderBy('updated_at', 'desc')->get();
         
         return view('layouts.flightdestinations.index', compact('destinations'));
     }
@@ -35,10 +35,14 @@ class FlightDestinationController extends Controller
     public function store(Request $request)
     {
         //
+        
         // Validate the form data
         $request->validate([
             'region' => 'required|string',
             'title' => 'required|string|max:255',
+            'metatitle' => 'required|string|max:100',
+            'metadescription' => 'required|string|max:100',
+            'metakeywords' => 'required|string|max:255',
             'heading' => 'required|string|max:255',
             'link_name' => 'required|string|max:255',
             'image' => 'nullable|image|mimes:jpg,jpeg,png,gif,webp', // Validate image
@@ -60,7 +64,7 @@ class FlightDestinationController extends Controller
     $imageName = null; // Initialize as null in case no image is uploaded
     if ($request->hasFile('image')) {
         $image = $request->file('image');
-        $imageName = time() . '.' . $image->getClientOriginalExtension();
+        $imageName = pathinfo($image->getClientOriginalName(), PATHINFO_FILENAME) . '.' . $image->getClientOriginalExtension();
         $image->move(public_path('uploads/'.$request->title), $imageName);
     }
 
@@ -68,7 +72,7 @@ class FlightDestinationController extends Controller
      $imagebannerName = null; // Initialize as null in case no image is uploaded
      if ($request->hasFile('banner_image')) {
          $imagebanner = $request->file('banner_image');
-         $imagebannerName = time().'ban'. '.' . $imagebanner->getClientOriginalExtension();
+         $imagebannerName = pathinfo($imagebanner->getClientOriginalName(), PATHINFO_FILENAME) . $imagebanner->getClientOriginalExtension();
          $imagebanner->move(public_path('uploads/'.$request->title), $imagebannerName);
      }
 
@@ -104,11 +108,14 @@ class FlightDestinationController extends Controller
         $airline_image5->move(public_path('uploads/'.$request->title), $airline_image5Name);
     }
         
-//dd($imageName,$airline_image4Name);
+//dd($imageName);
 
         FlightDestination::create([
             'region' => $request->input('region'),
             'title' => $request->input('title'),
+            'meta_title' => $request->input('metatitle'),
+            'meta_description' => $request->input('metadescription'),
+            'meta_keywords' => $request->input('metakeywords'),
             'image' => $imageName, // Save the main image name (if uploaded)
             'banner_image' => $imagebannerName,
             'image_seo' => $request->input('image_seo'),
@@ -205,7 +212,7 @@ class FlightDestinationController extends Controller
 
         // Store the new image
         $image = $request->file('image');
-        $imageName = time() . '.' . $image->getClientOriginalExtension();
+        $imageName = pathinfo($image->getClientOriginalName(), PATHINFO_FILENAME) .'.' . $image->getClientOriginalExtension();
         $image->move(public_path('uploads/'.$request->title), $imageName);
         // Update the image field in the database
         $destination->image = $imageName;
@@ -220,11 +227,12 @@ class FlightDestinationController extends Controller
 
         // Store the new banner_image
         $banner_image = $request->file('banner_image');
-        $banner_imageName = time().'ban' . '.' . $banner_image->getClientOriginalExtension();
+        $banner_imageName = pathinfo($banner_image->getClientOriginalName(), PATHINFO_FILENAME) . '.' . $banner_image->getClientOriginalExtension();
         $banner_image->move(public_path('uploads/'.$request->title), $banner_imageName);
         // Update the banner_image field in the database
         $destination->banner_image = $banner_imageName;
     }
+   // dd($destination->image,$destination->banner_image);
     // Handle airline_image1 upload
     if ($request->hasFile('airline_image1')) {
         // Delete the old airline_image1 if a new one is uploaded
@@ -304,6 +312,9 @@ if ($request->hasFile('airline_image5')) {
     // Update other fields (excluding image)
     $destination->region = $request->region;
     $destination->title = $request->title;
+    $destination->meta_title = $request->metatitle;
+    $destination->meta_description = $request->metadescription;
+    $destination->meta_keywords = $request->metakeywords;
     $destination->homepage_display = $request->has('homepage_display') ? 1 : 0;
     $destination->heading = $request->heading;
     $destination->link_name = $request->link_name;
@@ -333,7 +344,7 @@ if ($request->hasFile('airline_image5')) {
 
     $destination->status = $request->status;
     $destination->user_id = Auth::id();
-
+//dd($destination->image);
     // Save changes
     $destination->save();
 
