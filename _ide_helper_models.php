@@ -45,11 +45,10 @@ namespace App\Models{
  * @property int $id
  * @property string $image
  * @property string $image_seo
- * @property string $banner_image
  * @property string $title
  * @property string $link_name
  * @property string|null $price
- * @property string|null $rating
+ * @property int|null $rating
  * @property int $rating_count
  * @property string|null $Long_description
  * @property int $cancellation
@@ -62,7 +61,6 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|BestOfActivity newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|BestOfActivity newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|BestOfActivity query()
- * @method static \Illuminate\Database\Eloquent\Builder|BestOfActivity whereBannerImage($value)
  * @method static \Illuminate\Database\Eloquent\Builder|BestOfActivity whereCancellation($value)
  * @method static \Illuminate\Database\Eloquent\Builder|BestOfActivity whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|BestOfActivity whereId($value)
@@ -210,13 +208,13 @@ namespace App\Models{
  * @property int $id
  * @property string $region
  * @property string $title
- * @property string $meta_title
- * @property string $meta_description
- * @property string $meta_keywords
+ * @property string|null $meta_title
+ * @property string|null $meta_description
+ * @property string|null $meta_keywords
  * @property string $image
  * @property string|null $image_seo
  * @property string $banner_image
- * @property string|null $banner_image_seo
+ * @property string $banner_image_seo
  * @property string|null $first_class_price
  * @property string|null $business_class_price
  * @property string|null $premier_economy_price
@@ -500,19 +498,17 @@ namespace App\Models{
 /**
  * 
  *
- * @property string $region
  * @property int $id
  * @property string $title
  * @property string|null $image
- * @property string|null $image_seo
  * @property string $first_class_price
  * @property string $business_class_price
  * @property string $premier_economy_price
  * @property string $economy_price
  * @property string $status
- * @property int $user_id
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property int $user_id
  * @property-read \App\Models\User $user
  * @method static \Illuminate\Database\Eloquent\Builder|Popularflightdestination newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Popularflightdestination newQuery()
@@ -523,9 +519,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Popularflightdestination whereFirstClassPrice($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Popularflightdestination whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Popularflightdestination whereImage($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Popularflightdestination whereImageSeo($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Popularflightdestination wherePremierEconomyPrice($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Popularflightdestination whereRegion($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Popularflightdestination whereStatus($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Popularflightdestination whereTitle($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Popularflightdestination whereUpdatedAt($value)
@@ -550,7 +544,6 @@ namespace App\Models{
  * @property int $passengers
  * @property string $class_type
  * @property string $status
- * @property string $sales_amount
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \App\Models\Flight $flight
@@ -569,7 +562,6 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|TicketEnquiry whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|TicketEnquiry wherePassengers($value)
  * @method static \Illuminate\Database\Eloquent\Builder|TicketEnquiry whereReturnDate($value)
- * @method static \Illuminate\Database\Eloquent\Builder|TicketEnquiry whereSalesAmount($value)
  * @method static \Illuminate\Database\Eloquent\Builder|TicketEnquiry whereSource($value)
  * @method static \Illuminate\Database\Eloquent\Builder|TicketEnquiry whereStatus($value)
  * @method static \Illuminate\Database\Eloquent\Builder|TicketEnquiry whereUpdatedAt($value)
@@ -610,6 +602,17 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|TopThingsToDo whereUserId($value)
  */
 	class TopThingsToDo extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * 
+ *
+ * @method static \Illuminate\Database\Eloquent\Builder|TrackPrice newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|TrackPrice newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|TrackPrice query()
+ */
+	class TrackPrice extends \Eloquent {}
 }
 
 namespace App\Models{
@@ -665,5 +668,16 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|airport whereUpdatedAt($value)
  */
 	class airport extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * 
+ *
+ * @method static \Illuminate\Database\Eloquent\Builder|c newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|c newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|c query()
+ */
+	class c extends \Eloquent {}
 }
 

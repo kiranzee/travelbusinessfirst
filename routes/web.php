@@ -48,6 +48,7 @@ Route::get('/thankyou-ticketflightequiry', [TicketEnquiryController::class, 'ind
 Route::post('/thankyou', [HotelEnquiryController::class, 'hotelEnquiry'])->name('thankyou.hotelenquiry');
 Route::get('/thank-you',[App\Http\Controllers\TicketEnquiryController::class, 'index'])->name('thank-you.index');
 
+Route::post('/trackprice', [App\Http\Controllers\TrackPriceController::class, 'store'])->name('trackprice.store');
 
 Route::middleware('auth')->group(function (){
 
@@ -98,10 +99,9 @@ Route::get('/ticketenquiry/index',[App\Http\Controllers\CustomerEnquiryControlle
 Route::post('/update-ticket-status', [App\Http\Controllers\CustomerEnquiryController::class, 'updateStatus'])->name('update.ticket.status');
 Route::post('/update-ticket-sales', [App\Http\Controllers\CustomerEnquiryController::class, 'updateSalesAmount'])->name('update.ticket.sales');
 
-
-
-
 Route::get('/cityflightenquiry/index',[App\Http\Controllers\CustomerEnquiryController::class, 'cityflight'])->name('cityflightenquiry');
 Route::get('/holidaydealenquiry/index',[App\Http\Controllers\CustomerEnquiryController::class, 'holidaydeal'])->name('holidaydealenquiry');
 Route::get('/hotelenquiry/index',[App\Http\Controllers\CustomerEnquiryController::class, 'hotel'])->name('hotelenquiry');
+Route::get('/trackprice/list', [App\Http\Controllers\CustomerEnquiryController::class, 'trackprice'])->name('trackprice.index');
+
 });

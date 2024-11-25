@@ -41,6 +41,7 @@
                  <a class="collapse-item" href="{{ route('cityflightenquiry') }}">Citywise Flight</a>
                  <a class="collapse-item" href="{{ route('holidaydealenquiry') }}">Holiday Deals</a>
                  <a class="collapse-item" href="{{ route('hotelenquiry') }}">Hotels</a>
+                 <a class="collapse-item" href="{{ route('trackprice.index') }}">Track Price</a>
                  {{-- <div class="collapse-divider"></div> --}}
 
              </div>

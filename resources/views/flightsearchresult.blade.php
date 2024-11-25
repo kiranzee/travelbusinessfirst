@@ -1,8 +1,12 @@
 @php
     use Carbon\Carbon;
+
 @endphp
 
 @include('layouts.header', ['sortedMenu' => $sortedMenu])
+@if (session('success'))
+    alert( {{ session('success') }});
+@endif
 <section class="search-top-section">
     <img src="{{ asset('img/flight-search-top-image.webp') }}" class="img-fluid" alt="">
     <div class="deal-outer">
@@ -31,14 +35,15 @@
                                             alt="">
                                         <div>
                                             <small class="clr-7e" id="fromLabel">Departure</small>
-                                            <input class="text-truncate w-100" type="text" id="fromdest" name="fromdest"
-                                                value="{{ $request->from }}" placeholder="Airport">
+                                            <input class="text-truncate w-100" type="text" id="fromdest"
+                                                name="fromdest" value="{{ $request->from }}" placeholder="Airport">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-2 col-md-2 d-inline-flex justify-content-center">
                                     <div class="swap-btn m-0">
-                                        <img class="swap-icon" src="{{ asset('img/icons/swap-icon.svg') }}" alt="">
+                                        <img class="swap-icon" src="{{ asset('img/icons/swap-icon.svg') }}"
+                                            alt="">
                                     </div>
                                 </div>
                                 <div id="returnTrigger" class="col-5 col-md-5">
@@ -47,8 +52,8 @@
                                             alt="">
                                         <div>
                                             <small class="clr-7e" id="toLabel">Destination </small>
-                                            <input class="text-truncate w-100" type="text" name="todest" id="todest"
-                                                value="{{ $request->to }}" placeholder="Airport">
+                                            <input class="text-truncate w-100" type="text" name="todest"
+                                                id="todest" value="{{ $request->to }}" placeholder="Airport">
                                         </div>
                                     </div>
                                 </div>
@@ -99,15 +104,17 @@
                                                 value="2">
                                             <div class="control-btn">
                                                 <button type="button" class="plus">
-                                                    <svg clip-rule="evenodd" fill-rule="evenodd" stroke-linejoin="round"
-                                                        stroke-miterlimit="2" width="10" height="10" viewBox="0 0 24 24"
+                                                    <svg clip-rule="evenodd" fill-rule="evenodd"
+                                                        stroke-linejoin="round" stroke-miterlimit="2" width="10"
+                                                        height="10" viewBox="0 0 24 24"
                                                         xmlns="http://www.w3.org/2000/svg">
                                                         <path d="M24 10h-10v-10h-4v10h-10v4h10v10h4v-10h10z" />
                                                     </svg>
                                                 </button>
                                                 <button type="button" class="minus">
-                                                    <svg clip-rule="evenodd" fill-rule="evenodd" stroke-linejoin="round"
-                                                        stroke-miterlimit="2" width="10" height="10" viewBox="0 0 24 24"
+                                                    <svg clip-rule="evenodd" fill-rule="evenodd"
+                                                        stroke-linejoin="round" stroke-miterlimit="2" width="10"
+                                                        height="10" viewBox="0 0 24 24"
                                                         xmlns="http://www.w3.org/2000/svg">
                                                         <path d="M0 10h24v4h-24z" />
                                                     </svg>
@@ -123,18 +130,21 @@
                                     </div>
                                     <div class="col-4">
                                         <div class="pax-number">
-                                            <input type="text" class="form-control" placeholder="0" id="childcount">
+                                            <input type="text" class="form-control" placeholder="0"
+                                                id="childcount">
                                             <div class="control-btn">
                                                 <button type="button" class="plus">
-                                                    <svg clip-rule="evenodd" fill-rule="evenodd" stroke-linejoin="round"
-                                                        stroke-miterlimit="2" width="10" height="10" viewBox="0 0 24 24"
+                                                    <svg clip-rule="evenodd" fill-rule="evenodd"
+                                                        stroke-linejoin="round" stroke-miterlimit="2" width="10"
+                                                        height="10" viewBox="0 0 24 24"
                                                         xmlns="http://www.w3.org/2000/svg">
                                                         <path d="M24 10h-10v-10h-4v10h-10v4h10v10h4v-10h10z" />
                                                     </svg>
                                                 </button>
                                                 <button type="button" class="minus">
-                                                    <svg clip-rule="evenodd" fill-rule="evenodd" stroke-linejoin="round"
-                                                        stroke-miterlimit="2" width="10" height="10" viewBox="0 0 24 24"
+                                                    <svg clip-rule="evenodd" fill-rule="evenodd"
+                                                        stroke-linejoin="round" stroke-miterlimit="2" width="10"
+                                                        height="10" viewBox="0 0 24 24"
                                                         xmlns="http://www.w3.org/2000/svg">
                                                         <path d="M0 10h24v4h-24z" />
                                                     </svg>
@@ -150,18 +160,21 @@
                                     </div>
                                     <div class="col-4">
                                         <div class="pax-number">
-                                            <input type="text" class="form-control" placeholder="0" id="infantcount">
+                                            <input type="text" class="form-control" placeholder="0"
+                                                id="infantcount">
                                             <div class="control-btn">
                                                 <button type="button" class="plus">
-                                                    <svg clip-rule="evenodd" fill-rule="evenodd" stroke-linejoin="round"
-                                                        stroke-miterlimit="2" width="10" height="10" viewBox="0 0 24 24"
+                                                    <svg clip-rule="evenodd" fill-rule="evenodd"
+                                                        stroke-linejoin="round" stroke-miterlimit="2" width="10"
+                                                        height="10" viewBox="0 0 24 24"
                                                         xmlns="http://www.w3.org/2000/svg">
                                                         <path d="M24 10h-10v-10h-4v10h-10v4h10v10h4v-10h10z" />
                                                     </svg>
                                                 </button>
                                                 <button type="button" class="minus">
-                                                    <svg clip-rule="evenodd" fill-rule="evenodd" stroke-linejoin="round"
-                                                        stroke-miterlimit="2" width="10" height="10" viewBox="0 0 24 24"
+                                                    <svg clip-rule="evenodd" fill-rule="evenodd"
+                                                        stroke-linejoin="round" stroke-miterlimit="2" width="10"
+                                                        height="10" viewBox="0 0 24 24"
                                                         xmlns="http://www.w3.org/2000/svg">
                                                         <path d="M0 10h24v4h-24z" />
                                                     </svg>
@@ -200,7 +213,8 @@
                                 </div>
                                 <div class="row mt-2">
                                     <div class="col-4">
-                                        <button type="button" class="btn btn-pax-close" id="closeButton">Done</button>
+                                        <button type="button" class="btn btn-pax-close"
+                                            id="closeButton">Done</button>
                                     </div>
                                 </div>
                             </div>
@@ -220,8 +234,8 @@
         <div class="search-control">
             <div class="input-group">
                 <span class="input-group-text go-back">
-                    <svg clip-rule="evenodd" fill-rule="evenodd" stroke-linejoin="round" width="20" height="20"
-                        stroke-miterlimit="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <svg clip-rule="evenodd" fill-rule="evenodd" stroke-linejoin="round" width="20"
+                        height="20" stroke-miterlimit="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path
                             d="m9.474 5.209s-4.501 4.505-6.254 6.259c-.147.146-.22.338-.22.53s.073.384.22.53c1.752 1.754 6.252 6.257 6.252 6.257.145.145.336.217.527.217.191-.001.383-.074.53-.221.293-.293.294-.766.004-1.057l-4.976-4.976h14.692c.414 0 .75-.336.75-.75s-.336-.75-.75-.75h-14.692l4.978-4.979c.289-.289.287-.761-.006-1.054-.147-.147-.339-.221-.53-.221-.191-.001-.38.071-.525.215z"
                             fill-rule="nonzero" />
@@ -230,8 +244,8 @@
                 <input type="text" class="form-control" id="fromdestm" placeholder="Enter City / Country"
                     aria-label="Enter City / Country">
                 <span class="input-group-text">
-                    <svg clip-rule="evenodd" fill-rule="evenodd" stroke-linejoin="round" width="20" height="20"
-                        stroke-miterlimit="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <svg clip-rule="evenodd" fill-rule="evenodd" stroke-linejoin="round" width="20"
+                        height="20" stroke-miterlimit="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path
                             d="m15.97 17.031c-1.479 1.238-3.384 1.985-5.461 1.985-4.697 0-8.509-3.812-8.509-8.508s3.812-8.508 8.509-8.508c4.695 0 8.508 3.812 8.508 8.508 0 2.078-.747 3.984-1.985 5.461l4.749 4.75c.146.146.219.338.219.531 0 .587-.537.75-.75.75-.192 0-.384-.073-.531-.22zm-5.461-13.53c-3.868 0-7.007 3.14-7.007 7.007s3.139 7.007 7.007 7.007c3.866 0 7.007-3.14 7.007-7.007s-3.141-7.007-7.007-7.007z"
                             fill-rule="nonzero" />
@@ -257,8 +271,9 @@
             <div class="search-control">
                 <div class="input-group">
                     <span class="input-group-text go-back">
-                        <svg clip-rule="evenodd" fill-rule="evenodd" stroke-linejoin="round" width="20" height="20"
-                            stroke-miterlimit="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <svg clip-rule="evenodd" fill-rule="evenodd" stroke-linejoin="round" width="20"
+                            height="20" stroke-miterlimit="2" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
                             <path
                                 d="m9.474 5.209s-4.501 4.505-6.254 6.259c-.147.146-.22.338-.22.53s.073.384.22.53c1.752 1.754 6.252 6.257 6.252 6.257.145.145.336.217.527.217.191-.001.383-.074.53-.221.293-.293.294-.766.004-1.057l-4.976-4.976h14.692c.414 0 .75-.336.75-.75s-.336-.75-.75-.75h-14.692l4.978-4.979c.289-.289.287-.761-.006-1.054-.147-.147-.339-.221-.53-.221-.191-.001-.38.071-.525.215z"
                                 fill-rule="nonzero" />
@@ -267,8 +282,9 @@
                     <input type="text" class="form-control" id="todestm" placeholder="Enter City / Country"
                         aria-label="Enter City / Country">
                     <span class="input-group-text">
-                        <svg clip-rule="evenodd" fill-rule="evenodd" stroke-linejoin="round" width="20" height="20"
-                            stroke-miterlimit="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <svg clip-rule="evenodd" fill-rule="evenodd" stroke-linejoin="round" width="20"
+                            height="20" stroke-miterlimit="2" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
                             <path
                                 d="m15.97 17.031c-1.479 1.238-3.384 1.985-5.461 1.985-4.697 0-8.509-3.812-8.509-8.508s3.812-8.508 8.509-8.508c4.695 0 8.508 3.812 8.508 8.508 0 2.078-.747 3.984-1.985 5.461l4.749 4.75c.146.146.219.338.219.531 0 .587-.537.75-.75.75-.192 0-.384-.073-.531-.22zm-5.461-13.53c-3.868 0-7.007 3.14-7.007 7.007s3.139 7.007 7.007 7.007c3.866 0 7.007-3.14 7.007-7.007s-3.141-7.007-7.007-7.007z"
                                 fill-rule="nonzero" />
@@ -280,11 +296,7 @@
                 <h6 class="mb-3">Top Searches</h6>
                 <ul>
                     <li>
-
                     </li>
-
-
-
                 </ul>
             </div>
         </div>
@@ -313,7 +325,8 @@
                             data-bs-target="#trackPrice"><img src="{{ asset('img/icons/track-price-icon.png') }}"
                                 class="img-fluid" alt=""> Track Prices
                             <img src="img/icons/info.svg" class="img-fluid info-icon" data-bs-placement="top"
-                                data-bs-custom-class="custom-tooltip" data-bs-toggle="tooltip" data-bs-title="When prices for the dates you have searched change, receive email updates.
+                                data-bs-custom-class="custom-tooltip" data-bs-toggle="tooltip"
+                                data-bs-title="When prices for the dates you have searched change, receive email updates.
                                 You'll also receive email-based travel advice. as well, as keep an eye on any
                                 dates to receive email notifications on when London – Malé prices drop."></img>
                         </button>
@@ -322,7 +335,8 @@
                                 src="{{ asset('img/icons/date-grid-icon.png') }}" class="img-fluid" alt="">
                             Date Grid</button>
                         <button type="button" class="btn btn-light"><img
-                                src="{{ asset('img/icons/price-graph-icon.png') }}" class="img-fluid" alt=""> Price
+                                src="{{ asset('img/icons/price-graph-icon.png') }}" class="img-fluid"
+                                alt=""> Price
                             Graph</button>
                     </div>
                 </div>
@@ -364,8 +378,15 @@
                     aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered">
                         <div class="modal-content">
+
+                            <input type="hidden" id="from" name="source" value="{{ $request->from }}">
+                            <input type="hidden" id="to" name="destination" value="{{ $request->to }}">
+                            <input type="hidden" id="departure_date" name="depature_date"
+                                value="{{ $request->departure }}">
+                            <input type="hidden" id="return_date" name="return_date"
+                                value="{{ $request->return }}">
                             <div class="modal-header">
-                                <h1 class="modal-title fs-5" id="trackPriceLabel">Track Price</h1>
+                                <h1 class="modal-title fs-5" id="trackPriceLabel">Track Price .</h1>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                     aria-label="Close"></button>
                             </div>
@@ -374,13 +395,13 @@
                                     <div class="col-md-12">
                                         <div class="mb-3">
                                             <label for="mobile" class="form-label">Mobile No</label>
-                                            <input type="text" class="form-control" id="mobile"
-                                                placeholder="9999999999">
+                                            <input type="text" class="form-control" id="customer_phone"
+                                                name="customer_phone" id="mobile" placeholder="+449999999999">
                                         </div>
                                         <div class="mb-3">
                                             <label for="email" class="form-label">Email ID</label>
-                                            <input type="email" class="form-control" id="email"
-                                                placeholder="name@example.com">
+                                            <input type="email" class="form-control" id="customer_email"
+                                                name="customer_email" id="email" placeholder="name@example.com">
                                         </div>
                                     </div>
                                 </div>
@@ -388,8 +409,9 @@
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-sm btn-secondary"
                                     data-bs-dismiss="modal">Cancel</button>
-                                <button type="button" class="btn btn-sm btn-primary">Submit</button>
+                                <button type="submit" class="btn btn-sm btn-primary trackpriceBtn">Submit</button>
                             </div>
+
                         </div>
                     </div>
                 </div>
@@ -440,8 +462,8 @@
                         <div class="col-5 col-md-4">
                             <div class="btn custom-filter direct-flight">
                                 <div class="d-flex align-items-center">
-                                    <input class="form-check-input me-3" id="directFlight" type="checkbox" value=""
-                                        aria-label="Direct Flight Only">
+                                    <input class="form-check-input me-3" id="directFlight" type="checkbox"
+                                        value="" aria-label="Direct Flight Only">
                                     <label for="directFlight">Direct Flight <span
                                             class="d-none d-md-inline-block">Only</span></label>
                                 </div>
@@ -463,7 +485,8 @@
                         </div>
                         <div class="col-3 col-md-3">
                             <div class="dropdown tbf-dropdown">
-                                <div class="btn custom-filter" for="" data-bs-toggle="dropdown" aria-expanded="false">
+                                <div class="btn custom-filter" for="" data-bs-toggle="dropdown"
+                                    aria-expanded="false">
                                     <span>Sort By</span>
                                     <svg class="arrow-down" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                         <path d="M0 7.33l2.829-2.83 9.175 9.339 9.167-9.339 2.829 2.83-11.996 12.17z" />
@@ -471,13 +494,13 @@
                                 </div>
                                 <ul class="dropdown-menu">
                                     <li class="input-group-text">
-                                        <input class="form-check-input" id="low-high" type="checkbox" checked value=""
-                                            aria-label="">
+                                        <input class="form-check-input" id="low-high" type="checkbox" checked
+                                            value="" aria-label="">
                                         <label for="low-high">Price Low - High</label>
                                     </li>
                                     <li class="input-group-text">
-                                        <input class="form-check-input" id="high-low" type="checkbox" value=""
-                                            aria-label="">
+                                        <input class="form-check-input" id="high-low" type="checkbox"
+                                            value="" aria-label="">
                                         <label for="high-low">Price High - Low</label>
                                     </li>
 
@@ -503,7 +526,8 @@
                                     <div class="info-one">
                                         <div class="non-refundable">Non-Refundable</div>
                                         <div class="d-flex align-items-center mt-2">
-                                            <img src="{{ $result->logo }}" class="img-fluid" alt="{{ $result->airline_name }}">
+                                            <img src="{{ $result->logo }}" class="img-fluid"
+                                                alt="{{ $result->airline_name }}">
                                             <div class="flight-dtls">
                                                 <p class="airline-name">{{ $result->airline_name }}</p>
                                                 <span class="flt-no">{{ $result->airline }}</span>
@@ -524,97 +548,104 @@
                                                         data-bs-custom-class="custom-tooltip" data-bs-toggle="tooltip"
                                                         data-bs-title="{{ $result->route }}">
                                                         {{ $stops = 'Non-Stop' }}
-                                                @elseif (!empty($result->route2))
-                                                    <div class="flt-stops roundtrip" data-bs-placement="top"
-                                                        data-bs-custom-class="custom-tooltip" data-bs-toggle="tooltip"
-                                                        data-bs-title="{{ $result->route2 }}">
-                                                        {{ $stops = '+2 Stops' }}
-                                                @elseif (!empty($result->route3))
-                                                    <div class="flt-stops roundtrip" data-bs-placement="top"
-                                                        data-bs-custom-class="custom-tooltip" data-bs-toggle="tooltip"
-                                                        data-bs-title="{{ $result->route3 }}">
-                                                        {{ $stops = '+3 Stops' }}
-                                                @else
-                                                    <div class="flt-stops roundtrip" data-bs-placement="top"
-                                                        data-bs-custom-class="custom-tooltip" data-bs-toggle="tooltip"
-                                                        data-bs-title="{{ $result->route }}">
-                                                        {{ $stops = '+1 Stop' }}
+                                                    @elseif (!empty($result->route2))
+                                                        <div class="flt-stops roundtrip" data-bs-placement="top"
+                                                            data-bs-custom-class="custom-tooltip"
+                                                            data-bs-toggle="tooltip"
+                                                            data-bs-title="{{ $result->route2 }}">
+                                                            {{ $stops = '+2 Stops' }}
+                                                        @elseif (!empty($result->route3))
+                                                            <div class="flt-stops roundtrip" data-bs-placement="top"
+                                                                data-bs-custom-class="custom-tooltip"
+                                                                data-bs-toggle="tooltip"
+                                                                data-bs-title="{{ $result->route3 }}">
+                                                                {{ $stops = '+3 Stops' }}
+                                                            @else
+                                                                <div class="flt-stops roundtrip"
+                                                                    data-bs-placement="top"
+                                                                    data-bs-custom-class="custom-tooltip"
+                                                                    data-bs-toggle="tooltip"
+                                                                    data-bs-title="{{ $result->route }}">
+                                                                    {{ $stops = '+1 Stop' }}
                                                 @endif
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-3 text-end">
-                                                            <div class="desti-name">{{ $result->destination_airport_name }}
-                                                            </div>
-                                                            <div class="desti-code">{{ $result->destination }}</div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <div class="desti-dtls">
-                                                    <div class="row justify-content-between">
-                                                        <div class="col-6">
-                                                            <div class="desti-name">{{ $result->destination_airport_name }}
-                                                            </div>
-                                                            <div class="desti-code">{{ $result->destination }}</div>
-                                                        </div>
-                                                        <!-- <div class="col-6 d-flex justify-content-center">
-                                                                                                    <div class="flt-stops">Dummy</div>
-                                                                                                </div> -->
-                                                        <div class="col-6 text-end">
-
-                                                            <div class="desti-name">{{ $result->source_airport_name }}</div>
-                                                            <div class="desti-code">{{ $result->source }}</div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div
-                                                class="col-6 col-md-2 border-start d-inline-flex flex-column justify-content-end align-items-end order-2 order-md-3">
-                                                <div class="price-section">
-                                                    <div class="left-seat">Only 4 Seats left</div>
-                                                    <div class="price"><span>£{{ $result->adult_fare }}</span>
-                                                        <small>Per Person</small>
-                                                    </div>
-                                                    <button
-                                                        onclick="bookFlight({{ $result->id }}, {{ $passengers }},'{{ $request->departure }}','{{ $request->return }}');"
-                                                        type="button" class="btn btn-book mt-2 text-end">Book Now</button>
-                                                </div>
                                             </div>
                                         </div>
-                                        <div class="view-flt-dtls border-top">
-                                            <div class="row justify-content-between align-items-center">
-                                                <div class="col-6 col-md-4">
-                                                    {{-- <a href="javascript:void(0)" class="view-flt-details">View Flight
-                                                        Details
-                                                        ></a> --}}
-                                                </div>
-                                                <div class="col-6 col-md-6 d-inline-flex justify-content-end">
-                                                    <div class="flt-feature"><img src="{{ asset('img/icons/seat.svg') }}"
-                                                            title="Economy">
-                                                        <span>
-                                                            @if ($result->class == '1')
-                                                                Economy Class
-                                                            @elseif($result->class == '2')
-                                                                Business Class
-                                                            @elseif($result->class == '3')
-                                                                First Class
-                                                            @elseif($result->class == '4')
-                                                                Premium Economy
-                                                            @endif
-                                                        </span>
-                                                    </div>
-                                                    <div class="flt-feature"><img src="{{ asset('img/icons/meals.svg') }}"
-                                                            title="Free Meal">
-                                                        <span>{{ $result->meal == '1' ? 'Free Meal' : 'No Meal' }}</span>
-                                                    </div>
-                                                    <div class="flt-feature"><img src="{{ asset('img/icons/baggage.svg') }}"
-                                                            title="23 KG Baggage">
-                                                        <span>23 KG Baggage</span>
-                                                    </div>
-                                                </div>
+                                        <div class="col-3 text-end">
+                                            <div class="desti-name">{{ $result->destination_airport_name }}
                                             </div>
+                                            <div class="desti-code">{{ $result->destination }}</div>
                                         </div>
                                     </div>
+                                </div>
+
+                                <div class="desti-dtls">
+                                    <div class="row justify-content-between">
+                                        <div class="col-6">
+                                            <div class="desti-name">{{ $result->destination_airport_name }}
+                                            </div>
+                                            <div class="desti-code">{{ $result->destination }}</div>
+                                        </div>
+                                        <!-- <div class="col-6 d-flex justify-content-center">
+                                                                                                    <div class="flt-stops">Dummy</div>
+                                                                                                </div> -->
+                                        <div class="col-6 text-end">
+
+                                            <div class="desti-name">{{ $result->source_airport_name }}</div>
+                                            <div class="desti-code">{{ $result->source }}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div
+                                class="col-6 col-md-2 border-start d-inline-flex flex-column justify-content-end align-items-end order-2 order-md-3">
+                                <div class="price-section">
+                                    @php
+                                        $randomNumber = rand(1, 9);
+                                    @endphp
+                                    <div class="left-seat">Only {{ $randomNumber }} Seats left</div>
+                                    <div class="price"><span>£{{ $result->adult_fare }}</span>
+                                        <small>Per Person</small>
+                                    </div>
+                                    <button
+                                        onclick="bookFlight({{ $result->id }}, {{ $passengers }},'{{ $request->departure }}','{{ $request->return }}');"
+                                        type="button" class="btn btn-book mt-2 text-end">Book Now</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="view-flt-dtls border-top">
+                            <div class="row justify-content-between align-items-center">
+                                <div class="col-6 col-md-4">
+                                    {{-- <a href="javascript:void(0)" class="view-flt-details">View Flight
+                                                        Details
+                                                        ></a> --}}
+                                </div>
+                                <div class="col-6 col-md-6 d-inline-flex justify-content-end">
+                                    <div class="flt-feature"><img src="{{ asset('img/icons/seat.svg') }}"
+                                            title="Economy">
+                                        <span>
+                                            @if ($result->class == '1')
+                                                Economy Class
+                                            @elseif($result->class == '2')
+                                                Business Class
+                                            @elseif($result->class == '3')
+                                                First Class
+                                            @elseif($result->class == '4')
+                                                Premium Economy
+                                            @endif
+                                        </span>
+                                    </div>
+                                    <div class="flt-feature"><img src="{{ asset('img/icons/meals.svg') }}"
+                                            title="Free Meal">
+                                        <span>{{ $result->meal == '1' ? 'Free Meal' : 'No Meal' }}</span>
+                                    </div>
+                                    <div class="flt-feature"><img src="{{ asset('img/icons/baggage.svg') }}"
+                                            title="23 KG Baggage">
+                                        <span>23 KG Baggage</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 @else
                     <!-- one-way flight search -->
                     <div class="flight-list flight-search">
@@ -645,111 +676,104 @@
                                                     data-bs-custom-class="custom-tooltip" data-bs-toggle="tooltip"
                                                     data-bs-title="{{ $result->route }}">
                                                     {{ $stops = 'Non-Stop' }}
-                                            @elseif (!empty($result->route2))
-                                                <div class="flt-stops" data-bs-placement="top"
-                                                    data-bs-custom-class="custom-tooltip"
-                                                    data-bs-toggle="tooltip"
-                                                    data-bs-title="{{ $result->route2 }}">
-                                                    {{ $stops = '+2 Stops' }}
-                                            @elseif (!empty($result->route3))
-                                                <div class="flt-stops" data-bs-placement="top"
-                                                    data-bs-custom-class="custom-tooltip"
-                                                    data-bs-toggle="tooltip"
-                                                    data-bs-title="{{ $result->route3 }}">
-                                                    {{ $stops = '+3 Stops' }}
-                                            @else
-                                                <div class="flt-stops" data-bs-placement="top"
-                                                    data-bs-custom-class="custom-tooltip"
-                                                    data-bs-toggle="tooltip"
-                                                    data-bs-title="{{ $result->route }}">
-                                                    {{ $stops = '+1 Stop' }}
+                                                @elseif (!empty($result->route2))
+                                                    <div class="flt-stops" data-bs-placement="top"
+                                                        data-bs-custom-class="custom-tooltip" data-bs-toggle="tooltip"
+                                                        data-bs-title="{{ $result->route2 }}">
+                                                        {{ $stops = '+2 Stops' }}
+                                                    @elseif (!empty($result->route3))
+                                                        <div class="flt-stops" data-bs-placement="top"
+                                                            data-bs-custom-class="custom-tooltip"
+                                                            data-bs-toggle="tooltip"
+                                                            data-bs-title="{{ $result->route3 }}">
+                                                            {{ $stops = '+3 Stops' }}
+                                                        @else
+                                                            <div class="flt-stops" data-bs-placement="top"
+                                                                data-bs-custom-class="custom-tooltip"
+                                                                data-bs-toggle="tooltip"
+                                                                data-bs-title="{{ $result->route }}">
+                                                                {{ $stops = '+1 Stop' }}
                                             @endif
-                                                        </div>
-
-
-
-
-
-                                                    </div>
-                                                    <div class="col-4 col-md-4 text-end">
-                                                        <div class="desti-name">
-                                                            {{ $result->destination_airport_name }}
-                                                        </div>
-                                                        <div class="desti-code">{{ $result->destination }}</div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div
-                                            class="col-6 col-md-3 border-start d-inline-flex flex-column justify-content-end align-items-end order-2 order-md-3">
-                                            <div class="price-section w-100 text-end text-md-start">
-                                                <div class="left-seat">Only 4 Seats left</div>
-                                                <div
-                                                    class="row justify-content-between align-items-center mt-2">
-                                                    <div
-                                                        class="col-md-6 d-flex flex-row justify-content-end justify-content-md-start">
-                                                        <div class="price-oneway">
-                                                            <span>£{{ $result->adult_fare }}</span>
-                                                            <small>Per Person</small>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-6 d-flex flex-row justify-content-end">
-                                                        <button
-                                                            onclick="bookFlight({{ $result->id }}, {{ $passengers }},'{{ $request->departure }}','{{ $request->return }}');"
-                                                            type="button"
-                                                            class="btn btn-book text-end text-md-start mt-1 mt-md-0">Book
-                                                            Now</button>
-                                                    </div>
-                                                </div>
-                                            </div>
                                         </div>
                                     </div>
-                                    <div class="view-flt-dtls border-top">
-                                        <div class="row justify-content-between align-items-center">
-                                            <div class="col-6 col-md-4">
-                                                {{-- <a href="javascript:void(0)" class="view-flt-details">View
-                                                    Flight Details
-                                                    ></a> --}}
-                                            </div>
-                                            <div class="col-6 col-md-6 d-inline-flex justify-content-end">
-                                                <div class="flt-feature"><img
-                                                        src="{{ asset('img/icons/seat.svg') }}" title="">
-                                                    <span>
-                                                        @if ($result->class == '1')
-                                                            Economy Class
-                                                        @elseif($result->class == '2')
-                                                            Business Class
-                                                        @elseif($result->class == '3')
-                                                            First Class
-                                                        @elseif($result->class == '4')
-                                                            Premium Economy
-                                                        @endif
-                                                    </span>
-                                                </div>
-                                                <div class="flt-feature"><img
-                                                        src="{{ asset('img/icons/meals.svg') }}"
-                                                        title="Free Meal">
-                                                    <span>{{ $result->meal == '1' ? 'Free Meal' : 'No Meal' }}</span>
-                                                </div>
-                                                <div class="flt-feature"><img
-                                                        src="{{ asset('img/icons/baggage.svg') }}"
-                                                        title="23 KG Baggage">
-                                                    <span>23 KG
-                                                        Baggage</span>
-                                                </div>
-                                            </div>
+                                    <div class="col-4 col-md-4 text-end">
+                                        <div class="desti-name">
+                                            {{ $result->destination_airport_name }}
                                         </div>
-                                    </div>
-                                </div>
-                                <!-- one-way flight search -->
-                @endif
-            @endforeach
-
-
-
+                                        <div class="desti-code">{{ $result->destination }}</div>
                                     </div>
                                 </div>
                             </div>
+                        </div>
+                        <div
+                            class="col-6 col-md-3 border-start d-inline-flex flex-column justify-content-end align-items-end order-2 order-md-3">
+                            <div class="price-section w-100 text-end text-md-start">
+                                @php
+                                    $randomNumber = rand(1, 9);
+                                @endphp
+                                <div class="left-seat">Only {{ $randomNumber }} Seats left</div>
+                                <div class="row justify-content-between align-items-center mt-2">
+                                    <div class="col-md-6 d-flex flex-row justify-content-end justify-content-md-start">
+                                        <div class="price-oneway">
+                                            <span>£{{ $result->adult_fare }}</span>
+                                            <small>Per Person</small>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 d-flex flex-row justify-content-end">
+                                        <button
+                                            onclick="bookFlight({{ $result->id }}, {{ $passengers }},'{{ $request->departure }}','{{ $request->return }}');"
+                                            type="button"
+                                            class="btn btn-book text-end text-md-start mt-1 mt-md-0">Book
+                                            Now</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="view-flt-dtls border-top">
+                        <div class="row justify-content-between align-items-center">
+                            <div class="col-6 col-md-4">
+                                {{-- <a href="javascript:void(0)" class="view-flt-details">View
+                                                    Flight Details
+                                                    ></a> --}}
+                            </div>
+                            <div class="col-6 col-md-6 d-inline-flex justify-content-end">
+                                <div class="flt-feature"><img src="{{ asset('img/icons/seat.svg') }}"
+                                        title="">
+                                    <span>
+                                        @if ($result->class == '1')
+                                            Economy Class
+                                        @elseif($result->class == '2')
+                                            Business Class
+                                        @elseif($result->class == '3')
+                                            First Class
+                                        @elseif($result->class == '4')
+                                            Premium Economy
+                                        @endif
+                                    </span>
+                                </div>
+                                <div class="flt-feature"><img src="{{ asset('img/icons/meals.svg') }}"
+                                        title="Free Meal">
+                                    <span>{{ $result->meal == '1' ? 'Free Meal' : 'No Meal' }}</span>
+                                </div>
+                                <div class="flt-feature"><img src="{{ asset('img/icons/baggage.svg') }}"
+                                        title="23 KG Baggage">
+                                    <span>23 KG
+                                        Baggage</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+        </div>
+        <!-- one-way flight search -->
+        @endif
+        @endforeach
+
+
+
+    </div>
+    </div>
+    </div>
 </section>
 
 <!-- Explore More Links -->
@@ -788,8 +812,7 @@
     const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
     const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
 
-    function bookFlight(flightId, passengers, departureDate, returnDate)
-    {
+    function bookFlight(flightId, passengers, departureDate, returnDate) {
 
         // Redirect to the flight-detail page with flight ID and passenger count as query parameters
         window.location.href =
@@ -797,11 +820,9 @@
     }
 </script>
 <script>
-    $(document).ready(function ()
-    {
+    $(document).ready(function() {
 
-        function formatDate(date)
-        {
+        function formatDate(date) {
             // Get abbreviated weekday
             const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
             const day = days[date.getDay()];
@@ -832,17 +853,46 @@
 
 
 
+        $('.trackpriceBtn').on('click', function(e) {
+            e.preventDefault(); // Prevent form submission or page refresh
+            var fromDest = $('#from').val();
+            var toDest = $('#to').val();
+            var departureDate = $('#departure_date').val();
+            var returnDate = $('#return_date').val();
+            var customerPhone = $('#customer_phone').val();
+            var customerEmail = $('#customer_email').val();
+            //console.log(customerPhone, customerEmail);
+            $.ajax({
+                url: '/trackprice', // Your endpoint
+                type: 'POST',
+                data: {
+                    _token: $('meta[name="csrf-token"]').attr('content'), // CSRF token
+                    customerPhone: customerPhone,
+                    customerEmail: customerEmail,
+                    from: fromDest,
+                    to: toDest,
+                    departure: departureDate,
+                    return: returnDate ? returnDate : '',
+                },
+                success: function(response) {
+                    // Close the modal
+                    $('#trackPrice').modal('hide');
+                    alert(response.message); // Success message
+
+                },
+                error: function(xhr, status, error) {
+                    alert('Failed to update status. Please try again.');
+                }
+            });
+        });
 
 
-
-        $('#flightSearch').on('submit', function (e)
-        {
+        $('#flightSearch').on('submit', function(e) {
             e.preventDefault(); // Prevent form submission or page refresh
             var selectedCabinClasses = [];
 
             // Loop through each checked checkbox and get the value of aria-label
-            $('input[name="cabin_class"]:checked').each(function ()
-            {
+            $('input[name="cabin_class"]:checked').each(function() {
                 selectedCabinClasses.push($(this).attr('aria-label'));
             });
 
@@ -878,14 +928,13 @@
                         to: toDest,
                         departure: formatDateToYYYYMMDD(departureDate), // Format departure date
                         return: returnDate ? formatDateToYYYYMMDD(returnDate) :
-                            '', // Format return date // Format return date
+                        '', // Format return date // Format return date
                         passengers: numberOfPassengers[0],
                         cabin_class: cabinClass,
                         direct_flight: directFlight,
                         tripType: tripType
                     },
-                    success: function (data)
-                    {
+                    success: function(data) {
                         // Hide the loading screen
 
                         //window.location.href = '/search-results';
@@ -902,9 +951,8 @@
                         window.location.href = url;
                         //$('#loadingScreen').addClass('d-none');
                     },
-                    error: function (xhr, status, error)
-                    {
-                        console.log(status, error);
+                    error: function(xhr, status, error) {
+                        //console.log(status, error);
                         // Hide the loading screen in case of error
                         $('#loadingScreen').addClass('d-none');
 
@@ -915,8 +963,7 @@
             }
         });
 
-        function formatDateToYYYYMMDD(dateStr)
-        {
+        function formatDateToYYYYMMDD(dateStr) {
             const date = new Date(dateStr);
             const year = date.getFullYear();
             const month = (date.getMonth() + 1).toString().padStart(2,
@@ -930,17 +977,14 @@
 
     var path = "{{ route('typeahead_destination') }}";
     $('#fromdest').typeahead({
-        source: function (query, process)
-        {
+        source: function(query, process) {
             return $.get(path, {
                 query: query
-            }, function (data)
-            {
-                console.log(query);
+            }, function(data) {
+                //console.log(query);
                 // Map both airport code and name for display
                 // Map both 'airport_code' and 'airport_name' into a single string for each result
-                var airports = data.map(function (item)
-                {
+                var airports = data.map(function(item) {
                     return item.airport_code + ' - ' + item
                         .airport_name; // Combine the two into a string
                     // return {
@@ -953,8 +997,7 @@
             });
         },
         // Customize the behavior of what is shown in the input when an item is selected
-        updater: function (item)
-        {
+        updater: function(item) {
             // Split the selected item to get airport code and name
             var parts = item.split(' - ');
             var airport_code = parts[0]; // Extract airport code
@@ -966,15 +1009,12 @@
         }
     });
     $('#todest').typeahead({
-        source: function (query, process)
-        {
+        source: function(query, process) {
             return $.get(path, {
                 query: query
-            }, function (data)
-            {
+            }, function(data) {
                 // Map both 'airport_code' and 'airport_name' into a single string for each result
-                var airports = data.map(function (item)
-                {
+                var airports = data.map(function(item) {
                     return item.airport_code + ' - ' + item
                         .airport_name; // Combine the two into a string
                     // return {
@@ -987,8 +1027,7 @@
             });
         },
         // Customize the behavior of what is shown in the input when an item is selected
-        updater: function (item)
-        {
+        updater: function(item) {
             // Split the selected item to get airport code and name
             var parts = item.split(' - ');
             var airport_code = parts[0]; // Extract airport code
@@ -1003,20 +1042,17 @@
     //for mobile view
 
     $('#fromdestm').typeahead({
-        source: function (query, process)
-        {
+        source: function(query, process) {
             return $.get(path, {
                 query: query
-            }, function (data)
-            {
+            }, function(data) {
                 //console.log(data);
                 // Map both 'airport_code' and 'airport_name' into a single string for each result
                 // Clear the existing list
                 $('.search-list ul').empty();
 
                 // Loop through the results and append them to the list
-                $.each(data, function (index, item)
-                {
+                $.each(data, function(index, item) {
                     // Assuming the returned data is in the format of {airport_code, airport_name, city}
                     var listItem = `
     <li class="search-item" data-code="${item.airport_code}" data-name="${item.airport_name}">
@@ -1032,8 +1068,7 @@
                     $('.search-list ul').append(listItem);
                 });
                 // Add click event to each search result item
-                $('.search-item').on('click', function ()
-                {
+                $('.search-item').on('click', function() {
                     console.log("clicked");
                     var selectedCode = $(this).data('code');
                     var selectedName = $(this).data('name');
@@ -1053,20 +1088,17 @@
     });
 
     $('#todestm').typeahead({
-        source: function (query, process)
-        {
+        source: function(query, process) {
             return $.get(path, {
                 query: query
-            }, function (data)
-            {
+            }, function(data) {
                 console.log(data);
                 // Map both 'airport_code' and 'airport_name' into a single string for each result
                 // Clear the existing list
                 $('.search-list ul').empty();
 
                 // Loop through the results and append them to the list
-                $.each(data, function (index, item)
-                {
+                $.each(data, function(index, item) {
                     // Assuming the returned data is in the format of {airport_code, airport_name, city}
                     var listItem = `
     <li class="search-item" data-code="${item.airport_code}" data-name="${item.airport_name}">
@@ -1082,8 +1114,7 @@
                     $('.search-list ul').append(listItem);
                 });
                 // Add click event to each search result item
-                $('.search-item').on('click', function ()
-                {
+                $('.search-item').on('click', function() {
                     console.log("clicked");
                     var selectedCode = $(this).data('code');
                     var selectedName = $(this).data('name');
@@ -1100,13 +1131,11 @@
 
     });
 
-    document.addEventListener("DOMContentLoaded", function ()
-    {
+    document.addEventListener("DOMContentLoaded", function() {
 
         // the selector will match all input controls of type :checkbox
         // and attach a click event handler 
-        $("input:checkbox").on('click', function ()
-        {
+        $("input:checkbox").on('click', function() {
             // in the handler, 'this' refers to the box clicked on
             var $box = $(this);
             if ($box.is(":checked")) {
@@ -1125,8 +1154,7 @@
 
 
         // Function to update the count
-        function updateCount(inputId, delta)
-        {
+        function updateCount(inputId, delta) {
             const inputField = document.getElementById(inputId);
             let currentValue = parseInt(inputField.value) || 0; // Default to 0 if empty
             currentValue += delta; // Increase or decrease
@@ -1145,58 +1173,45 @@
         }
 
         // Add event listeners for the adult count buttons
-        document.querySelectorAll('#adultcount + .control-btn .plus').forEach(button =>
-        {
-            button.addEventListener('click', function ()
-            {
+        document.querySelectorAll('#adultcount + .control-btn .plus').forEach(button => {
+            button.addEventListener('click', function() {
                 updateCount('adultcount', 1);
             });
         });
 
-        document.querySelectorAll('#adultcount + .control-btn .minus').forEach(button =>
-        {
-            button.addEventListener('click', function ()
-            {
+        document.querySelectorAll('#adultcount + .control-btn .minus').forEach(button => {
+            button.addEventListener('click', function() {
                 updateCount('adultcount', -1);
             });
         });
 
         // Add event listeners for the child count buttons
-        document.querySelectorAll('#childcount + .control-btn .plus').forEach(button =>
-        {
-            button.addEventListener('click', function ()
-            {
+        document.querySelectorAll('#childcount + .control-btn .plus').forEach(button => {
+            button.addEventListener('click', function() {
                 updateCount('childcount', 1);
             });
         });
 
-        document.querySelectorAll('#childcount + .control-btn .minus').forEach(button =>
-        {
-            button.addEventListener('click', function ()
-            {
+        document.querySelectorAll('#childcount + .control-btn .minus').forEach(button => {
+            button.addEventListener('click', function() {
                 updateCount('childcount', -1);
             });
         });
 
         // Add event listeners for the infant count buttons
-        document.querySelectorAll('#infantcount + .control-btn .plus').forEach(button =>
-        {
-            button.addEventListener('click', function ()
-            {
+        document.querySelectorAll('#infantcount + .control-btn .plus').forEach(button => {
+            button.addEventListener('click', function() {
                 updateCount('infantcount', 1);
             });
         });
 
-        document.querySelectorAll('#infantcount + .control-btn .minus').forEach(button =>
-        {
-            button.addEventListener('click', function ()
-            {
+        document.querySelectorAll('#infantcount + .control-btn .minus').forEach(button => {
+            button.addEventListener('click', function() {
                 updateCount('infantcount', -1);
             });
         });
         // Handle the Done button click
-        document.getElementById('closeButton').addEventListener('click', function ()
-        {
+        document.getElementById('closeButton').addEventListener('click', function() {
             const adultCount = document.getElementById('adultcount').value;
             const childCount = document.getElementById('childcount').value;
             const infantCount = document.getElementById('infantcount').value;
@@ -1218,8 +1233,7 @@
         });
 
         // Function to update the selected route display
-        function updateRoute()
-        {
+        function updateRoute() {
 
             const oneWayCheckbox = document.getElementById('oneway');
             const roundTripCheckbox = document.getElementById('roundtrip');
@@ -1242,8 +1256,7 @@
         }
 
         // Add event listeners to the checkboxes
-        document.querySelectorAll('input[name="route"]').forEach(checkbox =>
-        {
+        document.querySelectorAll('input[name="route"]').forEach(checkbox => {
 
             checkbox.addEventListener('change', updateRoute);
         });
@@ -1271,22 +1284,19 @@
         }
     });
 
-    $('input[name="departdate"]').on('apply.daterangepicker', function (ev, picker)
-    {
+    $('input[name="departdate"]').on('apply.daterangepicker', function(ev, picker) {
         $(this).val(picker.startDate.format('ddd, D MMM YY'));
         // Set only the end date in the arrival-date field
         $('input[name="returndate"]').val(picker.endDate.format('ddd, D MMM YY'));
     });
 
-    $('input[name="departdate"]').on('cancel.daterangepicker', function (ev, picker)
-    {
+    $('input[name="departdate"]').on('cancel.daterangepicker', function(ev, picker) {
         $(this).val('');
     });
 
 
     // This function will run when the page is fully loaded
-    window.onload = function ()
-    {
+    window.onload = function() {
         // Define the cabin class you want to check
         var selectedCabinClass = '{{ $request->cabin_class }}';
 
@@ -1294,8 +1304,7 @@
         var checkboxes = document.querySelectorAll('input[name="cabin_class"]');
 
         // Loop through each checkbox
-        checkboxes.forEach(function (checkbox)
-        {
+        checkboxes.forEach(function(checkbox) {
             // Check if the aria-label value matches the selected cabin class
             if (checkbox.getAttribute('aria-label') === selectedCabinClass) {
                 checkbox.checked = true; // Check the checkbox
@@ -1305,11 +1314,9 @@
             .value;
         document.getElementById('classtype').textContent = updatedselectedCabinClass;
     };
-    $(window).on('load', function ()
-    {
+    $(window).on('load', function() {
         // Hide the loading animation
-        $('#loadingScreen').fadeOut(500, function ()
-        {
+        $('#loadingScreen').fadeOut(500, function() {
             // Show the page content once the loading animation is done
             $('#pageContent').fadeIn(500);
         });

@@ -7,6 +7,7 @@ use App\Models\TicketEnquiry;
 use App\Models\FlightEnquiry;
 use App\Models\HolidayEnquiry;
 use App\Models\HotelEnquiry;
+use App\Models\TrackPrice;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Collection;
 use Illuminate\Pagination\LengthAwarePaginator;
@@ -124,5 +125,18 @@ class CustomerEnquiryController extends Controller
             //throw $th;
             dd($th);
         }
+    }
+
+    public function trackprice(){
+        if (request()->has('srch')) {
+            $searchTerm = request('srch', '');
+            $trackprice = TrackPrice::where(function ($query) use ($searchTerm) {
+                $query->where('customer_phone', 'like', '%' . $searchTerm . '%')
+                      ->orWhere('customer_email', 'like', '%' . $searchTerm . '%');                      
+            })->get();
+        } else {
+            $trackprice = TrackPrice::orderBy('created_at', 'desc')->get();
+        }
+        return view('layouts.customerenquiry.trackprice',compact('trackprice'));
     }
 }
